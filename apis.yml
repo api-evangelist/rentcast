@@ -6,9 +6,8 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - API
-  - Real Estate
   - Property Data
+  - Real Estate
 url: >-
   https://raw.githubusercontent.com/api-evangelist/rentcast/refs/heads/main/apis.yml
 created: '2025-03-01'
@@ -21,8 +20,7 @@ apis:
       Get instant access to 140 million property records, valuation estimates,
       active listings and real estate market trends.
     humanURL: https://www.rentcast.io/api
-    tags:
-      - API
+    tags: []
     properties:
       - type: Documentation
         url: https://www.rentcast.io/api

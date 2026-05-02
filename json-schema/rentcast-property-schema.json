@@ -1,0 +1,123 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api.rentcast.io/schemas/property",
+  "title": "RentCast Property Record",
+  "description": "A US real estate property record from the RentCast API, containing public record data for residential and commercial properties",
+  "type": "object",
+  "required": ["id", "addressLine1", "city", "state"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique property identifier in the RentCast database"
+    },
+    "formattedAddress": {
+      "type": "string",
+      "description": "Full formatted address string",
+      "example": "123 Main St, Austin, TX 78701"
+    },
+    "addressLine1": {
+      "type": "string",
+      "description": "Street address line 1",
+      "example": "123 Main St"
+    },
+    "addressLine2": {
+      "type": "string",
+      "description": "Street address line 2 (unit, apt, etc.)"
+    },
+    "city": {
+      "type": "string",
+      "description": "City name",
+      "example": "Austin"
+    },
+    "state": {
+      "type": "string",
+      "description": "2-character US state abbreviation",
+      "example": "TX"
+    },
+    "zipCode": {
+      "type": "string",
+      "description": "5-digit ZIP code",
+      "example": "78701"
+    },
+    "county": {
+      "type": "string",
+      "description": "County name",
+      "example": "Travis"
+    },
+    "latitude": {
+      "type": "number",
+      "description": "Geographic latitude coordinate",
+      "example": 30.2672
+    },
+    "longitude": {
+      "type": "number",
+      "description": "Geographic longitude coordinate",
+      "example": -97.7431
+    },
+    "propertyType": {
+      "type": "string",
+      "description": "Property classification",
+      "enum": ["Single Family", "Condo", "Townhouse", "Manufactured", "Multi-Family", "Apartment", "Land"]
+    },
+    "bedrooms": {
+      "type": "number",
+      "description": "Number of bedrooms",
+      "example": 3
+    },
+    "bathrooms": {
+      "type": "number",
+      "description": "Number of bathrooms including partial",
+      "example": 2.5
+    },
+    "squareFootage": {
+      "type": "integer",
+      "description": "Total living area in square feet",
+      "example": 1800
+    },
+    "lotSize": {
+      "type": "integer",
+      "description": "Lot size in square feet",
+      "example": 7500
+    },
+    "yearBuilt": {
+      "type": "integer",
+      "description": "Year the property was constructed",
+      "example": 1995
+    },
+    "assessedValue": {
+      "type": "number",
+      "description": "Tax-assessed value of the property in USD",
+      "example": 320000
+    },
+    "lastSaleDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the most recent sale",
+      "example": "2022-06-15"
+    },
+    "lastSalePrice": {
+      "type": "number",
+      "description": "Price of the most recent sale in USD",
+      "example": 425000
+    },
+    "ownerOccupied": {
+      "type": "boolean",
+      "description": "Whether the property is owner-occupied"
+    },
+    "owner": {
+      "type": "object",
+      "description": "Property owner information",
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Owner name(s)"
+        },
+        "mailingAddress": {
+          "type": "object",
+          "description": "Owner mailing address"
+        }
+      }
+    }
+  }
+}

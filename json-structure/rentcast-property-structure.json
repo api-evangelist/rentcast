@@ -1,0 +1,110 @@
+{
+  "title": "RentCast Property Structure",
+  "description": "Structural documentation for the RentCast property record resource",
+  "type": "object",
+  "structure": {
+    "id": {
+      "type": "string",
+      "description": "Unique RentCast property identifier",
+      "example": "123-main-st-austin-tx-78701"
+    },
+    "formattedAddress": {
+      "type": "string",
+      "description": "Full formatted address for display",
+      "example": "123 Main St, Austin, TX 78701"
+    },
+    "addressLine1": {
+      "type": "string",
+      "description": "Street address",
+      "example": "123 Main St"
+    },
+    "city": {
+      "type": "string",
+      "description": "City name",
+      "example": "Austin"
+    },
+    "state": {
+      "type": "string",
+      "description": "2-letter state code",
+      "example": "TX"
+    },
+    "zipCode": {
+      "type": "string",
+      "description": "5-digit ZIP code",
+      "example": "78701"
+    },
+    "county": {
+      "type": "string",
+      "description": "County name",
+      "example": "Travis"
+    },
+    "latitude": {
+      "type": "number",
+      "description": "Decimal latitude",
+      "example": 30.2672
+    },
+    "longitude": {
+      "type": "number",
+      "description": "Decimal longitude",
+      "example": -97.7431
+    },
+    "propertyType": {
+      "type": "string",
+      "description": "Property classification: Single Family, Condo, Townhouse, etc.",
+      "example": "Single Family"
+    },
+    "bedrooms": {
+      "type": "number",
+      "description": "Bedroom count",
+      "example": 3
+    },
+    "bathrooms": {
+      "type": "number",
+      "description": "Bathroom count including partial",
+      "example": 2
+    },
+    "squareFootage": {
+      "type": "integer",
+      "description": "Living area in sq ft",
+      "example": 1800
+    },
+    "lotSize": {
+      "type": "integer",
+      "description": "Lot size in sq ft",
+      "example": 7500
+    },
+    "yearBuilt": {
+      "type": "integer",
+      "description": "Year of construction",
+      "example": 1998
+    },
+    "assessedValue": {
+      "type": "number",
+      "description": "Tax assessed value USD",
+      "example": 295000
+    },
+    "lastSaleDate": {
+      "type": "string",
+      "description": "ISO 8601 date of last recorded sale",
+      "example": "2021-03-15"
+    },
+    "lastSalePrice": {
+      "type": "number",
+      "description": "USD price of last recorded sale",
+      "example": 380000
+    },
+    "ownerOccupied": {
+      "type": "boolean",
+      "description": "True if owner lives at the property",
+      "example": true
+    },
+    "owner": {
+      "type": "object",
+      "description": "Owner name and mailing address from public records",
+      "properties": {
+        "names": { "type": "array", "description": "List of owner names" },
+        "mailingAddress": { "type": "object", "description": "Owner mailing address" }
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "example": "RentCast Rent Estimate",
+  "description": "Get an automated rent estimate for a single family home in Austin, TX",
+  "request": {
+    "method": "GET",
+    "url": "https://api.rentcast.io/v1/avm/rent/long-term",
+    "headers": {
+      "X-Api-Key": "your-api-key-here"
+    },
+    "params": {
+      "address": "123 Main St, Austin, TX 78701",
+      "propertyType": "Single Family",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "squareFootage": 1800,
+      "compCount": 15
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "price": 2200,
+      "priceRangeLow": 1980,
+      "priceRangeHigh": 2420,
+      "latitude": 30.2672,
+      "longitude": -97.7431,
+      "comparables": [
+        {
+          "id": "456-elm-st-austin-tx-78702",
+          "formattedAddress": "456 Elm St, Austin, TX 78702",
+          "propertyType": "Single Family",
+          "bedrooms": 3,
+          "bathrooms": 2,
+          "squareFootage": 1750,
+          "price": 2150,
+          "distance": 0.4,
+          "daysOnMarket": 12,
+          "listedDate": "2026-04-15"
+        },
+        {
+          "id": "789-oak-ave-austin-tx-78701",
+          "formattedAddress": "789 Oak Ave, Austin, TX 78701",
+          "propertyType": "Single Family",
+          "bedrooms": 3,
+          "bathrooms": 2.5,
+          "squareFootage": 1900,
+          "price": 2300,
+          "distance": 0.6,
+          "daysOnMarket": 7,
+          "listedDate": "2026-04-20"
+        }
+      ]
+    }
+  }
+}

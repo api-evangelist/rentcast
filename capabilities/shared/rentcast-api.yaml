@@ -1,0 +1,382 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "RentCast API"
+  description: >-
+    The RentCast API provides access to 140 million+ US property records,
+    rent and home value estimates via AVM, active sale and rental listings,
+    and aggregate real estate market statistics by zip code.
+  tags:
+    - Real Estate
+    - Property Data
+    - Valuation
+    - Rental Market
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      RENTCAST_API_KEY: RENTCAST_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: rentcast
+      baseUri: https://api.rentcast.io/v1
+      description: "RentCast real estate data API"
+      authentication:
+        type: apikey
+        key: X-Api-Key
+        value: "{{RENTCAST_API_KEY}}"
+        placement: header
+      resources:
+        - name: properties
+          path: /properties
+          description: "US property records"
+          operations:
+            - name: search-properties
+              method: GET
+              description: "Search for property records by address or geographic area"
+              inputParameters:
+                - name: address
+                  in: query
+                  type: string
+                  required: false
+                  description: Full property address
+                - name: city
+                  in: query
+                  type: string
+                  required: false
+                  description: City name
+                - name: state
+                  in: query
+                  type: string
+                  required: false
+                  description: 2-character state code
+                - name: zipCode
+                  in: query
+                  type: string
+                  required: false
+                  description: 5-digit ZIP code
+                - name: latitude
+                  in: query
+                  type: string
+                  required: false
+                  description: Latitude for circular search
+                - name: longitude
+                  in: query
+                  type: string
+                  required: false
+                  description: Longitude for circular search
+                - name: radius
+                  in: query
+                  type: string
+                  required: false
+                  description: Search radius in miles
+                - name: propertyType
+                  in: query
+                  type: string
+                  required: false
+                  description: Property type filter
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: Results per page (1-500)
+                - name: offset
+                  in: query
+                  type: integer
+                  required: false
+                  description: Pagination offset
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: array
+                  value: "$."
+            - name: get-property
+              method: GET
+              description: "Get a single property record by ID"
+              inputParameters:
+                - name: id
+                  in: path
+                  type: string
+                  required: true
+                  description: RentCast property ID
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: rent-estimate
+          path: /avm/rent/long-term
+          description: "Automated rent estimate for a property"
+          operations:
+            - name: get-rent-estimate
+              method: GET
+              description: "Get a rent estimate with comparables for a property"
+              inputParameters:
+                - name: address
+                  in: query
+                  type: string
+                  required: false
+                  description: Full property address
+                - name: latitude
+                  in: query
+                  type: string
+                  required: false
+                  description: Property latitude
+                - name: longitude
+                  in: query
+                  type: string
+                  required: false
+                  description: Property longitude
+                - name: propertyType
+                  in: query
+                  type: string
+                  required: false
+                  description: Property type
+                - name: bedrooms
+                  in: query
+                  type: string
+                  required: false
+                  description: Number of bedrooms
+                - name: bathrooms
+                  in: query
+                  type: string
+                  required: false
+                  description: Number of bathrooms
+                - name: squareFootage
+                  in: query
+                  type: string
+                  required: false
+                  description: Living area in square feet
+                - name: compCount
+                  in: query
+                  type: integer
+                  required: false
+                  description: Number of comparables (5-25)
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: value-estimate
+          path: /avm/value
+          description: "Automated home value estimate for a property"
+          operations:
+            - name: get-value-estimate
+              method: GET
+              description: "Get a home value estimate with comparables for a property"
+              inputParameters:
+                - name: address
+                  in: query
+                  type: string
+                  required: false
+                  description: Full property address
+                - name: latitude
+                  in: query
+                  type: string
+                  required: false
+                  description: Property latitude
+                - name: longitude
+                  in: query
+                  type: string
+                  required: false
+                  description: Property longitude
+                - name: propertyType
+                  in: query
+                  type: string
+                  required: false
+                  description: Property type
+                - name: bedrooms
+                  in: query
+                  type: string
+                  required: false
+                  description: Number of bedrooms
+                - name: bathrooms
+                  in: query
+                  type: string
+                  required: false
+                  description: Number of bathrooms
+                - name: squareFootage
+                  in: query
+                  type: string
+                  required: false
+                  description: Living area in square feet
+                - name: compCount
+                  in: query
+                  type: integer
+                  required: false
+                  description: Number of comparables (5-25)
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: sale-listings
+          path: /listings/sale
+          description: "Sale listings in the US"
+          operations:
+            - name: search-sale-listings
+              method: GET
+              description: "Search for sale listings by location or address"
+              inputParameters:
+                - name: address
+                  in: query
+                  type: string
+                  required: false
+                  description: Full property address
+                - name: city
+                  in: query
+                  type: string
+                  required: false
+                  description: City name
+                - name: state
+                  in: query
+                  type: string
+                  required: false
+                  description: State code
+                - name: zipCode
+                  in: query
+                  type: string
+                  required: false
+                  description: ZIP code
+                - name: propertyType
+                  in: query
+                  type: string
+                  required: false
+                  description: Property type filter
+                - name: status
+                  in: query
+                  type: string
+                  required: false
+                  description: Listing status (Active or Inactive)
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: Results per page
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: array
+                  value: "$."
+
+        - name: rental-listings
+          path: /listings/rental/long-term
+          description: "Long-term rental listings in the US"
+          operations:
+            - name: search-rental-listings
+              method: GET
+              description: "Search for rental listings by location or address"
+              inputParameters:
+                - name: address
+                  in: query
+                  type: string
+                  required: false
+                  description: Full property address
+                - name: city
+                  in: query
+                  type: string
+                  required: false
+                  description: City name
+                - name: state
+                  in: query
+                  type: string
+                  required: false
+                  description: State code
+                - name: zipCode
+                  in: query
+                  type: string
+                  required: false
+                  description: ZIP code
+                - name: propertyType
+                  in: query
+                  type: string
+                  required: false
+                  description: Property type filter
+                - name: bedrooms
+                  in: query
+                  type: string
+                  required: false
+                  description: Bedroom count filter
+                - name: price
+                  in: query
+                  type: string
+                  required: false
+                  description: Rent price filter (supports ranges)
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: Results per page
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: array
+                  value: "$."
+
+        - name: markets
+          path: /markets
+          description: "Aggregate real estate market statistics"
+          operations:
+            - name: get-market-statistics
+              method: GET
+              description: "Get aggregate market statistics for a zip code"
+              inputParameters:
+                - name: zipCode
+                  in: query
+                  type: string
+                  required: false
+                  description: ZIP code for market data
+                - name: state
+                  in: query
+                  type: string
+                  required: false
+                  description: State code
+                - name: city
+                  in: query
+                  type: string
+                  required: false
+                  description: City name
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8101
+      namespace: rentcast-rest
+      resources:
+        - path: /v1/properties
+          name: properties
+          description: "Search property records"
+          operations:
+            - method: GET
+              name: search-properties
+              description: "Search US property records"
+              call: "rentcast.search-properties"
+              outputParameters:
+                - type: array
+                  mapping: "$."
+
+    - type: mcp
+      port: 9101
+      namespace: rentcast-mcp
+      transport: http
+      tools:
+        - name: search-properties
+          description: "Search US property records by address or location"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "rentcast.search-properties"
+          outputParameters:
+            - type: array
+              mapping: "$."

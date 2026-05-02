@@ -1,0 +1,55 @@
+{
+  "example": "RentCast Property Search",
+  "description": "Search for Single Family properties in Austin, TX 78701",
+  "request": {
+    "method": "GET",
+    "url": "https://api.rentcast.io/v1/properties",
+    "headers": {
+      "X-Api-Key": "your-api-key-here"
+    },
+    "params": {
+      "city": "Austin",
+      "state": "TX",
+      "zipCode": "78701",
+      "propertyType": "Single Family",
+      "bedrooms": "3",
+      "limit": 10,
+      "offset": 0
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "id": "123-main-st-austin-tx-78701",
+        "formattedAddress": "123 Main St, Austin, TX 78701",
+        "addressLine1": "123 Main St",
+        "city": "Austin",
+        "state": "TX",
+        "zipCode": "78701",
+        "county": "Travis",
+        "latitude": 30.2672,
+        "longitude": -97.7431,
+        "propertyType": "Single Family",
+        "bedrooms": 3,
+        "bathrooms": 2,
+        "squareFootage": 1800,
+        "lotSize": 7500,
+        "yearBuilt": 1998,
+        "assessedValue": 295000,
+        "lastSaleDate": "2021-03-15",
+        "lastSalePrice": 380000,
+        "ownerOccupied": true,
+        "owner": {
+          "names": ["John Smith", "Jane Smith"],
+          "mailingAddress": {
+            "addressLine1": "123 Main St",
+            "city": "Austin",
+            "state": "TX",
+            "zipCode": "78701"
+          }
+        }
+      }
+    ]
+  }
+}

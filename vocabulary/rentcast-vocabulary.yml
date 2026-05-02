@@ -1,0 +1,151 @@
+vocabulary:
+  name: RentCast Vocabulary
+  description: >-
+    Vocabulary and taxonomy for RentCast real estate data API covering property
+    records, automated valuation models, rental and sale listings, and market
+    statistics concepts.
+  version: "1.0"
+  created: "2026-05-02"
+  modified: "2026-05-02"
+  tags:
+    - Real Estate
+    - Property Data
+    - Valuation
+
+terms:
+
+  # Property Types
+  - term: Single Family
+    definition: >-
+      A detached residential dwelling unit on its own lot, occupied by
+      one household. The most common residential property type in the US.
+    category: Property Type
+    tags: [Residential, Property Type]
+
+  - term: Condo
+    definition: >-
+      A unit within a multi-unit building where the owner holds title to
+      the interior unit while sharing ownership of common areas.
+    category: Property Type
+    tags: [Residential, Property Type]
+
+  - term: Townhouse
+    definition: >-
+      A multi-floor attached home sharing one or two walls with adjacent units.
+      Owners typically own both the interior and exterior of their unit.
+    category: Property Type
+    tags: [Residential, Property Type]
+
+  - term: Multi-Family
+    definition: >-
+      A residential building with multiple separate housing units (2-4 units).
+      Common investment property type for rental income.
+    category: Property Type
+    tags: [Residential, Investment, Property Type]
+
+  - term: Apartment
+    definition: >-
+      A residential unit within a large multi-unit building (5+ units),
+      typically renter-occupied and professionally managed.
+    category: Property Type
+    tags: [Residential, Rental, Property Type]
+
+  # Data Concepts
+  - term: AVM
+    definition: >-
+      Automated Valuation Model. A statistical model that estimates a property's
+      market value or rent price based on comparable properties, location,
+      and property characteristics without a physical appraisal.
+    category: Valuation
+    tags: [Valuation, Analytics]
+
+  - term: Comparable Properties
+    definition: >-
+      Similar properties (comps) used as reference points in a valuation
+      model. Selected based on proximity, property type, size, and recency
+      of listing or sale.
+    category: Valuation
+    tags: [Valuation, Analytics]
+
+  - term: Assessed Value
+    definition: >-
+      The value assigned to a property by the local tax assessor for
+      property tax calculation purposes. May differ significantly from
+      market value.
+    category: Property Data
+    tags: [Valuation, Tax]
+
+  - term: Property Record
+    definition: >-
+      Public record data for a specific parcel including ownership information,
+      physical characteristics, tax assessment history, and transaction history.
+      Sourced from county assessor and recorder offices.
+    category: Property Data
+    tags: [Records, Public Data]
+
+  # Listing Concepts
+  - term: Active Listing
+    definition: >-
+      A property currently available for sale or rent on the open market.
+      Status is active when the listing is accepting offers or applications.
+    category: Listings
+    tags: [Listings, Market]
+
+  - term: Inactive Listing
+    definition: >-
+      A property listing that was previously on the market but is no longer
+      active. Includes sold, rented, withdrawn, or expired listings.
+    category: Listings
+    tags: [Listings, Market]
+
+  - term: Days on Market
+    definition: >-
+      The number of days a property listing has been active on the market.
+      A key indicator of demand and pricing accuracy.
+    category: Listings
+    tags: [Listings, Analytics]
+
+  - term: Long-Term Rental
+    definition: >-
+      A rental listing for a lease of 30+ days, as opposed to short-term
+      vacation rentals. RentCast focuses on the long-term rental market.
+    category: Rental
+    tags: [Rental, Listings]
+
+  # Market Statistics
+  - term: Market Statistics
+    definition: >-
+      Aggregate data summarizing real estate market conditions for a geographic
+      area (zip code). Includes average prices, listing counts, days on market,
+      and price trends.
+    category: Market Data
+    tags: [Analytics, Market]
+
+  - term: Rent Estimate
+    definition: >-
+      An AVM-generated estimate of the monthly rental price for a specific
+      property based on comparable active and recent rental listings.
+    category: Valuation
+    tags: [Valuation, Rental]
+
+  - term: Value Estimate
+    definition: >-
+      An AVM-generated estimate of the market sale value for a specific
+      property based on comparable recent sales and active listings.
+    category: Valuation
+    tags: [Valuation, Sale]
+
+  # Geographic Concepts
+  - term: ZIP Code
+    definition: >-
+      A 5-digit US postal code used as the primary geographic unit for
+      market statistics and location-based property searches in RentCast.
+    category: Geographic
+    tags: [Geographic, Market]
+
+  - term: Search Radius
+    definition: >-
+      A circular geographic area defined by a center point (latitude/longitude)
+      and radius in miles, used to filter property searches.
+    category: Geographic
+    tags: [Geographic, Search]

@@ -1,0 +1,93 @@
+extends: spectral:oas
+
+rules:
+
+  rentcast-api-key-auth:
+    description: RentCast API uses X-Api-Key header authentication
+    message: "API must declare X-Api-Key security scheme"
+    severity: error
+    given: "$.components.securitySchemes"
+    then:
+      function: truthy
+      field: ApiKeyAuth
+
+  rentcast-get-only-operations:
+    description: RentCast API operations are read-only (GET)
+    message: "RentCast endpoints should be GET requests only"
+    severity: warn
+    given: "$.paths[*]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          additionalProperties: false
+          properties:
+            get: {}
+            parameters: {}
+
+  rentcast-address-or-coordinates:
+    description: Property lookup endpoints accept address or lat/lon
+    message: "Property endpoints should support address or latitude/longitude parameters"
+    severity: hint
+    given: "$.paths[*].get.parameters[*].name"
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+          - address
+          - latitude
+          - longitude
+          - city
+          - state
+          - zipCode
+          - radius
+          - id
+
+  rentcast-pagination-params:
+    description: List endpoints should support pagination
+    message: "List operations should include limit and offset parameters"
+    severity: warn
+    given: "$.paths['/properties'].get.parameters[*].name"
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+          - limit
+          - offset
+          - includeTotalCount
+
+  rentcast-property-type-enum:
+    description: propertyType parameter should use standard enum values
+    message: "propertyType should be one of the standard property type values"
+    severity: hint
+    given: "$.paths[*].get.parameters[?(@.name == 'propertyType')].schema.enum[*]"
+    then:
+      function: enumeration
+      functionOptions:
+        values:
+          - Single Family
+          - Condo
+          - Townhouse
+          - Manufactured
+          - Multi-Family
+          - Apartment
+          - Land
+
+  rentcast-response-200-defined:
+    description: All operations must define a 200 response
+    message: "Operation must define a 200 response"
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    then:
+      function: truthy
+      field: "200"
+
+  rentcast-summaries-title-case:
+    description: Operation summaries must use Title Case
+    message: "Summary '{{value}}' should use Title Case"
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 &()/-]*$"

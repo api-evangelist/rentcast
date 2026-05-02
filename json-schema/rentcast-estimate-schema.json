@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api.rentcast.io/schemas/estimate",
+  "title": "RentCast Property Estimate",
+  "description": "An automated valuation model (AVM) estimate for a property's rent or sale value, with comparable properties",
+  "type": "object",
+  "properties": {
+    "price": {
+      "type": "number",
+      "description": "Estimated rent or sale price in USD",
+      "example": 2200
+    },
+    "priceRangeLow": {
+      "type": "number",
+      "description": "Low end of the estimated price range in USD",
+      "example": 1980
+    },
+    "priceRangeHigh": {
+      "type": "number",
+      "description": "High end of the estimated price range in USD",
+      "example": 2420
+    },
+    "latitude": {
+      "type": "number",
+      "description": "Latitude of the subject property"
+    },
+    "longitude": {
+      "type": "number",
+      "description": "Longitude of the subject property"
+    },
+    "comparables": {
+      "type": "array",
+      "description": "List of comparable properties used in the estimate",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "formattedAddress": { "type": "string" },
+          "propertyType": { "type": "string" },
+          "bedrooms": { "type": "number" },
+          "bathrooms": { "type": "number" },
+          "squareFootage": { "type": "integer" },
+          "price": {
+            "type": "number",
+            "description": "Listed or sold price of the comparable"
+          },
+          "distance": {
+            "type": "number",
+            "description": "Distance from subject property in miles"
+          },
+          "daysOnMarket": {
+            "type": "integer",
+            "description": "Number of days the comparable was listed"
+          },
+          "listedDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    }
+  }
+}

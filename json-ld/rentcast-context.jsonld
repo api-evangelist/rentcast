@@ -1,0 +1,79 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "rentcast": "https://api.rentcast.io/vocab#",
+    "schema": "https://schema.org/",
+    "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Property": "schema:RealEstateListing",
+    "Estimate": "rentcast:Estimate",
+    "Listing": "schema:RealEstateListing",
+    "MarketStatistics": "rentcast:MarketStatistics",
+
+    "id": "@id",
+    "formattedAddress": "schema:address",
+    "addressLine1": "schema:streetAddress",
+    "city": "schema:addressLocality",
+    "state": "schema:addressRegion",
+    "zipCode": "schema:postalCode",
+    "county": "schema:addressLocality",
+    "latitude": {
+      "@id": "geo:lat",
+      "@type": "xsd:decimal"
+    },
+    "longitude": {
+      "@id": "geo:long",
+      "@type": "xsd:decimal"
+    },
+    "propertyType": "rentcast:propertyType",
+    "bedrooms": "schema:numberOfRooms",
+    "bathrooms": "rentcast:bathrooms",
+    "squareFootage": {
+      "@id": "schema:floorSize",
+      "@type": "xsd:integer"
+    },
+    "lotSize": {
+      "@id": "schema:lotSize",
+      "@type": "xsd:integer"
+    },
+    "yearBuilt": {
+      "@id": "schema:yearBuilt",
+      "@type": "xsd:integer"
+    },
+    "assessedValue": {
+      "@id": "schema:priceSpecification",
+      "@type": "xsd:decimal"
+    },
+    "lastSaleDate": {
+      "@id": "schema:datePosted",
+      "@type": "xsd:date"
+    },
+    "lastSalePrice": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+    "ownerOccupied": "rentcast:ownerOccupied",
+    "owner": "schema:owns",
+
+    "price": "schema:price",
+    "priceRangeLow": "schema:minPrice",
+    "priceRangeHigh": "schema:maxPrice",
+    "comparables": "rentcast:comparables",
+    "distance": "schema:distance",
+    "daysOnMarket": "rentcast:daysOnMarket",
+
+    "propertyTypes": {
+      "@id": "rentcast:propertyTypes",
+      "@type": "@vocab",
+      "@context": {
+        "Single Family": "rentcast:SingleFamily",
+        "Condo": "rentcast:Condo",
+        "Townhouse": "rentcast:Townhouse",
+        "Multi-Family": "rentcast:MultiFamily",
+        "Apartment": "rentcast:Apartment",
+        "Land": "rentcast:Land"
+      }
+    }
+  }
+}

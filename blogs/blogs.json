@@ -1,0 +1,13 @@
+{
+  "repo": "rentcast",
+  "feeds": [
+    {
+      "source": "https://www.rentcast.io/blog",
+      "feed_url": "https://www.rentcast.io/blog/rss.xml",
+      "saved": 10,
+      "title": "RentCast Blog | RentCast"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:34:56Z"
+}

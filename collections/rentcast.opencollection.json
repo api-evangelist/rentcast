@@ -1,0 +1,658 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RentCast API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Property Records",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.rentcast.io/v1/properties",
+        "params": [
+          {
+            "name": "address",
+            "value": "",
+            "type": "query",
+            "description": "The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for properties in a circular area"
+          },
+          {
+            "name": "city",
+            "value": "",
+            "type": "query",
+            "description": "The name of the city, used to search for properties in a specific city. This parameter is case-sensitive"
+          },
+          {
+            "name": "state",
+            "value": "",
+            "type": "query",
+            "description": "The 2-character state abbreviation, used to search for properties in a specific state. This parameter is case-sensitive"
+          },
+          {
+            "name": "zipCode",
+            "value": "",
+            "type": "query",
+            "description": "The 5-digit zip code, used to search for properties in a specific zip code"
+          },
+          {
+            "name": "latitude",
+            "value": "",
+            "type": "query",
+            "description": "The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a circular area"
+          },
+          {
+            "name": "longitude",
+            "value": "",
+            "type": "query",
+            "description": "The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a circular area"
+          },
+          {
+            "name": "radius",
+            "value": "",
+            "type": "query",
+            "description": "The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for properties in a circular area"
+          },
+          {
+            "name": "propertyType",
+            "value": "",
+            "type": "query",
+            "description": "The type of the property, used to search for properties matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+          },
+          {
+            "name": "bedrooms",
+            "value": "",
+            "type": "query",
+            "description": "The number of bedrooms, used to search for properties matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+          },
+          {
+            "name": "bathrooms",
+            "value": "",
+            "type": "query",
+            "description": "The number of bathrooms, used to search for properties matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+          },
+          {
+            "name": "squareFootage",
+            "value": "",
+            "type": "query",
+            "description": "The total living area size in square feet, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+          },
+          {
+            "name": "lotSize",
+            "value": "",
+            "type": "query",
+            "description": "The total lot size in square feet, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+          },
+          {
+            "name": "yearBuilt",
+            "value": "",
+            "type": "query",
+            "description": "The year of construction, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+          },
+          {
+            "name": "saleDateRange",
+            "value": "",
+            "type": "query",
+            "description": "The number of days since a property was last sold, with a minimum of 1. Used to search for properties that were sold within the specified date range. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "The maximum number of property records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination"
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "The index of the first property record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination"
+          },
+          {
+            "name": "includeTotalCount",
+            "value": "",
+            "type": "query",
+            "description": "When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided"
+          }
+        ]
+      },
+      "docs": "Search for property records in a geographical area, or by a specific address."
+    },
+    {
+      "info": {
+        "name": "Random Property Records",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.rentcast.io/v1/properties/random",
+        "params": [
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "The number of property records to return, between 1 and 500. Defaults to `50` if not provided"
+          }
+        ]
+      },
+      "docs": "Returns a list of property records selected at random."
+    },
+    {
+      "info": {
+        "name": "Property Record by Id",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.rentcast.io/v1/properties/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The id of the property record to return"
+          }
+        ],
+        "auth": {
+          "type": "apikey",
+          "key": "X-Api-Key",
+          "value": "{{X-Api-Key}}",
+          "placement": "header"
+        }
+      },
+      "docs": "Returns a single property record matching the specified id."
+    },
+    {
+      "info": {
+        "name": "Value Estimate",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.rentcast.io/v1/avm/value",
+        "params": [
+          {
+            "name": "address",
+            "value": "",
+            "type": "query",
+            "description": "The **full address** of the property, in the format `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters"
+          },
+          {
+            "name": "latitude",
+            "value": "",
+            "type": "query",
+            "description": "The latitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter"
+          },
+          {
+            "name": "longitude",
+            "value": "",
+            "type": "query",
+            "description": "The longitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter"
+          },
+          {
+            "name": "propertyType",
+            "value": "",
+            "type": "query",
+            "description": "The type of the property. See [explanation of property types](https://developers.rentcast.io/reference/property-types)"
+          },
+          {
+            "name": "bedrooms",
+            "value": "",
+            "type": "query",
+            "description": "The number of bedrooms in the property. Use `0` to indicate a studio layout"
+          },
+          {
+            "name": "bathrooms",
+            "value": "",
+            "type": "query",
+            "description": "The number of bathrooms in the property. Supports fractions to indicate partial bathrooms"
+          },
+          {
+            "name": "squareFootage",
+            "value": "",
+            "type": "query",
+            "description": "The total living area size of the property, in square feet"
+          },
+          {
+            "name": "maxRadius",
+            "value": "",
+            "type": "query",
+            "description": "The maximum distance between comparable listings and the subject property, in miles"
+          },
+          {
+            "name": "daysOld",
+            "value": "",
+            "type": "query",
+            "description": "The maximum number of days since comparable listings were last seen on the market, with a minimum of 1"
+          },
+          {
+            "name": "compCount",
+            "value": "",
+            "type": "query",
+            "description": "The number of comparable listings to use when calculating the value estimate, between 5 and 25. Defaults to `15` if not provided"
+          },
+          {
+            "name": "lookupSubjectAttributes",
+            "value": "",
+            "type": "query",
+            "description": "When enabled, will attempt to look up subject property attributes to find more relevant comps. Defaults to `true` if not provided. [Learn more](https://developers.rentcast.io/reference/property-valuation#subject-property-attribute-lookup) about this feature"
+          }
+        ]
+      },
+      "docs": "Returns a property value estimate and comparable properties."
+    },
+    {
+      "info": {
+        "name": "Rent Estimate",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.rentcast.io/v1/avm/rent/long-term",
+        "params": [
+          {
+            "name": "address",
+            "value": "",
+            "type": "query",
+            "description": "The **full address** of the property, in the format `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters"
+          },
+          {
+            "name": "latitude",
+            "value": "",
+            "type": "query",
+            "description": "The latitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter"
+          },
+          {
+            "name": "longitude",
+            "value": "",
+            "type": "query",
+            "description": "The longitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter"
+          },
+          {
+            "name": "propertyType",
+            "value": "",
+            "type": "query",
+            "description": "The type of the property. See [explanation of property types](https://developers.rentcast.io/reference/property-types)"
+          },
+          {
+            "name": "bedrooms",
+            "value": "",
+            "type": "query",
+            "description": "The number of bedrooms in the property. Use `0` to indicate a studio layout"
+          },
+          {
+            "name": "bathrooms",
+            "value": "",
+            "type": "query",
+            "description": "The number of bathrooms in the property. Supports fractions to indicate partial bathrooms"
+          },
+          {
+            "name": "squareFootage",
+            "value": "",
+            "type": "query",
+            "description": "The total living area size of the property, in square feet"
+          },
+          {
+            "name": "maxRadius",
+            "value": "",
+            "type": "query",
+            "description": "The maximum distance between comparable listings and the subject property, in miles"
+          },
+          {
+            "name": "daysOld",
+            "value": "",
+            "type": "query",
+            "description": "The maximum number of days since comparable listings were last seen on the market, with a minimum of 1"
+          },
+          {
+            "name": "compCount",
+            "value": "",
+            "type": "query",
+            "description": "The number of comparable listings to use when calculating the rent estimate, between 5 and 25. Defaults to `15` if not provided"
+          },
+          {
+            "name": "lookupSubjectAttributes",
+            "value": "",
+            "type": "query",
+            "description": "When enabled, will attempt to look up subject property attributes to find more relevant comps. Defaults to `true` if not provided. [Learn more](https://developers.rentcast.io/reference/property-valuation#subject-property-attribute-lookup) about this feature"
+          }
+        ]
+      },
+      "docs": "Returns a property rent estimate and comparable properties."
+    },
+    {
+      "info": {
+        "name": "Sale Listings",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.rentcast.io/v1/listings/sale",
+        "params": [
+          {
+            "name": "address",
+            "value": "",
+            "type": "query",
+            "description": "The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a circular area"
+          },
+          {
+            "name": "city",
+            "value": "",
+            "type": "query",
+            "description": "The name of the city, used to search for listings in a specific city. This parameter is case-sensitive"
+          },
+          {
+            "name": "state",
+            "value": "",
+            "type": "query",
+            "description": "The 2-character state abbreviation, used to search for listings in a specific state. This parameter is case-sensitive"
+          },
+          {
+            "name": "zipCode",
+            "value": "",
+            "type": "query",
+            "description": "The 5-digit zip code, used to search for listings in a specific zip code"
+          },
+          {
+            "name": "latitude",
+            "value": "",
+            "type": "query",
+            "description": "The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area"
+          },
+          {
+            "name": "longitude",
+            "value": "",
+            "type": "query",
+            "description": "The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area"
+          },
+          {
+            "name": "radius",
+            "value": "",
+            "type": "query",
+            "description": "The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a circular area"
+          },
+          {
+            "name": "propertyType",
+            "value": "",
+            "type": "query",
+            "description": "The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+          },
+          {
+            "name": "bedrooms",
+            "value": "",
+            "type": "query",
+            "description": "The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+          },
+          {
+            "name": "bathrooms",
+            "value": "",
+            "type": "query",
+            "description": "The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+          },
+          {
+            "name": "squareFootage",
+            "value": "",
+            "type": "query",
+            "description": "The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+          },
+          {
+            "name": "lotSize",
+            "value": "",
+            "type": "query",
+            "description": "The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+          },
+          {
+            "name": "yearBuilt",
+            "value": "",
+            "type": "query",
+            "description": "The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+          },
+          {
+            "name": "status",
+            "value": "",
+            "type": "query",
+            "description": "The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values)"
+          },
+          {
+            "name": "price",
+            "value": "",
+            "type": "query",
+            "description": "The listed price of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+          },
+          {
+            "name": "daysOld",
+            "value": "",
+            "type": "query",
+            "description": "The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "The maximum number of listing records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination"
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "The index of the first listing record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination"
+          },
+          {
+            "name": "includeTotalCount",
+            "value": "",
+            "type": "query",
+            "description": "When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided"
+          }
+        ]
+      },
+      "docs": "Search for sale listings in a geographical area, or by a specific address."
+    },
+    {
+      "info": {
+        "name": "Sale Listing by Id",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.rentcast.io/v1/listings/sale/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The id of the property listing to return"
+          }
+        ]
+      },
+      "docs": "Returns a single sale listing matching the specified id."
+    },
+    {
+      "info": {
+        "name": "Rental Listings",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.rentcast.io/v1/listings/rental/long-term",
+        "params": [
+          {
+            "name": "address",
+            "value": "",
+            "type": "query",
+            "description": "The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a circular area"
+          },
+          {
+            "name": "city",
+            "value": "",
+            "type": "query",
+            "description": "The name of the city, used to search for listings in a specific city. This parameter is case-sensitive"
+          },
+          {
+            "name": "state",
+            "value": "",
+            "type": "query",
+            "description": "The 2-character state abbreviation, used to search for listings in a specific state. This parameter is case-sensitive"
+          },
+          {
+            "name": "zipCode",
+            "value": "",
+            "type": "query",
+            "description": "The 5-digit zip code, used to search for listings in a specific zip code"
+          },
+          {
+            "name": "latitude",
+            "value": "",
+            "type": "query",
+            "description": "The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area"
+          },
+          {
+            "name": "longitude",
+            "value": "",
+            "type": "query",
+            "description": "The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area"
+          },
+          {
+            "name": "radius",
+            "value": "",
+            "type": "query",
+            "description": "The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a circular area"
+          },
+          {
+            "name": "propertyType",
+            "value": "",
+            "type": "query",
+            "description": "The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+          },
+          {
+            "name": "bedrooms",
+            "value": "",
+            "type": "query",
+            "description": "The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+          },
+          {
+            "name": "bathrooms",
+            "value": "",
+            "type": "query",
+            "description": "The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+          },
+          {
+            "name": "squareFootage",
+            "value": "",
+            "type": "query",
+            "description": "The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+          },
+          {
+            "name": "lotSize",
+            "value": "",
+            "type": "query",
+            "description": "The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+          },
+          {
+            "name": "yearBuilt",
+            "value": "",
+            "type": "query",
+            "description": "The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+          },
+          {
+            "name": "status",
+            "value": "",
+            "type": "query",
+            "description": "The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values)"
+          },
+          {
+            "name": "price",
+            "value": "",
+            "type": "query",
+            "description": "The listed rent of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+          },
+          {
+            "name": "daysOld",
+            "value": "",
+            "type": "query",
+            "description": "The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)"
+          },
+          {
+            "name": "limit",
+            "value": "",
+            "type": "query",
+            "description": "The maximum number of listing records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination"
+          },
+          {
+            "name": "offset",
+            "value": "",
+            "type": "query",
+            "description": "The index of the first listing record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination"
+          },
+          {
+            "name": "includeTotalCount",
+            "value": "",
+            "type": "query",
+            "description": "When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided"
+          }
+        ]
+      },
+      "docs": "Search for rental listings in a geographical area, or by a specific address."
+    },
+    {
+      "info": {
+        "name": "Rental Listing by Id",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.rentcast.io/v1/listings/rental/long-term/:id",
+        "params": [
+          {
+            "name": "id",
+            "value": "",
+            "type": "path",
+            "description": "The id of the property listing to return"
+          }
+        ]
+      },
+      "docs": "Returns a single rental listing matching the specified id."
+    },
+    {
+      "info": {
+        "name": "Market Statistics",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "https://api.rentcast.io/v1/markets",
+        "params": [
+          {
+            "name": "zipCode",
+            "value": "",
+            "type": "query",
+            "description": "A valid 5-digit US zip code"
+          },
+          {
+            "name": "dataType",
+            "value": "",
+            "type": "query",
+            "description": "The type of aggregate market data to retrieve. Defaults to `\"All\"` if not provided"
+          },
+          {
+            "name": "historyRange",
+            "value": "",
+            "type": "query",
+            "description": "The time range for historical record entries, in months. Defaults to `12` if not provided"
+          }
+        ]
+      },
+      "docs": "Returns aggregate market statistics and listing trends for a single US zip code."
+    }
+  ],
+  "bundled": true
+}

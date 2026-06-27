@@ -83,7 +83,7 @@ common:
     name: RentCast GitHub
     type: GitHubOrganization
     description: OpenAPI specs, Postman collections, and developer resources
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://developers.rentcast.io/llms.txt
 maintainers:
   - FN: Kin Lane

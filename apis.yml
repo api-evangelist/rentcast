@@ -55,6 +55,10 @@ apis:
       - type: Vocabulary
         url: vocabulary/rentcast-vocabulary.yml
 common:
+  - type: DomainSecurity
+    url: security/rentcast-domain-security.yml
+  - type: Authentication
+    url: authentication/rentcast-authentication.yml
   - url: https://www.rentcast.io
     name: RentCast
     type: Website

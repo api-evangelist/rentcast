@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/rentcast-openapi.json
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: sec0
+  type: apiKey
+  in: header
+  parameter: X-Api-Key
+  sources:
+  - openapi/rentcast-openapi.json

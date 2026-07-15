@@ -55,6 +55,8 @@ apis:
       - type: Vocabulary
         url: vocabulary/rentcast-vocabulary.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/rentcast-agentic-access.yml
   - type: DomainSecurity
     url: security/rentcast-domain-security.yml
   - type: Authentication

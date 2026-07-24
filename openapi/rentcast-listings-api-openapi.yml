@@ -1,0 +1,1413 @@
+openapi: 3.1.0
+info:
+  title: RentCast Avm Listings API
+  version: '1.0'
+servers:
+- url: https://api.rentcast.io/v1
+security:
+- sec0: []
+tags:
+- name: Listings
+paths:
+  /listings/sale:
+    get:
+      summary: Sale Listings
+      description: Search for sale listings in a geographical area, or by a specific address.
+      operationId: sale-listings
+      parameters:
+      - name: address
+        in: query
+        description: The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a circular area
+        schema:
+          type: string
+      - name: city
+        in: query
+        description: The name of the city, used to search for listings in a specific city. This parameter is case-sensitive
+        schema:
+          type: string
+          default: Austin
+      - name: state
+        in: query
+        description: The 2-character state abbreviation, used to search for listings in a specific state. This parameter is case-sensitive
+        schema:
+          type: string
+          default: TX
+      - name: zipCode
+        in: query
+        description: The 5-digit zip code, used to search for listings in a specific zip code
+        schema:
+          type: string
+      - name: latitude
+        in: query
+        description: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area
+        schema:
+          type: number
+          format: float
+      - name: longitude
+        in: query
+        description: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area
+        schema:
+          type: number
+          format: float
+      - name: radius
+        in: query
+        description: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a circular area
+        schema:
+          type: number
+          format: float
+      - name: propertyType
+        in: query
+        description: The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        schema:
+          type: string
+          enum:
+          - Single Family
+          - Condo
+          - Townhouse
+          - Manufactured
+          - Multi-Family
+          - Apartment
+          - Land
+      - name: bedrooms
+        in: query
+        description: The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        schema:
+          type: string
+      - name: bathrooms
+        in: query
+        description: The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        schema:
+          type: string
+      - name: squareFootage
+        in: query
+        description: The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        schema:
+          type: string
+          default: ''
+      - name: lotSize
+        in: query
+        description: The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        schema:
+          type: string
+      - name: yearBuilt
+        in: query
+        description: The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        schema:
+          type: string
+          default: ''
+      - name: status
+        in: query
+        description: The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values)
+        schema:
+          type: string
+          enum:
+          - Active
+          - Inactive
+          default: Active
+      - in: query
+        name: price
+        schema:
+          type: string
+        description: The listed price of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+      - in: query
+        name: daysOld
+        schema:
+          type: string
+        description: The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          format: int32
+          default: '5'
+        description: The maximum number of listing records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          format: int32
+        description: The index of the first listing record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+      - in: query
+        name: includeTotalCount
+        schema:
+          type: boolean
+        description: When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              examples:
+                Success:
+                  value:
+                  - id: 3821-Hargis-St,-Austin,-TX-78723
+                    formattedAddress: 3821 Hargis St, Austin, TX 78723
+                    addressLine1: 3821 Hargis St
+                    addressLine2: null
+                    city: Austin
+                    state: TX
+                    stateFips: '48'
+                    zipCode: '78723'
+                    county: Travis
+                    countyFips: '453'
+                    latitude: 30.290643
+                    longitude: -97.701547
+                    propertyType: Single Family
+                    bedrooms: 4
+                    bathrooms: 2.5
+                    squareFootage: 2345
+                    lotSize: 3284
+                    yearBuilt: 2008
+                    hoa:
+                      fee: 65
+                    status: Active
+                    price: 899000
+                    listingType: Standard
+                    listedDate: '2024-06-24T00:00:00.000Z'
+                    removedDate: null
+                    createdDate: '2021-06-25T00:00:00.000Z'
+                    lastSeenDate: '2024-09-30T13:11:47.157Z'
+                    daysOnMarket: 99
+                    mlsName: UnlockMLS
+                    mlsNumber: '5519228'
+                    listingAgent:
+                      name: Jennifer Welch
+                      phone: '5124313110'
+                      email: jennifer@gottesmanresidential.com
+                      website: https://www.gottesmanresidential.com
+                    listingOffice:
+                      name: Gottesman Residential R.E.
+                      phone: '5124512422'
+                      email: nataliem@gottesmanresidential.com
+                      website: https://www.gottesmanresidential.com
+                    history:
+                      '2024-06-24':
+                        event: Sale Listing
+                        price: 899000
+                        listingType: Standard
+                        listedDate: '2024-06-24T00:00:00.000Z'
+                        removedDate: null
+                        daysOnMarket: 99
+                  - id: 6808-Windrift-Way,-Austin,-TX-78745
+                    formattedAddress: 6808 Windrift Way, Austin, TX 78745
+                    addressLine1: 6808 Windrift Way
+                    addressLine2: null
+                    city: Austin
+                    state: TX
+                    stateFips: '48'
+                    zipCode: '78745'
+                    county: Travis
+                    countyFips: '453'
+                    latitude: 30.199388
+                    longitude: -97.798729
+                    propertyType: Single Family
+                    bedrooms: 3
+                    bathrooms: 2
+                    squareFootage: 1199
+                    lotSize: 6390
+                    yearBuilt: 1974
+                    status: Active
+                    price: 424900
+                    listingType: Standard
+                    listedDate: '2024-01-03T00:00:00.000Z'
+                    removedDate: null
+                    createdDate: '2023-08-15T00:00:00.000Z'
+                    lastSeenDate: '2024-09-28T13:48:38.179Z'
+                    daysOnMarket: 270
+                    mlsName: UnlockMLS
+                    mlsNumber: '5589475'
+                    listingAgent:
+                      name: Christopher Watters
+                      phone: '7373135275'
+                      email: sold@wattersinternational.com
+                      website: https://www.christopherwatters.com
+                    listingOffice:
+                      name: Watters International Realty
+                      phone: '5126460038'
+                      email: chriswatters@wattersinternational.com
+                      website: https://www.christopherwatters.com
+                    history:
+                      '2024-01-03':
+                        event: Sale Listing
+                        price: 424900
+                        listingType: Standard
+                        listedDate: '2024-01-03T00:00:00.000Z'
+                        removedDate: null
+                        daysOnMarket: 270
+                  - id: 54-Rainey-St,-Apt-513,-Austin,-TX-78701
+                    formattedAddress: 54 Rainey St, Apt 513, Austin, TX 78701
+                    addressLine1: 54 Rainey St
+                    addressLine2: Apt 513
+                    city: Austin
+                    state: TX
+                    stateFips: '48'
+                    zipCode: '78701'
+                    county: Travis
+                    countyFips: '453'
+                    latitude: 30.257382
+                    longitude: -97.739444
+                    propertyType: Condo
+                    bedrooms: 2
+                    bathrooms: 2
+                    squareFootage: 1164
+                    lotSize: 292
+                    yearBuilt: 2005
+                    hoa:
+                      fee: 803
+                    status: Active
+                    price: 560000
+                    listingType: Standard
+                    listedDate: '2024-01-04T00:00:00.000Z'
+                    removedDate: null
+                    createdDate: '2024-01-05T00:00:00.000Z'
+                    lastSeenDate: '2024-09-28T13:48:39.150Z'
+                    daysOnMarket: 269
+                    mlsName: UnlockMLS
+                    mlsNumber: '1594185'
+                    listingAgent:
+                      name: Adam Zell
+                      phone: '5128204918'
+                      email: adam.zell@compass.com
+                      website: https://www.compass.com
+                    listingOffice:
+                      name: Compass RE Texas LLC - Austin
+                      phone: '5125753644'
+                      email: txbroker@compass.com
+                      website: https://www.compass.com
+                    history:
+                      '2024-01-04':
+                        event: Sale Listing
+                        price: 560000
+                        listingType: Standard
+                        listedDate: '2024-01-04T00:00:00.000Z'
+                        removedDate: null
+                        daysOnMarket: 269
+                  - id: 15407-Patrica-St,-Austin,-TX-78728
+                    formattedAddress: 15407 Patrica St, Austin, TX 78728
+                    addressLine1: 15407 Patrica St
+                    addressLine2: null
+                    city: Austin
+                    state: TX
+                    stateFips: '48'
+                    zipCode: '78728'
+                    county: Travis
+                    countyFips: '453'
+                    latitude: 30.451009
+                    longitude: -97.669682
+                    propertyType: Single Family
+                    bedrooms: 3
+                    bathrooms: 2
+                    squareFootage: 1680
+                    lotSize: 12632
+                    yearBuilt: 1995
+                    status: Active
+                    price: 720000
+                    listingType: Standard
+                    listedDate: '2024-01-18T00:00:00.000Z'
+                    removedDate: null
+                    createdDate: '2021-02-13T00:00:00.000Z'
+                    lastSeenDate: '2024-09-28T13:49:05.753Z'
+                    daysOnMarket: 255
+                    mlsName: UnlockMLS
+                    mlsNumber: '4738210'
+                    listingAgent:
+                      name: Minerva Juarez
+                      phone: '5127333557'
+                      website: https://minervajuarez-realtor.com
+                    listingOffice:
+                      name: Keller Williams Realty
+                      phone: '5123463550'
+                      email: mecook@kw.com
+                    history:
+                      '2024-01-18':
+                        event: Sale Listing
+                        price: 720000
+                        listingType: Standard
+                        listedDate: '2024-01-18T00:00:00.000Z'
+                        removedDate: null
+                        daysOnMarket: 255
+                  - id: 2681-Crazyhorse-Pass,-Austin,-TX-78734
+                    formattedAddress: 2681 Crazyhorse Pass, Austin, TX 78734
+                    addressLine1: 2681 Crazyhorse Pass
+                    addressLine2: null
+                    city: Austin
+                    state: TX
+                    stateFips: '48'
+                    zipCode: '78734'
+                    county: Travis
+                    countyFips: '453'
+                    latitude: 30.377405
+                    longitude: -97.928841
+                    propertyType: Manufactured
+                    bedrooms: 3
+                    bathrooms: 2
+                    squareFootage: 1792
+                    lotSize: 9496
+                    yearBuilt: 1995
+                    hoa:
+                      fee: 8
+                    status: Active
+                    price: 299999
+                    listingType: Standard
+                    listedDate: '2024-01-18T00:00:00.000Z'
+                    removedDate: null
+                    createdDate: '2023-10-11T00:00:00.000Z'
+                    lastSeenDate: '2024-09-28T13:49:05.749Z'
+                    daysOnMarket: 255
+                    mlsName: SanAntonio
+                    mlsNumber: '1745284'
+                    listingAgent:
+                      name: Yesenia Quevedo
+                      phone: '2102545895'
+                      email: yeseniaquevedosatx@gmail.com
+                    listingOffice:
+                      name: LPT Realty LLC
+                      phone: '8773662213'
+                      email: rodney@rodneyhenson.com
+                    history:
+                      '2024-01-18':
+                        event: Sale Listing
+                        price: 299999
+                        listingType: Standard
+                        listedDate: '2024-01-18T00:00:00.000Z'
+                        removedDate: null
+                        daysOnMarket: 255
+                  summary: Success
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: 3821-Hargis-St,-Austin,-TX-78723
+                    formattedAddress:
+                      type: string
+                      example: 3821 Hargis St, Austin, TX 78723
+                    addressLine1:
+                      type: string
+                      example: 3821 Hargis St
+                    addressLine2: {}
+                    city:
+                      type: string
+                      example: Austin
+                    state:
+                      type: string
+                      example: TX
+                    zipCode:
+                      type: string
+                      example: '78723'
+                    county:
+                      type: string
+                      example: Travis
+                    latitude:
+                      type: number
+                      example: 30.290643
+                      default: 0
+                    longitude:
+                      type: number
+                      example: -97.701547
+                      default: 0
+                    propertyType:
+                      type: string
+                      example: Single Family
+                    bedrooms:
+                      type: integer
+                      example: 4
+                      default: 0
+                    bathrooms:
+                      type: number
+                      example: 2.5
+                      default: 0
+                    squareFootage:
+                      type: integer
+                      example: 2345
+                      default: 0
+                    lotSize:
+                      type: integer
+                      example: 3284
+                      default: 0
+                    yearBuilt:
+                      type: integer
+                      example: 2008
+                      default: 0
+                    hoa:
+                      type: object
+                      properties:
+                        fee:
+                          type: integer
+                          example: 65
+                          default: 0
+                    status:
+                      type: string
+                      example: Active
+                    price:
+                      type: integer
+                      example: 899000
+                      default: 0
+                    listingType:
+                      type: string
+                      example: Standard
+                    listedDate:
+                      type: string
+                      example: '2024-06-24T00:00:00.000Z'
+                    removedDate: {}
+                    createdDate:
+                      type: string
+                      example: '2021-06-25T00:00:00.000Z'
+                    lastSeenDate:
+                      type: string
+                      example: '2024-09-30T13:11:47.157Z'
+                    daysOnMarket:
+                      type: integer
+                      example: 99
+                      default: 0
+                    mlsName:
+                      type: string
+                      example: UnlockMLS
+                    mlsNumber:
+                      type: string
+                      example: '5519228'
+                    listingAgent:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: Jennifer Welch
+                        phone:
+                          type: string
+                          example: '5124313110'
+                        email:
+                          type: string
+                          example: jennifer@gottesmanresidential.com
+                        website:
+                          type: string
+                          example: https://www.gottesmanresidential.com
+                    listingOffice:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: Gottesman Residential R.E.
+                        phone:
+                          type: string
+                          example: '5124512422'
+                        email:
+                          type: string
+                          example: nataliem@gottesmanresidential.com
+                        website:
+                          type: string
+                          example: https://www.gottesmanresidential.com
+                    history:
+                      type: object
+                      properties:
+                        '2024-06-24':
+                          type: object
+                          properties:
+                            event:
+                              type: string
+                              example: Sale Listing
+                            price:
+                              type: integer
+                              example: 899000
+                              default: 0
+                            listingType:
+                              type: string
+                              example: Standard
+                            listedDate:
+                              type: string
+                              example: '2024-06-24T00:00:00.000Z'
+                            removedDate: {}
+                            daysOnMarket:
+                              type: integer
+                              example: 99
+                              default: 0
+        '401':
+          description: Auth Error
+          content:
+            application/json:
+              examples:
+                Auth Error:
+                  value:
+                    status: 401
+                    error: auth/api-key-invalid
+                    message: No API key provided in request. An API key must be provided in the 'X-Api-Key' header
+                  summary: Auth Error
+              schema:
+                properties:
+                  status:
+                    type: integer
+                  error:
+                    type: string
+                  message:
+                    type: string
+                type: object
+      deprecated: false
+      tags:
+      - Listings
+  /listings/sale/{id}:
+    get:
+      summary: Sale Listing by Id
+      description: Returns a single sale listing matching the specified id.
+      operationId: sale-listing-by-id
+      parameters:
+      - name: id
+        in: path
+        description: The id of the property listing to return
+        schema:
+          type: string
+          default: 3821-Hargis-St,-Austin,-TX-78723
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              examples:
+                Success:
+                  summary: Success
+                  value:
+                    id: 3821-Hargis-St,-Austin,-TX-78723
+                    formattedAddress: 3821 Hargis St, Austin, TX 78723
+                    addressLine1: 3821 Hargis St
+                    addressLine2: null
+                    city: Austin
+                    state: TX
+                    stateFips: '48'
+                    zipCode: '78723'
+                    county: Travis
+                    countyFips: '453'
+                    latitude: 30.290643
+                    longitude: -97.701547
+                    propertyType: Single Family
+                    bedrooms: 4
+                    bathrooms: 2.5
+                    squareFootage: 2345
+                    lotSize: 3284
+                    yearBuilt: 2008
+                    hoa:
+                      fee: 65
+                    status: Active
+                    price: 899000
+                    listingType: Standard
+                    listedDate: '2024-06-24T00:00:00.000Z'
+                    removedDate: null
+                    createdDate: '2021-06-25T00:00:00.000Z'
+                    lastSeenDate: '2024-09-30T13:11:47.157Z'
+                    daysOnMarket: 99
+                    mlsName: UnlockMLS
+                    mlsNumber: '5519228'
+                    listingAgent:
+                      name: Jennifer Welch
+                      phone: '5124313110'
+                      email: jennifer@gottesmanresidential.com
+                      website: https://www.gottesmanresidential.com
+                    listingOffice:
+                      name: Gottesman Residential R.E.
+                      phone: '5124512422'
+                      email: nataliem@gottesmanresidential.com
+                      website: https://www.gottesmanresidential.com
+                    history:
+                      '2024-06-24':
+                        event: Sale Listing
+                        price: 899000
+                        listingType: Standard
+                        listedDate: '2024-06-24T00:00:00.000Z'
+                        removedDate: null
+                        daysOnMarket: 99
+        '401':
+          description: Auth Error
+          content:
+            application/json:
+              examples:
+                Auth Error:
+                  value:
+                    status: 401
+                    error: auth/api-key-invalid
+                    message: No API key provided in request. An API key must be provided in the 'X-Api-Key' header
+                  summary: Auth Error
+              schema:
+                properties:
+                  status:
+                    type: integer
+                  error:
+                    type: string
+                  message:
+                    type: string
+                type: object
+      deprecated: false
+      tags:
+      - Listings
+  /listings/rental/long-term:
+    get:
+      summary: Rental Listings
+      description: Search for rental listings in a geographical area, or by a specific address.
+      operationId: rental-listings-long-term
+      parameters:
+      - name: address
+        in: query
+        description: The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a circular area
+        schema:
+          type: string
+      - name: city
+        in: query
+        description: The name of the city, used to search for listings in a specific city. This parameter is case-sensitive
+        schema:
+          type: string
+          default: Austin
+      - name: state
+        in: query
+        description: The 2-character state abbreviation, used to search for listings in a specific state. This parameter is case-sensitive
+        schema:
+          type: string
+          default: TX
+      - name: zipCode
+        in: query
+        description: The 5-digit zip code, used to search for listings in a specific zip code
+        schema:
+          type: string
+      - name: latitude
+        in: query
+        description: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area
+        schema:
+          type: number
+          format: float
+      - name: longitude
+        in: query
+        description: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area
+        schema:
+          type: number
+          format: float
+      - name: radius
+        in: query
+        description: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a circular area
+        schema:
+          type: number
+          format: float
+      - name: propertyType
+        in: query
+        description: The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        schema:
+          type: string
+          enum:
+          - Single Family
+          - Condo
+          - Townhouse
+          - Manufactured
+          - Multi-Family
+          - Apartment
+      - name: bedrooms
+        in: query
+        description: The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        schema:
+          type: string
+      - name: bathrooms
+        in: query
+        description: The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        schema:
+          type: string
+      - name: squareFootage
+        in: query
+        description: The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        schema:
+          type: string
+          default: ''
+      - name: lotSize
+        in: query
+        description: The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        schema:
+          type: string
+      - name: yearBuilt
+        in: query
+        description: The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        schema:
+          type: string
+          default: ''
+      - name: status
+        in: query
+        description: The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values)
+        schema:
+          type: string
+          enum:
+          - Active
+          - Inactive
+          default: Active
+      - in: query
+        name: price
+        schema:
+          type: string
+        description: The listed rent of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+      - in: query
+        name: daysOld
+        schema:
+          type: string
+        description: The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          format: int32
+          default: '5'
+        description: The maximum number of listing records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          format: int32
+        description: The index of the first listing record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+      - in: query
+        name: includeTotalCount
+        schema:
+          type: boolean
+        description: When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              examples:
+                Success:
+                  value:
+                  - id: 2005-Arborside-Dr,-Austin,-TX-78754
+                    formattedAddress: 2005 Arborside Dr, Austin, TX 78754
+                    addressLine1: 2005 Arborside Dr
+                    addressLine2: null
+                    city: Austin
+                    state: TX
+                    stateFips: '48'
+                    zipCode: '78754'
+                    county: Travis
+                    countyFips: '453'
+                    latitude: 30.35837
+                    longitude: -97.66508
+                    propertyType: Single Family
+                    bedrooms: 3
+                    bathrooms: 2.5
+                    squareFootage: 1681
+                    lotSize: 4360
+                    yearBuilt: 2019
+                    hoa:
+                      fee: 45
+                    status: Active
+                    price: 2200
+                    listingType: Standard
+                    listedDate: '2024-09-18T00:00:00.000Z'
+                    removedDate: null
+                    createdDate: '2024-09-19T00:00:00.000Z'
+                    lastSeenDate: '2024-09-30T03:49:20.620Z'
+                    daysOnMarket: 13
+                    mlsName: CentralTexas
+                    mlsNumber: '556965'
+                    listingAgent:
+                      name: Zachary Barton
+                      phone: '5129948203'
+                      email: zak-barton@realtytexas.com
+                      website: https://zak-barton.realtytexas.homes
+                    listingOffice:
+                      name: Realty Texas
+                      phone: '5124765348'
+                      email: sales@realtytexas.com
+                      website: https://www.realtytexas.com
+                    history:
+                      '2024-09-18':
+                        event: Rental Listing
+                        price: 2200
+                        listingType: Standard
+                        listedDate: '2024-09-18T00:00:00.000Z'
+                        removedDate: null
+                        daysOnMarket: 13
+                  - id: 2811-Rio-Grande-St,-Apt-204,-Austin,-TX-78705
+                    formattedAddress: 2811 Rio Grande St, Apt 204, Austin, TX 78705
+                    addressLine1: 2811 Rio Grande St
+                    addressLine2: Apt 204
+                    city: Austin
+                    state: TX
+                    stateFips: '48'
+                    zipCode: '78705'
+                    county: Travis
+                    countyFips: '453'
+                    latitude: 30.294241
+                    longitude: -97.743666
+                    propertyType: Condo
+                    bedrooms: 2
+                    bathrooms: 2
+                    squareFootage: 910
+                    lotSize: 828
+                    yearBuilt: 1983
+                    status: Active
+                    price: 2150
+                    listingType: Standard
+                    listedDate: '2024-09-30T00:00:00.000Z'
+                    removedDate: null
+                    createdDate: '2023-11-21T00:00:00.000Z'
+                    lastSeenDate: '2024-09-30T04:57:39.029Z'
+                    daysOnMarket: 1
+                    history:
+                      '2024-09-30':
+                        event: Rental Listing
+                        price: 2150
+                        listingType: Standard
+                        listedDate: '2024-09-30T00:00:00.000Z'
+                        removedDate: null
+                        daysOnMarket: 1
+                  - id: 1701-Simond-Ave,-Unit-438,-Austin,-TX-78723
+                    formattedAddress: 1701 Simond Ave, Unit 438, Austin, TX 78723
+                    addressLine1: 1701 Simond Ave
+                    addressLine2: Unit 438
+                    city: Austin
+                    state: TX
+                    stateFips: '48'
+                    zipCode: '78723'
+                    county: Travis
+                    countyFips: '453'
+                    latitude: 30.298584
+                    longitude: -97.706497
+                    propertyType: Condo
+                    bedrooms: 2
+                    bathrooms: 2
+                    squareFootage: 1101
+                    yearBuilt: 2023
+                    status: Active
+                    price: 3300
+                    listingType: Standard
+                    listedDate: '2024-08-26T00:00:00.000Z'
+                    removedDate: null
+                    createdDate: '2024-08-27T00:00:00.000Z'
+                    lastSeenDate: '2024-09-30T04:58:33.029Z'
+                    daysOnMarket: 36
+                    mlsName: UnlockMLS
+                    mlsNumber: '7940788'
+                    listingAgent:
+                      name: Kristen Williams
+                      phone: '5126992984'
+                      email: kristen@williamskw.com
+                      website: https://www.williamskw.com
+                    listingOffice:
+                      name: Keller Williams Realty
+                      phone: '5124484111'
+                      email: jdgrubb@kw.com
+                      website: https://www.kellerwilliams.com
+                    history:
+                      '2024-08-26':
+                        event: Rental Listing
+                        price: 3300
+                        listingType: Standard
+                        listedDate: '2024-08-26T00:00:00.000Z'
+                        removedDate: null
+                        daysOnMarket: 36
+                  - id: 1190-Ridge-Dr,-Austin,-TX-78721
+                    formattedAddress: 1190 Ridge Dr, Austin, TX 78721
+                    addressLine1: 1190 Ridge Dr
+                    addressLine2: null
+                    city: Austin
+                    state: TX
+                    stateFips: '48'
+                    zipCode: '78721'
+                    county: Travis
+                    countyFips: '453'
+                    latitude: 30.276113
+                    longitude: -97.698406
+                    propertyType: Manufactured
+                    bedrooms: 3
+                    bathrooms: 2
+                    squareFootage: 1200
+                    lotSize: 5380
+                    yearBuilt: 1999
+                    status: Active
+                    price: 1850
+                    listingType: Standard
+                    listedDate: '2024-05-02T00:00:00.000Z'
+                    removedDate: null
+                    createdDate: '2023-06-24T00:00:00.000Z'
+                    lastSeenDate: '2024-09-30T05:47:38.669Z'
+                    daysOnMarket: 152
+                    mlsName: UnlockMLS
+                    mlsNumber: '8112202'
+                    listingAgent:
+                      name: Brandee Otto
+                      phone: '5125572728'
+                      email: brandeelotto@gmail.com
+                      website: https://www.pp-bms.com
+                    listingOffice:
+                      name: Realty One Group Prosper
+                      phone: '5125235663'
+                      email: karlyn@rogprosper.com
+                      website: https://www.marcyourmove.com
+                    history:
+                      '2024-05-02':
+                        event: Rental Listing
+                        price: 1850
+                        listingType: Standard
+                        listedDate: '2024-05-02T00:00:00.000Z'
+                        removedDate: null
+                        daysOnMarket: 152
+                  - id: 411-W-Odell-St,-Unit-A,-Austin,-TX-78752
+                    formattedAddress: 411 W Odell St, Unit A, Austin, TX 78752
+                    addressLine1: 411 W Odell St
+                    addressLine2: Unit A
+                    city: Austin
+                    state: TX
+                    stateFips: '48'
+                    zipCode: '78752'
+                    county: Travis
+                    countyFips: '453'
+                    latitude: 30.337767
+                    longitude: -97.712625
+                    propertyType: Single Family
+                    bedrooms: 3
+                    bathrooms: 2.5
+                    squareFootage: 1694
+                    lotSize: 7013
+                    yearBuilt: 2019
+                    status: Active
+                    price: 2700
+                    listingType: Standard
+                    listedDate: '2024-09-16T00:00:00.000Z'
+                    removedDate: null
+                    createdDate: '2022-10-27T00:00:00.000Z'
+                    lastSeenDate: '2024-09-30T05:49:20.678Z'
+                    daysOnMarket: 15
+                    mlsName: UnlockMLS
+                    mlsNumber: '4230179'
+                    listingAgent:
+                      name: Alex Mccormick
+                      phone: '5127624397'
+                      email: alex.mccormick@followupboss.me
+                      website: https://www.alexatxrealtor.com
+                    listingOffice:
+                      name: Keller Williams Realty
+                      phone: '5124484111'
+                      email: jdgrubb@kw.com
+                      website: https://www.kellerwilliams.com
+                    history:
+                      '2024-09-16':
+                        event: Rental Listing
+                        price: 2700
+                        listingType: Standard
+                        listedDate: '2024-09-16T00:00:00.000Z'
+                        removedDate: null
+                        daysOnMarket: 15
+                  summary: Success
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: 2005-Arborside-Dr,-Austin,-TX-78754
+                    formattedAddress:
+                      type: string
+                      example: 2005 Arborside Dr, Austin, TX 78754
+                    addressLine1:
+                      type: string
+                      example: 2005 Arborside Dr
+                    addressLine2: {}
+                    city:
+                      type: string
+                      example: Austin
+                    state:
+                      type: string
+                      example: TX
+                    zipCode:
+                      type: string
+                      example: '78754'
+                    county:
+                      type: string
+                      example: Travis
+                    latitude:
+                      type: number
+                      example: 30.35837
+                      default: 0
+                    longitude:
+                      type: number
+                      example: -97.66508
+                      default: 0
+                    propertyType:
+                      type: string
+                      example: Single Family
+                    bedrooms:
+                      type: integer
+                      example: 3
+                      default: 0
+                    bathrooms:
+                      type: number
+                      example: 2.5
+                      default: 0
+                    squareFootage:
+                      type: integer
+                      example: 1681
+                      default: 0
+                    lotSize:
+                      type: integer
+                      example: 4360
+                      default: 0
+                    yearBuilt:
+                      type: integer
+                      example: 2019
+                      default: 0
+                    hoa:
+                      type: object
+                      properties:
+                        fee:
+                          type: integer
+                          example: 45
+                          default: 0
+                    status:
+                      type: string
+                      example: Active
+                    price:
+                      type: integer
+                      example: 2200
+                      default: 0
+                    listingType:
+                      type: string
+                      example: Standard
+                    listedDate:
+                      type: string
+                      example: '2024-09-18T00:00:00.000Z'
+                    removedDate: {}
+                    createdDate:
+                      type: string
+                      example: '2024-09-19T00:00:00.000Z'
+                    lastSeenDate:
+                      type: string
+                      example: '2024-09-30T03:49:20.620Z'
+                    daysOnMarket:
+                      type: integer
+                      example: 13
+                      default: 0
+                    mlsName:
+                      type: string
+                      example: CentralTexas
+                    mlsNumber:
+                      type: string
+                      example: '556965'
+                    listingAgent:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: Zachary Barton
+                        phone:
+                          type: string
+                          example: '5129948203'
+                        email:
+                          type: string
+                          example: zak-barton@realtytexas.com
+                        website:
+                          type: string
+                          example: https://zak-barton.realtytexas.homes
+                    listingOffice:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          example: Realty Texas
+                        phone:
+                          type: string
+                          example: '5124765348'
+                        email:
+                          type: string
+                          example: sales@realtytexas.com
+                        website:
+                          type: string
+                          example: https://www.realtytexas.com
+                    history:
+                      type: object
+                      properties:
+                        '2024-09-18':
+                          type: object
+                          properties:
+                            event:
+                              type: string
+                              example: Rental Listing
+                            price:
+                              type: integer
+                              example: 2200
+                              default: 0
+                            listingType:
+                              type: string
+                              example: Standard
+                            listedDate:
+                              type: string
+                              example: '2024-09-18T00:00:00.000Z'
+                            removedDate: {}
+                            daysOnMarket:
+                              type: integer
+                              example: 13
+                              default: 0
+        '401':
+          description: Auth Error
+          content:
+            application/json:
+              examples:
+                Auth Error:
+                  value:
+                    status: 401
+                    error: auth/api-key-invalid
+                    message: No API key provided in request. An API key must be provided in the 'X-Api-Key' header
+                  summary: Auth Error
+              schema:
+                properties:
+                  status:
+                    type: integer
+                  error:
+                    type: string
+                  message:
+                    type: string
+                type: object
+      deprecated: false
+      tags:
+      - Listings
+  /listings/rental/long-term/{id}:
+    get:
+      summary: Rental Listing by Id
+      description: Returns a single rental listing matching the specified id.
+      operationId: rental-listing-long-term-by-id
+      parameters:
+      - name: id
+        in: path
+        description: The id of the property listing to return
+        schema:
+          type: string
+          default: 2005-Arborside-Dr,-Austin,-TX-78754
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              examples:
+                Success:
+                  value:
+                    id: 2005-Arborside-Dr,-Austin,-TX-78754
+                    formattedAddress: 2005 Arborside Dr, Austin, TX 78754
+                    addressLine1: 2005 Arborside Dr
+                    addressLine2: null
+                    city: Austin
+                    state: TX
+                    stateFips: '48'
+                    zipCode: '78754'
+                    county: Travis
+                    countyFips: '453'
+                    latitude: 30.35837
+                    longitude: -97.66508
+                    propertyType: Single Family
+                    bedrooms: 3
+                    bathrooms: 2.5
+                    squareFootage: 1681
+                    lotSize: 4360
+                    yearBuilt: 2019
+                    hoa:
+                      fee: 45
+                    status: Active
+                    price: 2200
+                    listingType: Standard
+                    listedDate: '2024-09-18T00:00:00.000Z'
+                    removedDate: null
+                    createdDate: '2024-09-19T00:00:00.000Z'
+                    lastSeenDate: '2024-09-30T03:49:20.620Z'
+                    daysOnMarket: 13
+                    mlsName: CentralTexas
+                    mlsNumber: '556965'
+                    listingAgent:
+                      name: Zachary Barton
+                      phone: '5129948203'
+                      email: zak-barton@realtytexas.com
+                      website: https://zak-barton.realtytexas.homes
+                    listingOffice:
+                      name: Realty Texas
+                      phone: '5124765348'
+                      email: sales@realtytexas.com
+                      website: https://www.realtytexas.com
+                    history:
+                      '2024-09-18':
+                        event: Rental Listing
+                        price: 2200
+                        listingType: Standard
+                        listedDate: '2024-09-18T00:00:00.000Z'
+                        removedDate: null
+                        daysOnMarket: 13
+                  summary: Success
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 2005-Arborside-Dr,-Austin,-TX-78754
+                  formattedAddress:
+                    type: string
+                    example: 2005 Arborside Dr, Austin, TX 78754
+                  addressLine1:
+                    type: string
+                    example: 2005 Arborside Dr
+                  addressLine2: {}
+                  city:
+                    type: string
+                    example: Austin
+                  state:
+                    type: string
+                    example: TX
+                  zipCode:
+                    type: string
+                    example: '78754'
+                  county:
+                    type: string
+                    example: Travis
+                  latitude:
+                    type: number
+                    example: 30.35837
+                    default: 0
+                  longitude:
+                    type: number
+                    example: -97.66508
+                    default: 0
+                  propertyType:
+                    type: string
+                    example: Single Family
+                  bedrooms:
+                    type: integer
+                    example: 3
+                    default: 0
+                  bathrooms:
+                    type: number
+                    example: 2.5
+                    default: 0
+                  squareFootage:
+                    type: integer
+                    example: 1681
+                    default: 0
+                  lotSize:
+                    type: integer
+                    example: 4360
+                    default: 0
+                  yearBuilt:
+                    type: integer
+                    example: 2019
+                    default: 0
+                  hoa:
+                    type: object
+                    properties:
+                      fee:
+                        type: integer
+                        example: 45
+                        default: 0
+                  status:
+                    type: string
+                    example: Active
+                  price:
+                    type: integer
+                    example: 2200
+                    default: 0
+                  listingType:
+                    type: string
+                    example: Standard
+                  listedDate:
+                    type: string
+                    example: '2024-09-18T00:00:00.000Z'
+                  removedDate: {}
+                  createdDate:
+                    type: string
+                    example: '2024-09-19T00:00:00.000Z'
+                  lastSeenDate:
+                    type: string
+                    example: '2024-09-30T03:49:20.620Z'
+                  daysOnMarket:
+                    type: integer
+                    example: 13
+                    default: 0
+                  mlsName:
+                    type: string
+                    example: CentralTexas
+                  mlsNumber:
+                    type: string
+                    example: '556965'
+                  listingAgent:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Zachary Barton
+                      phone:
+                        type: string
+                        example: '5129948203'
+                      email:
+                        type: string
+                        example: zak-barton@realtytexas.com
+                      website:
+                        type: string
+                        example: https://zak-barton.realtytexas.homes
+                  listingOffice:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Realty Texas
+                      phone:
+                        type: string
+                        example: '5124765348'
+                      email:
+                        type: string
+                        example: sales@realtytexas.com
+                      website:
+                        type: string
+                        example: https://www.realtytexas.com
+                  history:
+                    type: object
+                    properties:
+                      '2024-09-18':
+                        type: object
+                        properties:
+                          event:
+                            type: string
+                            example: Rental Listing
+                          price:
+                            type: integer
+                            example: 2200
+                            default: 0
+                          listingType:
+                            type: string
+                            example: Standard
+                          listedDate:
+                            type: string
+                            example: '2024-09-18T00:00:00.000Z'
+                          removedDate: {}
+                          daysOnMarket:
+                            type: integer
+                            example: 13
+                            default: 0
+        '401':
+          description: Auth Error
+          content:
+            application/json:
+              examples:
+                Auth Error:
+                  value:
+                    status: 401
+                    error: auth/api-key-invalid
+                    message: No API key provided in request. An API key must be provided in the 'X-Api-Key' header
+                  summary: Auth Error
+              schema:
+                properties:
+                  status:
+                    type: integer
+                  error:
+                    type: string
+                  message:
+                    type: string
+                type: object
+      deprecated: false
+      tags:
+      - Listings
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

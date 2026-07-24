@@ -1,0 +1,3820 @@
+openapi: 3.1.0
+info:
+  title: RentCast Avm Markets API
+  version: '1.0'
+servers:
+- url: https://api.rentcast.io/v1
+security:
+- sec0: []
+tags:
+- name: Markets
+paths:
+  /markets:
+    get:
+      summary: Market Statistics
+      description: Returns aggregate market statistics and listing trends for a single US zip code.
+      operationId: market-statistics
+      parameters:
+      - name: zipCode
+        in: query
+        description: A valid 5-digit US zip code
+        required: true
+        schema:
+          type: string
+          default: '29611'
+      - name: dataType
+        in: query
+        description: The type of aggregate market data to retrieve. Defaults to `"All"` if not provided
+        schema:
+          type: string
+          enum:
+          - All
+          - Sale
+          - Rental
+          default: All
+      - name: historyRange
+        in: query
+        description: The time range for historical record entries, in months. Defaults to `12` if not provided
+        schema:
+          type: integer
+          default: 6
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              examples:
+                Success:
+                  value:
+                    id: '29611'
+                    zipCode: '29611'
+                    saleData:
+                      lastUpdatedDate: '2025-08-26T00:00:00.000Z'
+                      averagePrice: 356598
+                      medianPrice: 295000
+                      minPrice: 8899
+                      maxPrice: 2530000
+                      averagePricePerSquareFoot: 203.45
+                      medianPricePerSquareFoot: 188.61
+                      minPricePerSquareFoot: 54
+                      maxPricePerSquareFoot: 943.24
+                      averageSquareFootage: 1717
+                      medianSquareFootage: 1573
+                      minSquareFootage: 636
+                      maxSquareFootage: 6000
+                      averageDaysOnMarket: 77
+                      medianDaysOnMarket: 61
+                      minDaysOnMarket: 2
+                      maxDaysOnMarket: 279
+                      newListings: 41
+                      totalListings: 248
+                      dataByPropertyType:
+                      - propertyType: Condo
+                        averagePrice: 398267
+                        medianPrice: 157500
+                        minPrice: 124900
+                        maxPrice: 1599000
+                        averagePricePerSquareFoot: 174.28
+                        medianPricePerSquareFoot: 132.02
+                        minPricePerSquareFoot: 119.07
+                        maxPricePerSquareFoot: 357.48
+                        averageSquareFootage: 1700
+                        medianSquareFootage: 1148
+                        minSquareFootage: 1049
+                        maxSquareFootage: 4473
+                        averageDaysOnMarket: 119.17
+                        medianDaysOnMarket: 111
+                        minDaysOnMarket: 33
+                        maxDaysOnMarket: 225
+                        newListings: 0
+                        totalListings: 6
+                      - propertyType: Land
+                        averagePrice: 481907
+                        medianPrice: 275000
+                        minPrice: 36900
+                        maxPrice: 2530000
+                        averagePricePerSquareFoot: null
+                        medianPricePerSquareFoot: null
+                        minPricePerSquareFoot: null
+                        maxPricePerSquareFoot: null
+                        averageSquareFootage: null
+                        medianSquareFootage: null
+                        minSquareFootage: null
+                        maxSquareFootage: null
+                        averageDaysOnMarket: 107.43
+                        medianDaysOnMarket: 104
+                        minDaysOnMarket: 5
+                        maxDaysOnMarket: 256
+                        newListings: 1
+                        totalListings: 28
+                      - propertyType: Manufactured
+                        averagePrice: 154643
+                        medianPrice: 89900
+                        minPrice: 8899
+                        maxPrice: 499900
+                        averagePricePerSquareFoot: 83.07
+                        medianPricePerSquareFoot: 69.85
+                        minPricePerSquareFoot: 54
+                        maxPricePerSquareFoot: 127.66
+                        averageSquareFootage: 2090
+                        medianSquareFootage: 1175
+                        minSquareFootage: 924
+                        maxSquareFootage: 6000
+                        averageDaysOnMarket: 116.43
+                        medianDaysOnMarket: 97
+                        minDaysOnMarket: 81
+                        maxDaysOnMarket: 181
+                        newListings: 0
+                        totalListings: 7
+                      - propertyType: Multi-Family
+                        averagePrice: 446750
+                        medianPrice: 479900
+                        minPrice: 240000
+                        maxPrice: 514500
+                        averagePricePerSquareFoot: 182.87
+                        medianPricePerSquareFoot: 180.01
+                        minPricePerSquareFoot: 152.73
+                        maxPricePerSquareFoot: 217.79
+                        averageSquareFootage: 2498
+                        medianSquareFootage: 2666
+                        minSquareFootage: 1102
+                        maxSquareFootage: 3200
+                        averageDaysOnMarket: 37
+                        medianDaysOnMarket: 11
+                        minDaysOnMarket: 11
+                        maxDaysOnMarket: 134
+                        newListings: 4
+                        totalListings: 8
+                      - propertyType: Single Family
+                        averagePrice: 347649
+                        medianPrice: 305000
+                        minPrice: 128000
+                        maxPrice: 1798611
+                        averagePricePerSquareFoot: 214.07
+                        medianPricePerSquareFoot: 206.33
+                        minPricePerSquareFoot: 94.79
+                        maxPricePerSquareFoot: 943.24
+                        averageSquareFootage: 1673
+                        medianSquareFootage: 1515
+                        minSquareFootage: 636
+                        maxSquareFootage: 4617
+                        averageDaysOnMarket: 69.19
+                        medianDaysOnMarket: 61
+                        minDaysOnMarket: 3
+                        maxDaysOnMarket: 228
+                        newListings: 24
+                        totalListings: 158
+                      - propertyType: Townhouse
+                        averagePrice: 316301
+                        medianPrice: 254990
+                        minPrice: 115000
+                        maxPrice: 745000
+                        averagePricePerSquareFoot: 188.97
+                        medianPricePerSquareFoot: 154.37
+                        minPricePerSquareFoot: 110.58
+                        maxPricePerSquareFoot: 420.56
+                        averageSquareFootage: 1679
+                        medianSquareFootage: 1616
+                        minSquareFootage: 1040
+                        maxSquareFootage: 2079
+                        averageDaysOnMarket: 86.29
+                        medianDaysOnMarket: 30
+                        minDaysOnMarket: 2
+                        maxDaysOnMarket: 279
+                        newListings: 12
+                        totalListings: 41
+                      dataByBedrooms:
+                      - bedrooms: 0
+                        averagePrice: 499900
+                        medianPrice: 499900
+                        minPrice: 499900
+                        maxPrice: 499900
+                        averagePricePerSquareFoot: 83.32
+                        medianPricePerSquareFoot: 83.32
+                        minPricePerSquareFoot: 83.32
+                        maxPricePerSquareFoot: 83.32
+                        averageSquareFootage: 6000
+                        medianSquareFootage: 6000
+                        minSquareFootage: 6000
+                        maxSquareFootage: 6000
+                        averageDaysOnMarket: 81
+                        medianDaysOnMarket: 81
+                        minDaysOnMarket: 81
+                        maxDaysOnMarket: 81
+                        newListings: 0
+                        totalListings: 1
+                      - bedrooms: 1
+                        averagePrice: 816300
+                        medianPrice: 599900
+                        minPrice: 250000
+                        maxPrice: 1599000
+                        averagePricePerSquareFoot: 519.66
+                        medianPricePerSquareFoot: 357.48
+                        minPricePerSquareFoot: 258.26
+                        maxPricePerSquareFoot: 943.24
+                        averageSquareFootage: 2026
+                        medianSquareFootage: 968
+                        minSquareFootage: 636
+                        maxSquareFootage: 4473
+                        averageDaysOnMarket: 97
+                        medianDaysOnMarket: 15
+                        minDaysOnMarket: 15
+                        maxDaysOnMarket: 179
+                        newListings: 1
+                        totalListings: 3
+                      - bedrooms: 2
+                        averagePrice: 251954
+                        medianPrice: 240000
+                        minPrice: 115000
+                        maxPrice: 545000
+                        averagePricePerSquareFoot: 225.42
+                        medianPricePerSquareFoot: 225
+                        minPricePerSquareFoot: 110.58
+                        maxPricePerSquareFoot: 394.07
+                        averageSquareFootage: 1127
+                        medianSquareFootage: 1089
+                        minSquareFootage: 790
+                        maxSquareFootage: 1707
+                        averageDaysOnMarket: 73.43
+                        medianDaysOnMarket: 61
+                        minDaysOnMarket: 5
+                        maxDaysOnMarket: 225
+                        newListings: 2
+                        totalListings: 37
+                      - bedrooms: 3
+                        averagePrice: 312571
+                        medianPrice: 290000
+                        minPrice: 8899
+                        maxPrice: 1798611
+                        averagePricePerSquareFoot: 196.7
+                        medianPricePerSquareFoot: 184.95
+                        minPricePerSquareFoot: 54
+                        maxPricePerSquareFoot: 719.44
+                        averageSquareFootage: 1591
+                        medianSquareFootage: 1568
+                        minSquareFootage: 880
+                        maxSquareFootage: 3418
+                        averageDaysOnMarket: 78.57
+                        medianDaysOnMarket: 61
+                        minDaysOnMarket: 2
+                        maxDaysOnMarket: 279
+                        newListings: 24
+                        totalListings: 129
+                      - bedrooms: 4
+                        averagePrice: 431145
+                        medianPrice: 375000
+                        minPrice: 144700
+                        maxPrice: 1450000
+                        averagePricePerSquareFoot: 189.84
+                        medianPricePerSquareFoot: 174.15
+                        minPricePerSquareFoot: 94.79
+                        maxPricePerSquareFoot: 409.03
+                        averageSquareFootage: 2270
+                        medianSquareFootage: 2076
+                        minSquareFootage: 1120
+                        maxSquareFootage: 4141
+                        averageDaysOnMarket: 66.37
+                        medianDaysOnMarket: 60
+                        minDaysOnMarket: 4
+                        maxDaysOnMarket: 152
+                        newListings: 9
+                        totalListings: 42
+                      - bedrooms: 5
+                        averagePrice: 602667
+                        medianPrice: 420000
+                        minPrice: 339000
+                        maxPrice: 1049000
+                        averagePricePerSquareFoot: 173.73
+                        medianPricePerSquareFoot: 152.73
+                        minPricePerSquareFoot: 141.25
+                        maxPricePerSquareFoot: 227.2
+                        averageSquareFootage: 3256
+                        medianSquareFootage: 2750
+                        minSquareFootage: 2400
+                        maxSquareFootage: 4617
+                        averageDaysOnMarket: 71
+                        medianDaysOnMarket: 61
+                        minDaysOnMarket: 55
+                        maxDaysOnMarket: 97
+                        newListings: 0
+                        totalListings: 3
+                      - bedrooms: 6
+                        averagePrice: 486820
+                        medianPrice: 479900
+                        minPrice: 479900
+                        maxPrice: 514500
+                        averagePricePerSquareFoot: 176.16
+                        medianPricePerSquareFoot: 180.01
+                        minPricePerSquareFoot: 160.78
+                        maxPricePerSquareFoot: 180.01
+                        averageSquareFootage: 2773
+                        medianSquareFootage: 2666
+                        minSquareFootage: 2666
+                        maxSquareFootage: 3200
+                        averageDaysOnMarket: 18.4
+                        medianDaysOnMarket: 11
+                        minDaysOnMarket: 11
+                        maxDaysOnMarket: 48
+                        newListings: 4
+                        totalListings: 5
+                      history:
+                        2025-06:
+                          date: '2025-06-01T00:00:00.000Z'
+                          averagePrice: 348402
+                          medianPrice: 290000
+                          minPrice: 8899
+                          maxPrice: 2530000
+                          averagePricePerSquareFoot: 198.98
+                          medianPricePerSquareFoot: 174.94
+                          minPricePerSquareFoot: 54
+                          maxPricePerSquareFoot: 962.5
+                          averageSquareFootage: 1712
+                          medianSquareFootage: 1587
+                          minSquareFootage: 792
+                          maxSquareFootage: 6000
+                          averageDaysOnMarket: 76.89
+                          medianDaysOnMarket: 54
+                          minDaysOnMarket: 2
+                          maxDaysOnMarket: 348
+                          newListings: 47
+                          totalListings: 263
+                          dataByPropertyType:
+                          - propertyType: Condo
+                            averagePrice: 380983
+                            medianPrice: 125000
+                            minPrice: 105000
+                            maxPrice: 1599000
+                            averagePricePerSquareFoot: 166.94
+                            medianPricePerSquareFoot: 129.63
+                            minPricePerSquareFoot: 119.07
+                            maxPricePerSquareFoot: 357.48
+                            averageSquareFootage: 1630
+                            medianSquareFootage: 1049
+                            minSquareFootage: 810
+                            maxSquareFootage: 4473
+                            averageDaysOnMarket: 92.83
+                            medianDaysOnMarket: 54
+                            minDaysOnMarket: 53
+                            maxDaysOnMarket: 220
+                            newListings: 0
+                            totalListings: 6
+                          - propertyType: Land
+                            averagePrice: 427697
+                            medianPrice: 199000
+                            minPrice: 19000
+                            maxPrice: 2530000
+                            averagePricePerSquareFoot: null
+                            medianPricePerSquareFoot: null
+                            minPricePerSquareFoot: null
+                            maxPricePerSquareFoot: null
+                            averageSquareFootage: null
+                            medianSquareFootage: null
+                            minSquareFootage: null
+                            maxSquareFootage: null
+                            averageDaysOnMarket: 113.07
+                            medianDaysOnMarket: 101
+                            minDaysOnMarket: 2
+                            maxDaysOnMarket: 343
+                            newListings: 2
+                            totalListings: 34
+                          - propertyType: Manufactured
+                            averagePrice: 173222
+                            medianPrice: 150000
+                            minPrice: 8899
+                            maxPrice: 499900
+                            averagePricePerSquareFoot: 97.76
+                            medianPricePerSquareFoot: 84.69
+                            minPricePerSquareFoot: 54
+                            maxPricePerSquareFoot: 146
+                            averageSquareFootage: 2007
+                            medianSquareFootage: 1175
+                            minSquareFootage: 924
+                            maxSquareFootage: 6000
+                            averageDaysOnMarket: 73.22
+                            medianDaysOnMarket: 73
+                            minDaysOnMarket: 3
+                            maxDaysOnMarket: 124
+                            newListings: 1
+                            totalListings: 9
+                          - propertyType: Multi-Family
+                            averagePrice: 431160
+                            medianPrice: 474900
+                            minPrice: 200000
+                            maxPrice: 545000
+                            averagePricePerSquareFoot: 236.46
+                            medianPricePerSquareFoot: 173.61
+                            minPricePerSquareFoot: 163.64
+                            maxPricePerSquareFoot: 394.36
+                            averageSquareFootage: 1888
+                            medianSquareFootage: 1382
+                            minSquareFootage: 1152
+                            maxSquareFootage: 2750
+                            averageDaysOnMarket: 119.8
+                            medianDaysOnMarket: 116
+                            minDaysOnMarket: 17
+                            maxDaysOnMarket: 203
+                            newListings: 1
+                            totalListings: 5
+                          - propertyType: Single Family
+                            averagePrice: 347684
+                            medianPrice: 300000
+                            minPrice: 110000
+                            maxPrice: 1999611
+                            averagePricePerSquareFoot: 210.26
+                            medianPricePerSquareFoot: 201.08
+                            minPricePerSquareFoot: 97.57
+                            maxPricePerSquareFoot: 962.5
+                            averageSquareFootage: 1680
+                            medianSquareFootage: 1542
+                            minSquareFootage: 792
+                            maxSquareFootage: 4617
+                            averageDaysOnMarket: 68.06
+                            medianDaysOnMarket: 48
+                            minDaysOnMarket: 2
+                            maxDaysOnMarket: 348
+                            newListings: 33
+                            totalListings: 161
+                          - propertyType: Townhouse
+                            averagePrice: 314794
+                            medianPrice: 288990
+                            minPrice: 199900
+                            maxPrice: 765000
+                            averagePricePerSquareFoot: 179.86
+                            medianPricePerSquareFoot: 156.89
+                            minPricePerSquareFoot: 139.99
+                            maxPricePerSquareFoot: 420.56
+                            averageSquareFootage: 1762
+                            medianSquareFootage: 1816
+                            minSquareFootage: 1383
+                            maxSquareFootage: 2150
+                            averageDaysOnMarket: 79.7
+                            medianDaysOnMarket: 39
+                            minDaysOnMarket: 2
+                            maxDaysOnMarket: 343
+                            newListings: 10
+                            totalListings: 48
+                          dataByBedrooms:
+                          - bedrooms: 0
+                            averagePrice: 499900
+                            medianPrice: 499900
+                            minPrice: 499900
+                            maxPrice: 499900
+                            averagePricePerSquareFoot: 83.32
+                            medianPricePerSquareFoot: 83.32
+                            minPricePerSquareFoot: 83.32
+                            maxPricePerSquareFoot: 83.32
+                            averageSquareFootage: 6000
+                            medianSquareFootage: 6000
+                            minSquareFootage: 6000
+                            maxSquareFootage: 6000
+                            averageDaysOnMarket: 24
+                            medianDaysOnMarket: 24
+                            minDaysOnMarket: 24
+                            maxDaysOnMarket: 24
+                            newListings: 1
+                            totalListings: 1
+                          - bedrooms: 1
+                            averagePrice: 528475
+                            medianPrice: 159900
+                            minPrice: 105000
+                            maxPrice: 1599000
+                            averagePricePerSquareFoot: 233.93
+                            medianPricePerSquareFoot: 190.36
+                            minPricePerSquareFoot: 129.63
+                            maxPricePerSquareFoot: 357.48
+                            averageSquareFootage: 1773
+                            medianSquareFootage: 840
+                            minSquareFootage: 810
+                            maxSquareFootage: 4473
+                            averageDaysOnMarket: 67
+                            medianDaysOnMarket: 53
+                            minDaysOnMarket: 26
+                            maxDaysOnMarket: 122
+                            newListings: 0
+                            totalListings: 4
+                          - bedrooms: 2
+                            averagePrice: 267400
+                            medianPrice: 248900
+                            minPrice: 110000
+                            maxPrice: 770000
+                            averagePricePerSquareFoot: 245.81
+                            medianPricePerSquareFoot: 228.57
+                            minPricePerSquareFoot: 104.17
+                            maxPricePerSquareFoot: 962.5
+                            averageSquareFootage: 1129
+                            medianSquareFootage: 1056
+                            minSquareFootage: 792
+                            maxSquareFootage: 1707
+                            averageDaysOnMarket: 51.41
+                            medianDaysOnMarket: 46
+                            minDaysOnMarket: 3
+                            maxDaysOnMarket: 220
+                            newListings: 9
+                            totalListings: 36
+                          - bedrooms: 3
+                            averagePrice: 306938
+                            medianPrice: 280000
+                            minPrice: 8899
+                            maxPrice: 1999611
+                            averagePricePerSquareFoot: 192
+                            medianPricePerSquareFoot: 173.28
+                            minPricePerSquareFoot: 54
+                            maxPricePerSquareFoot: 799.84
+                            averageSquareFootage: 1577
+                            medianSquareFootage: 1560
+                            minSquareFootage: 924
+                            maxSquareFootage: 2840
+                            averageDaysOnMarket: 77.46
+                            medianDaysOnMarket: 53
+                            minDaysOnMarket: 2
+                            maxDaysOnMarket: 343
+                            newListings: 25
+                            totalListings: 136
+                          - bedrooms: 4
+                            averagePrice: 434817
+                            medianPrice: 395000
+                            minPrice: 234900
+                            maxPrice: 1550000
+                            averagePricePerSquareFoot: 186.06
+                            medianPricePerSquareFoot: 167.22
+                            minPricePerSquareFoot: 97.57
+                            maxPricePerSquareFoot: 437.24
+                            averageSquareFootage: 2326
+                            medianSquareFootage: 2079
+                            minSquareFootage: 1200
+                            maxSquareFootage: 4141
+                            averageDaysOnMarket: 75
+                            medianDaysOnMarket: 59
+                            minDaysOnMarket: 2
+                            maxDaysOnMarket: 348
+                            newListings: 7
+                            totalListings: 45
+                          - bedrooms: 5
+                            averagePrice: 510417
+                            medianPrice: 350000
+                            minPrice: 278500
+                            maxPrice: 1049000
+                            averagePricePerSquareFoot: 171.35
+                            medianPricePerSquareFoot: 159.52
+                            minPricePerSquareFoot: 117.61
+                            maxPricePerSquareFoot: 227.2
+                            averageSquareFootage: 2839
+                            medianSquareFootage: 2400
+                            minSquareFootage: 2100
+                            maxSquareFootage: 4617
+                            averageDaysOnMarket: 59.83
+                            medianDaysOnMarket: 17
+                            minDaysOnMarket: 3
+                            maxDaysOnMarket: 215
+                            newListings: 3
+                            totalListings: 6
+                          - bedrooms: 6
+                            averagePrice: 474900
+                            medianPrice: 474900
+                            minPrice: 474900
+                            maxPrice: 474900
+                            averagePricePerSquareFoot: null
+                            medianPricePerSquareFoot: null
+                            minPricePerSquareFoot: null
+                            maxPricePerSquareFoot: null
+                            averageSquareFootage: null
+                            medianSquareFootage: null
+                            minSquareFootage: null
+                            maxSquareFootage: null
+                            averageDaysOnMarket: 157
+                            medianDaysOnMarket: 157
+                            minDaysOnMarket: 157
+                            maxDaysOnMarket: 157
+                            newListings: 0
+                            totalListings: 1
+                        2025-07:
+                          date: '2025-07-01T00:00:00.000Z'
+                          averagePrice: 355280
+                          medianPrice: 290000
+                          minPrice: 8899
+                          maxPrice: 2530000
+                          averagePricePerSquareFoot: 205.14
+                          medianPricePerSquareFoot: 191.71
+                          minPricePerSquareFoot: 54
+                          maxPricePerSquareFoot: 962.5
+                          averageSquareFootage: 1702
+                          medianSquareFootage: 1560
+                          minSquareFootage: 800
+                          maxSquareFootage: 6000
+                          averageDaysOnMarket: 76.27
+                          medianDaysOnMarket: 61
+                          minDaysOnMarket: 2
+                          maxDaysOnMarket: 351
+                          newListings: 55
+                          totalListings: 244
+                          dataByPropertyType:
+                          - propertyType: Condo
+                            averagePrice: 399100
+                            medianPrice: 157500
+                            minPrice: 124900
+                            maxPrice: 1599000
+                            averagePricePerSquareFoot: 175.02
+                            medianPricePerSquareFoot: 133.66
+                            minPricePerSquareFoot: 119.07
+                            maxPricePerSquareFoot: 357.48
+                            averageSquareFootage: 1700
+                            medianSquareFootage: 1148
+                            minSquareFootage: 1049
+                            maxSquareFootage: 4473
+                            averageDaysOnMarket: 97.5
+                            medianDaysOnMarket: 85
+                            minDaysOnMarket: 7
+                            maxDaysOnMarket: 225
+                            newListings: 2
+                            totalListings: 6
+                          - propertyType: Land
+                            averagePrice: 438718
+                            medianPrice: 199999
+                            minPrice: 19000
+                            maxPrice: 2530000
+                            averagePricePerSquareFoot: null
+                            medianPricePerSquareFoot: null
+                            minPricePerSquareFoot: null
+                            maxPricePerSquareFoot: null
+                            averageSquareFootage: null
+                            medianSquareFootage: null
+                            minSquareFootage: null
+                            maxSquareFootage: null
+                            averageDaysOnMarket: 104.92
+                            medianDaysOnMarket: 84
+                            minDaysOnMarket: 2
+                            maxDaysOnMarket: 343
+                            newListings: 3
+                            totalListings: 33
+                          - propertyType: Manufactured
+                            averagePrice: 170444
+                            medianPrice: 150000
+                            minPrice: 8899
+                            maxPrice: 499900
+                            averagePricePerSquareFoot: 95.75
+                            medianPricePerSquareFoot: 83.32
+                            minPricePerSquareFoot: 54
+                            maxPricePerSquareFoot: 146
+                            averageSquareFootage: 2007
+                            medianSquareFootage: 1175
+                            minSquareFootage: 924
+                            maxSquareFootage: 6000
+                            averageDaysOnMarket: 93
+                            medianDaysOnMarket: 97
+                            minDaysOnMarket: 3
+                            maxDaysOnMarket: 155
+                            newListings: 0
+                            totalListings: 9
+                          - propertyType: Multi-Family
+                            averagePrice: 370880
+                            medianPrice: 420000
+                            minPrice: 200000
+                            maxPrice: 514500
+                            averagePricePerSquareFoot: 183.3
+                            medianPricePerSquareFoot: 173.61
+                            minPricePerSquareFoot: 152.73
+                            maxPricePerSquareFoot: 217.79
+                            averageSquareFootage: 2094
+                            medianSquareFootage: 2268
+                            minSquareFootage: 1102
+                            maxSquareFootage: 3200
+                            averageDaysOnMarket: 65
+                            medianDaysOnMarket: 48
+                            minDaysOnMarket: 15
+                            maxDaysOnMarket: 134
+                            newListings: 2
+                            totalListings: 5
+                          - propertyType: Single Family
+                            averagePrice: 353800
+                            medianPrice: 310000
+                            minPrice: 128000
+                            maxPrice: 1799611
+                            averagePricePerSquareFoot: 215.66
+                            medianPricePerSquareFoot: 207.64
+                            minPricePerSquareFoot: 94.79
+                            maxPricePerSquareFoot: 962.5
+                            averageSquareFootage: 1681
+                            medianSquareFootage: 1515
+                            minSquareFootage: 800
+                            maxSquareFootage: 4617
+                            averageDaysOnMarket: 68.46
+                            medianDaysOnMarket: 55
+                            minDaysOnMarket: 2
+                            maxDaysOnMarket: 351
+                            newListings: 34
+                            totalListings: 154
+                          - propertyType: Townhouse
+                            averagePrice: 322769
+                            medianPrice: 257000
+                            minPrice: 120000
+                            maxPrice: 745000
+                            averagePricePerSquareFoot: 193.68
+                            medianPricePerSquareFoot: 155.63
+                            minPricePerSquareFoot: 115.38
+                            maxPricePerSquareFoot: 420.56
+                            averageSquareFootage: 1670
+                            medianSquareFootage: 1600
+                            minSquareFootage: 1040
+                            maxSquareFootage: 2044
+                            averageDaysOnMarket: 82.29
+                            medianDaysOnMarket: 57
+                            minDaysOnMarket: 2
+                            maxDaysOnMarket: 253
+                            newListings: 14
+                            totalListings: 37
+                          dataByBedrooms:
+                          - bedrooms: 0
+                            averagePrice: 499900
+                            medianPrice: 499900
+                            minPrice: 499900
+                            maxPrice: 499900
+                            averagePricePerSquareFoot: 83.32
+                            medianPricePerSquareFoot: 83.32
+                            minPricePerSquareFoot: 83.32
+                            maxPricePerSquareFoot: 83.32
+                            averageSquareFootage: 6000
+                            medianSquareFootage: 6000
+                            minSquareFootage: 6000
+                            maxSquareFootage: 6000
+                            averageDaysOnMarket: 55
+                            medianDaysOnMarket: 55
+                            minDaysOnMarket: 55
+                            maxDaysOnMarket: 55
+                            newListings: 0
+                            totalListings: 1
+                          - bedrooms: 1
+                            averagePrice: 924500
+                            medianPrice: 250000
+                            minPrice: 250000
+                            maxPrice: 1599000
+                            averagePricePerSquareFoot: 307.87
+                            medianPricePerSquareFoot: 258.26
+                            minPricePerSquareFoot: 258.26
+                            maxPricePerSquareFoot: 357.48
+                            averageSquareFootage: 2720
+                            medianSquareFootage: 968
+                            minSquareFootage: 968
+                            maxSquareFootage: 4473
+                            averageDaysOnMarket: 153
+                            medianDaysOnMarket: 153
+                            minDaysOnMarket: 153
+                            maxDaysOnMarket: 153
+                            newListings: 0
+                            totalListings: 2
+                          - bedrooms: 2
+                            averagePrice: 270290
+                            medianPrice: 248900
+                            minPrice: 120000
+                            maxPrice: 770000
+                            averagePricePerSquareFoot: 245.88
+                            medianPricePerSquareFoot: 230.81
+                            minPricePerSquareFoot: 113.24
+                            maxPricePerSquareFoot: 962.5
+                            averageSquareFootage: 1134
+                            medianSquareFootage: 1089
+                            minSquareFootage: 800
+                            maxSquareFootage: 1707
+                            averageDaysOnMarket: 56.98
+                            medianDaysOnMarket: 40
+                            minDaysOnMarket: 3
+                            maxDaysOnMarket: 225
+                            newListings: 12
+                            totalListings: 41
+                          - bedrooms: 3
+                            averagePrice: 311167
+                            medianPrice: 280000
+                            minPrice: 8899
+                            maxPrice: 1799611
+                            averagePricePerSquareFoot: 195.57
+                            medianPricePerSquareFoot: 175.51
+                            minPricePerSquareFoot: 54
+                            maxPricePerSquareFoot: 719.84
+                            averageSquareFootage: 1581
+                            medianSquareFootage: 1547
+                            minSquareFootage: 880
+                            maxSquareFootage: 3418
+                            averageDaysOnMarket: 77.21
+                            medianDaysOnMarket: 62
+                            minDaysOnMarket: 2
+                            maxDaysOnMarket: 351
+                            newListings: 31
+                            totalListings: 122
+                          - bedrooms: 4
+                            averagePrice: 451424
+                            medianPrice: 434900
+                            minPrice: 149700
+                            maxPrice: 1550000
+                            averagePricePerSquareFoot: 194.53
+                            medianPricePerSquareFoot: 190.94
+                            minPricePerSquareFoot: 94.79
+                            maxPricePerSquareFoot: 437.24
+                            averageSquareFootage: 2321
+                            medianSquareFootage: 2083
+                            minSquareFootage: 1120
+                            maxSquareFootage: 4141
+                            averageDaysOnMarket: 73.58
+                            medianDaysOnMarket: 59
+                            minDaysOnMarket: 4
+                            maxDaysOnMarket: 323
+                            newListings: 8
+                            totalListings: 39
+                          - bedrooms: 5
+                            averagePrice: 539500
+                            medianPrice: 420000
+                            minPrice: 278500
+                            maxPrice: 1049000
+                            averagePricePerSquareFoot: 171.53
+                            medianPricePerSquareFoot: 152.73
+                            minPricePerSquareFoot: 117.61
+                            maxPricePerSquareFoot: 227.2
+                            averageSquareFootage: 2987
+                            medianSquareFootage: 2750
+                            minSquareFootage: 2368
+                            maxSquareFootage: 4617
+                            averageDaysOnMarket: 79.6
+                            medianDaysOnMarket: 48
+                            minDaysOnMarket: 3
+                            maxDaysOnMarket: 215
+                            newListings: 0
+                            totalListings: 5
+                          - bedrooms: 6
+                            averagePrice: 514500
+                            medianPrice: 514500
+                            minPrice: 514500
+                            maxPrice: 514500
+                            averagePricePerSquareFoot: 160.78
+                            medianPricePerSquareFoot: 160.78
+                            minPricePerSquareFoot: 160.78
+                            maxPricePerSquareFoot: 160.78
+                            averageSquareFootage: 3200
+                            medianSquareFootage: 3200
+                            minSquareFootage: 3200
+                            maxSquareFootage: 3200
+                            averageDaysOnMarket: 22
+                            medianDaysOnMarket: 22
+                            minDaysOnMarket: 22
+                            maxDaysOnMarket: 22
+                            newListings: 1
+                            totalListings: 1
+                        2025-08:
+                          date: '2025-08-01T00:00:00.000Z'
+                          averagePrice: 356598
+                          medianPrice: 295000
+                          minPrice: 8899
+                          maxPrice: 2530000
+                          averagePricePerSquareFoot: 203.45
+                          medianPricePerSquareFoot: 188.61
+                          minPricePerSquareFoot: 54
+                          maxPricePerSquareFoot: 943.24
+                          averageSquareFootage: 1717
+                          medianSquareFootage: 1573
+                          minSquareFootage: 636
+                          maxSquareFootage: 6000
+                          averageDaysOnMarket: 77
+                          medianDaysOnMarket: 61
+                          minDaysOnMarket: 2
+                          maxDaysOnMarket: 279
+                          newListings: 41
+                          totalListings: 248
+                          dataByPropertyType:
+                          - propertyType: Condo
+                            averagePrice: 398267
+                            medianPrice: 157500
+                            minPrice: 124900
+                            maxPrice: 1599000
+                            averagePricePerSquareFoot: 174.28
+                            medianPricePerSquareFoot: 132.02
+                            minPricePerSquareFoot: 119.07
+                            maxPricePerSquareFoot: 357.48
+                            averageSquareFootage: 1700
+                            medianSquareFootage: 1148
+                            minSquareFootage: 1049
+                            maxSquareFootage: 4473
+                            averageDaysOnMarket: 119.17
+                            medianDaysOnMarket: 111
+                            minDaysOnMarket: 33
+                            maxDaysOnMarket: 225
+                            newListings: 0
+                            totalListings: 6
+                          - propertyType: Land
+                            averagePrice: 481907
+                            medianPrice: 275000
+                            minPrice: 36900
+                            maxPrice: 2530000
+                            averagePricePerSquareFoot: null
+                            medianPricePerSquareFoot: null
+                            minPricePerSquareFoot: null
+                            maxPricePerSquareFoot: null
+                            averageSquareFootage: null
+                            medianSquareFootage: null
+                            minSquareFootage: null
+                            maxSquareFootage: null
+                            averageDaysOnMarket: 107.43
+                            medianDaysOnMarket: 104
+                            minDaysOnMarket: 5
+                            maxDaysOnMarket: 256
+                            newListings: 1
+                            totalListings: 28
+                          - propertyType: Manufactured
+                            averagePrice: 154643
+                            medianPrice: 89900
+                            minPrice: 8899
+                            maxPrice: 499900
+                            averagePricePerSquareFoot: 83.07
+                            medianPricePerSquareFoot: 69.85
+                            minPricePerSquareFoot: 54
+                            maxPricePerSquareFoot: 127.66
+                            averageSquareFootage: 2090
+                            medianSquareFootage: 1175
+                            minSquareFootage: 924
+                            maxSquareFootage: 6000
+                            averageDaysOnMarket: 116.43
+                            medianDaysOnMarket: 97
+                            minDaysOnMarket: 81
+                            maxDaysOnMarket: 181
+                            newListings: 0
+                            totalListings: 7
+                          - propertyType: Multi-Family
+                            averagePrice: 446750
+                            medianPrice: 479900
+                            minPrice: 240000
+                            maxPrice: 514500
+                            averagePricePerSquareFoot: 182.87
+                            medianPricePerSquareFoot: 180.01
+                            minPricePerSquareFoot: 152.73
+                            maxPricePerSquareFoot: 217.79
+                            averageSquareFootage: 2498
+                            medianSquareFootage: 2666
+                            minSquareFootage: 1102
+                            maxSquareFootage: 3200
+                            averageDaysOnMarket: 37
+                            medianDaysOnMarket: 11
+                            minDaysOnMarket: 11
+                            maxDaysOnMarket: 134
+                            newListings: 4
+                            totalListings: 8
+                          - propertyType: Single Family
+                            averagePrice: 347649
+                            medianPrice: 305000
+                            minPrice: 128000
+                            maxPrice: 1798611
+                            averagePricePerSquareFoot: 214.07
+                            medianPricePerSquareFoot: 206.33
+                            minPricePerSquareFoot: 94.79
+                            maxPricePerSquareFoot: 943.24
+                            averageSquareFootage: 1673
+                            medianSquareFootage: 1515
+                            minSquareFootage: 636
+                            maxSquareFootage: 4617
+                            averageDaysOnMarket: 69.19
+                            medianDaysOnMarket: 61
+                            minDaysOnMarket: 3
+                            maxDaysOnMarket: 228
+                            newListings: 24
+                            totalListings: 158
+                          - propertyType: Townhouse
+                            averagePrice: 316301
+                            medianPrice: 254990
+                            minPrice: 115000
+                            maxPrice: 745000
+                            averagePricePerSquareFoot: 188.97
+                            medianPricePerSquareFoot: 154.37
+                            minPricePerSquareFoot: 110.58
+                            maxPricePerSquareFoot: 420.56
+                            averageSquareFootage: 1679
+                            medianSquareFootage: 1616
+                            minSquareFootage: 1040
+                            maxSquareFootage: 2079
+                            averageDaysOnMarket: 86.29
+                            medianDaysOnMarket: 30
+                            minDaysOnMarket: 2
+                            maxDaysOnMarket: 279
+                            newListings: 12
+                            totalListings: 41
+                          dataByBedrooms:
+                          - bedrooms: 0
+                            averagePrice: 499900
+                            medianPrice: 499900
+                            minPrice: 499900
+                            maxPrice: 499900
+                            averagePricePerSquareFoot: 83.32
+                            medianPricePerSquareFoot: 83.32
+                            minPricePerSquareFoot: 83.32
+                            maxPricePerSquareFoot: 83.32
+                            averageSquareFootage: 6000
+                            medianSquareFootage: 6000
+                            minSquareFootage: 6000
+                            maxSquareFootage: 6000
+                            averageDaysOnMarket: 81
+                            medianDaysOnMarket: 81
+                            minDaysOnMarket: 81
+                            maxDaysOnMarket: 81
+                            newListings: 0
+                            totalListings: 1
+                          - bedrooms: 1
+                            averagePrice: 816300
+                            medianPrice: 599900
+                            minPrice: 250000
+                            maxPrice: 1599000
+                            averagePricePerSquareFoot: 519.66
+                            medianPricePerSquareFoot: 357.48
+                            minPricePerSquareFoot: 258.26
+                            maxPricePerSquareFoot: 943.24
+                            averageSquareFootage: 2026
+                            medianSquareFootage: 968
+                            minSquareFootage: 636
+                            maxSquareFootage: 4473
+                            averageDaysOnMarket: 97
+                            medianDaysOnMarket: 15
+                            minDaysOnMarket: 15
+                            maxDaysOnMarket: 179
+                            newListings: 1
+                            totalListings: 3
+                          - bedrooms: 2
+                            averagePrice: 251954
+                            medianPrice: 240000
+                            minPrice: 115000
+                            maxPrice: 545000
+                            averagePricePerSquareFoot: 225.42
+                            medianPricePerSquareFoot: 225
+                            minPricePerSquareFoot: 110.58
+                            maxPricePerSquareFoot: 394.07
+                            averageSquareFootage: 1127
+                            medianSquareFootage: 1089
+                            minSquareFootage: 790
+                            maxSquareFootage: 1707
+                            averageDaysOnMarket: 73.43
+                            medianDaysOnMarket: 61
+                            minDaysOnMarket: 5
+                            maxDaysOnMarket: 225
+                            newListings: 2
+                            totalListings: 37
+                          - bedrooms: 3
+                            averagePrice: 312571
+                            medianPrice: 290000
+                            minPrice: 8899
+                            maxPrice: 1798611
+                            averagePricePerSquareFoot: 196.7
+                            medianPricePerSquareFoot: 184.95
+                            minPricePerSquareFoot: 54
+                            maxPricePerSquareFoot: 719.44
+                            averageSquareFootage: 1591
+                            medianSquareFootage: 1568
+                            minSquareFootage: 880
+                            maxSquareFootage: 3418
+                            averageDaysOnMarket: 78.57
+                            medianDaysOnMarket: 61
+                            minDaysOnMarket: 2
+                            maxDaysOnMarket: 279
+                            newListings: 24
+                            totalListings: 129
+                          - bedrooms: 4
+                            averagePrice: 431145
+                            medianPrice: 375000
+                            minPrice: 144700
+                            maxPrice: 1450000
+                            averagePricePerSquareFoot: 189.84
+                            medianPricePerSquareFoot: 174.15
+                            minPricePerSquareFoot: 94.79
+                            maxPricePerSquareFoot: 409.03
+                            averageSquareFootage: 2270
+                            medianSquareFootage: 2076
+                            minSquareFootage: 1120
+                            maxSquareFootage: 4141
+                            averageDaysOnMarket: 66.37
+                            medianDaysOnMarket: 60
+                            minDaysOnMarket: 4
+                            maxDaysOnMarket: 152
+                            newListings: 9
+                            totalListings: 42
+                          - bedrooms: 5
+                            averagePrice: 602667
+                            medianPrice: 420000
+                            minPrice: 339000
+                            maxPrice: 1049000
+                            averagePricePerSquareFoot: 173.73
+                            medianPricePerSquareFoot: 152.73
+                            minPricePerSquareFoot: 141.25
+                            maxPricePerSquareFoot: 227.2
+                            averageSquareFootage: 3256
+                            medianSquareFootage: 2750
+                            minSquareFootage: 2400
+                            maxSquareFootage: 4617
+                            averageDaysOnMarket: 71
+                            medianDaysOnMarket: 61
+                            minDaysOnMarket: 55
+                            maxDaysOnMarket: 97
+                            newListings: 0
+                            totalListings: 3
+                          - bedrooms: 6
+                            averagePrice: 486820
+                            medianPrice: 479900
+                            minPrice: 479900
+                            maxPrice: 514500
+                            averagePricePerSquareFoot: 176.16
+                            medianPricePerSquareFoot: 180.01
+                            minPricePerSquareFoot: 160.78
+                            maxPricePerSquareFoot: 180.01
+                            averageSquareFootage: 2773
+                            medianSquareFootage: 2666
+                            minSquareFootage: 2666
+                            maxSquareFootage: 3200
+                            averageDaysOnMarket: 18.4
+                            medianDaysOnMarket: 11
+                            minDaysOnMarket: 11
+                            maxDaysOnMarket: 48
+                            newListings: 4
+                            totalListings: 5
+                    rentalData:
+                      lastUpdatedDate: '2025-08-26T00:00:00.000Z'
+                      averageRent: 1491
+                      medianRent: 1400
+                      minRent: 400
+                      maxRent: 3750
+                      averageRentPerSquareFoot: 1.36
+                      medianRentPerSquareFoot: 1.29
+                      minRentPerSquareFoot: 0.88
+                      maxRentPerSquareFoot: 2.38
+                      averageSquareFootage: 1144
+                      medianSquareFootage: 1024
+                      minSquareFootage: 590
+                      maxSquareFootage: 2562
+                      averageDaysOnMarket: 37.82
+                      medianDaysOnMarket: 1
+                      minDaysOnMarket: 1
+                      maxDaysOnMarket: 322
+                      newListings: 39
+                      totalListings: 94
+                      dataByPropertyType:
+                      - propertyType: Apartment
+                        averageRent: 1139
+                        medianRent: 1025
+                        minRent: 875
+                        maxRent: 1815
+                        averageRentPerSquareFoot: 1.36
+                        medianRentPerSquareFoot: 1.24
+                        minRentPerSquareFoot: 0.88
+                        maxRentPerSquareFoot: 2.01
+                        averageSquareFootage: 875
+                        medianSquareFootage: 950
+                        minSquareFootage: 629
+                        maxSquareFootage: 1192
+                        averageDaysOnMarket: 66.26
+                        medianDaysOnMarket: 1
+                        minDaysOnMarket: 1
+                        maxDaysOnMarket: 236
+                        newListings: 8
+                        totalListings: 26
+                      - propertyType: Condo
+                        averageRent: 996
+                        medianRent: 999
+                        minRent: 990
+                        maxRent: 999
+                        averageRentPerSquareFoot: 1.23
+                        medianRentPerSquareFoot: 1.29
+                        minRentPerSquareFoot: 1.1
+                        maxRentPerSquareFoot: 1.29
+                        averageSquareFootage: 817
+                        medianSquareFootage: 775
+                        minSquareFootage: 775
+                        maxSquareFootage: 900
+                        averageDaysOnMarket: 1
+                        medianDaysOnMarket: 1
+                        minDaysOnMarket: 1
+                        maxDaysOnMarket: 1
+                        newListings: 2
+                        totalListings: 3
+                      - propertyType: Single Family
+                        averageRent: 1575
+                        medianRent: 1500
+                        minRent: 400
+                        maxRent: 3750
+                        averageRentPerSquareFoot: 1.37
+                        medianRentPerSquareFoot: 1.33
+                        minRentPerSquareFoot: 0.88
+                        maxRentPerSquareFoot: 2.38
+                        averageSquareFootage: 1219
+                        medianSquareFootage: 1100
+                        minSquareFootage: 590
+                        maxSquareFootage: 2562
+                        averageDaysOnMarket: 24.5
+                        medianDaysOnMarket: 1
+                        minDaysOnMarket: 1
+                        maxDaysOnMarket: 322
+                        newListings: 23
+                        totalListings: 55
+                      - propertyType: Townhouse
+                        averageRent: 2096
+                        medianRent: 1900
+                        minRent: 1095
+                        maxRent: 3200
+                        averageRentPerSquareFoot: 1.34
+                        medianRentPerSquareFoot: 1.19
+                        minRentPerSquareFoot: 1.02
+                        maxRentPerSquareFoot: 2
+                        averageSquareFootage: 1549
+                        medianSquareFootage: 1589
+                        minSquareFootage: 1040
+                        maxSquareFootage: 1800
+                        averageDaysOnMarket: 43.7
+                        medianDaysOnMarket: 1
+                        minDaysOnMarket: 1
+                        maxDaysOnMarket: 273
+                        newListings: 6
+                        totalListings: 10
+                      dataByBedrooms:
+                      - bedrooms: 1
+                        averageRent: 1043
+                        medianRent: 945
+                        minRent: 400
+                        maxRent: 1815
+                        averageRentPerSquareFoot: 1.59
+                        medianRentPerSquareFoot: 1.53
+                        minRentPerSquareFoot: 1.24
+                        maxRentPerSquareFoot: 2.01
+                        averageSquareFootage: 735
+                        medianSquareFootage: 650
+                        minSquareFootage: 590
+                        maxSquareFootage: 1004
+                        averageDaysOnMarket: 154.08
+                        medianDaysOnMarket: 147
+                        minDaysOnMarket: 1
+                        maxDaysOnMarket: 322
+                        newListings: 1
+                        totalListings: 14
+                      - bedrooms: 2
+                        averageRent: 1294
+                        medianRent: 1250
+                        minRent: 875
+                        maxRent: 2500
+                        averageRentPerSquareFoot: 1.37
+                        medianRentPerSquareFoot: 1.29
+                        minRentPerSquareFoot: 1.05
+                        maxRentPerSquareFoot: 2.38
+                        averageSquareFootage: 945
+                        medianSquareFootage: 950
+                        minSquareFootage: 750
+                        maxSquareFootage: 1168
+                        averageDaysOnMarket: 11.45
+                        medianDaysOnMarket: 1
+                        minDaysOnMarket: 1
+                        maxDaysOnMarket: 159
+                        newListings: 20
+                        totalListings: 37
+                      - bedrooms: 3
+                        averageRent: 1739
+                        medianRent: 1695
+                        minRent: 995
+                        maxRent: 3750
+                        averageRentPerSquareFoot: 1.29
+                        medianRentPerSquareFoot: 1.19
+                        minRentPerSquareFoot: 0.88
+                        maxRentPerSquareFoot: 2
+                        averageSquareFootage: 1369
+                        medianSquareFootage: 1400
+                        minSquareFootage: 1000
+                        maxSquareFootage: 1887
+                        averageDaysOnMarket: 24.63
+                        medianDaysOnMarket: 1
+                        minDaysOnMarket: 1
+                        maxDaysOnMarket: 273
+                        newListings: 14
+                        totalListings: 38
+                      - bedrooms: 4
+                        averageRent: 2305
+                        medianRent: 2175
+                        minRent: 1650
+                        maxRent: 2895
+                        averageRentPerSquareFoot: 1.18
+                        medianRentPerSquareFoot: 1.15
+                        minRentPerSquareFoot: 0.98
+                        maxRentPerSquareFoot: 1.45
+                        averageSquareFootage: 1998
+                        medianSquareFootage: 1500
+                        minSquareFootage: 1430
+                        maxSquareFootage: 2562
+                        averageDaysOnMarket: 13.75
+                        medianDaysOnMarket: 5
+                        minDaysOnMarket: 1
+                        maxDaysOnMarket: 40
+                        newListings: 3
+                        totalListings: 4
+                      - bedrooms: 6
+                        averageRent: 2400
+                        medianRent: 2400
+                        minRent: 2400
+                        maxRent: 2400
+                        averageRentPerSquareFoot: null
+                        medianRentPerSquareFoot: null
+                        minRentPerSquareFoot: null
+                        maxRentPerSquareFoot: null
+                        averageSquareFootage: null
+                        medianSquareFootage: null
+                        minSquareFootage: null
+                        maxSquareFootage: null
+                        averageDaysOnMarket: 18
+                        medianDaysOnMarket: 18
+                        minDaysOnMarket: 18
+                        maxDaysOnMarket: 18
+                        newListings: 1
+                        totalListings: 1
+                      history:
+                        2025-06:
+                          date: '2025-06-01T00:00:00.000Z'
+                          averageRent: 1555
+                          medianRent: 1495
+                          minRent: 400
+                          maxRent: 3200
+                          averageRentPerSquareFoot: 1.33
+                          medianRentPerSquareFoot: 1.29
+                          minRentPerSquareFoot: 0.81
+                          maxRentPerSquareFoot: 2.04
+                          averageSquareFootage: 1269
+                          medianSquareFootage: 1100
+                          minSquareFootage: 590
+                          maxSquareFootage: 2802
+                          averageDaysOnMarket: 18.04
+                          medianDaysOnMarket: 1
+                          minDaysOnMarket: 1
+                          maxDaysOnMarket: 257
+                          newListings: 50
+                          totalListings: 84
+                          dataByPropertyType:
+                          - propertyType: Apartment
+                            averageRent: 1086
+                            medianRent: 1050
+                            minRent: 945
+                            maxRent: 1395
+                            averageRentPerSquareFoot: 1.2
+                            medianRentPerSquareFoot: 1.07
+                            minRentPerSquareFoot: 1.05
+                            maxRentPerSquareFoot: 1.47
+                            averageSquareFootage: 883
+                            medianSquareFootage: 950
+                            minSquareFootage: 650
+                            maxSquareFootage: 1020
+                            averageDaysOnMarket: 1
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 1
+                            newListings: 6
+                            totalListings: 7
+                          - propertyType: Condo
+                            averageRent: 974
+                            medianRent: 999
+                            minRent: 800
+                            maxRent: 1100
+                            averageRentPerSquareFoot: 1.19
+                            medianRentPerSquareFoot: 1.29
+                            minRentPerSquareFoot: 1
+                            maxRentPerSquareFoot: 1.29
+                            averageSquareFootage: 783
+                            medianSquareFootage: 775
+                            minSquareFootage: 775
+                            maxSquareFootage: 800
+                            averageDaysOnMarket: 15.5
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 59
+                            newListings: 3
+                            totalListings: 4
+                          - propertyType: Single Family
+                            averageRent: 1567
+                            medianRent: 1595
+                            minRent: 400
+                            maxRent: 2895
+                            averageRentPerSquareFoot: 1.36
+                            medianRentPerSquareFoot: 1.31
+                            minRentPerSquareFoot: 0.81
+                            maxRentPerSquareFoot: 2.04
+                            averageSquareFootage: 1290
+                            medianSquareFootage: 1100
+                            minSquareFootage: 590
+                            maxSquareFootage: 2802
+                            averageDaysOnMarket: 18.58
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 257
+                            newListings: 35
+                            totalListings: 63
+                          - propertyType: Townhouse
+                            averageRent: 2038
+                            medianRent: 1850
+                            minRent: 1145
+                            maxRent: 3200
+                            averageRentPerSquareFoot: 1.31
+                            medianRentPerSquareFoot: 1.16
+                            minRentPerSquareFoot: 1.02
+                            maxRentPerSquareFoot: 2
+                            averageSquareFootage: 1546
+                            medianSquareFootage: 1589
+                            minSquareFootage: 1040
+                            maxSquareFootage: 1910
+                            averageDaysOnMarket: 27.8
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 221
+                            newListings: 6
+                            totalListings: 10
+                          dataByBedrooms:
+                          - bedrooms: 1
+                            averageRent: 852
+                            medianRent: 930
+                            minRent: 400
+                            maxRent: 1100
+                            averageRentPerSquareFoot: 1.35
+                            medianRentPerSquareFoot: 1.34
+                            minRentPerSquareFoot: 1
+                            maxRentPerSquareFoot: 1.6
+                            averageSquareFootage: 673
+                            medianSquareFootage: 650
+                            minSquareFootage: 590
+                            maxSquareFootage: 800
+                            averageDaysOnMarket: 47.4
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 257
+                            newListings: 5
+                            totalListings: 11
+                          - bedrooms: 2
+                            averageRent: 1316
+                            medianRent: 1275
+                            minRent: 995
+                            maxRent: 1850
+                            averageRentPerSquareFoot: 1.41
+                            medianRentPerSquareFoot: 1.32
+                            minRentPerSquareFoot: 1.05
+                            maxRentPerSquareFoot: 2.04
+                            averageSquareFootage: 946
+                            medianSquareFootage: 950
+                            minSquareFootage: 750
+                            maxSquareFootage: 1200
+                            averageDaysOnMarket: 13.92
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 88
+                            newListings: 16
+                            totalListings: 26
+                          - bedrooms: 3
+                            averageRent: 1767
+                            medianRent: 1750
+                            minRent: 1000
+                            maxRent: 3200
+                            averageRentPerSquareFoot: 1.31
+                            medianRentPerSquareFoot: 1.23
+                            minRentPerSquareFoot: 0.81
+                            maxRentPerSquareFoot: 2
+                            averageSquareFootage: 1410
+                            medianSquareFootage: 1433
+                            minSquareFootage: 1000
+                            maxSquareFootage: 2000
+                            averageDaysOnMarket: 15.08
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 221
+                            newListings: 27
+                            totalListings: 42
+                          - bedrooms: 4
+                            averageRent: 2549
+                            medianRent: 2400
+                            minRent: 2200
+                            maxRent: 2895
+                            averageRentPerSquareFoot: 1.04
+                            medianRentPerSquareFoot: 0.96
+                            minRentPerSquareFoot: 0.9
+                            maxRentPerSquareFoot: 1.16
+                            averageSquareFootage: 2480
+                            medianSquareFootage: 2500
+                            minSquareFootage: 1944
+                            maxSquareFootage: 2802
+                            averageDaysOnMarket: 4.5
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 15
+                            newListings: 2
+                            totalListings: 4
+                          - bedrooms: 5
+                            averageRent: 2600
+                            medianRent: 2600
+                            minRent: 2600
+                            maxRent: 2600
+                            averageRentPerSquareFoot: null
+                            medianRentPerSquareFoot: null
+                            minRentPerSquareFoot: null
+                            maxRentPerSquareFoot: null
+                            averageSquareFootage: null
+                            medianSquareFootage: null
+                            minSquareFootage: null
+                            maxSquareFootage: null
+                            averageDaysOnMarket: 1
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 1
+                            newListings: 0
+                            totalListings: 1
+                        2025-07:
+                          date: '2025-07-01T00:00:00.000Z'
+                          averageRent: 1417
+                          medianRent: 1350
+                          minRent: 400
+                          maxRent: 3200
+                          averageRentPerSquareFoot: 1.32
+                          medianRentPerSquareFoot: 1.28
+                          minRentPerSquareFoot: 0.88
+                          maxRentPerSquareFoot: 2.04
+                          averageSquareFootage: 1136
+                          medianSquareFootage: 1024
+                          minSquareFootage: 590
+                          maxSquareFootage: 2672
+                          averageDaysOnMarket: 34.06
+                          medianDaysOnMarket: 1
+                          minDaysOnMarket: 1
+                          maxDaysOnMarket: 321
+                          newListings: 46
+                          totalListings: 94
+                          dataByPropertyType:
+                          - propertyType: Apartment
+                            averageRent: 1098
+                            medianRent: 1025
+                            minRent: 875
+                            maxRent: 1835
+                            averageRentPerSquareFoot: 1.25
+                            medianRentPerSquareFoot: 1.1
+                            minRentPerSquareFoot: 1.05
+                            maxRentPerSquareFoot: 2.03
+                            averageSquareFootage: 911
+                            medianSquareFootage: 950
+                            minSquareFootage: 629
+                            maxSquareFootage: 1294
+                            averageDaysOnMarket: 58.59
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 210
+                            newListings: 14
+                            totalListings: 24
+                          - propertyType: Condo
+                            averageRent: 947
+                            medianRent: 990
+                            minRent: 800
+                            maxRent: 999
+                            averageRentPerSquareFoot: 1.17
+                            medianRentPerSquareFoot: 1.1
+                            minRentPerSquareFoot: 1
+                            maxRentPerSquareFoot: 1.29
+                            averageSquareFootage: 812
+                            medianSquareFootage: 775
+                            minSquareFootage: 775
+                            maxSquareFootage: 900
+                            averageDaysOnMarket: 1
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 1
+                            newListings: 2
+                            totalListings: 4
+                          - propertyType: Single Family
+                            averageRent: 1490
+                            medianRent: 1475
+                            minRent: 400
+                            maxRent: 2895
+                            averageRentPerSquareFoot: 1.37
+                            medianRentPerSquareFoot: 1.31
+                            minRentPerSquareFoot: 0.88
+                            maxRentPerSquareFoot: 2.04
+                            averageSquareFootage: 1200
+                            medianSquareFootage: 1100
+                            minSquareFootage: 590
+                            maxSquareFootage: 2672
+                            averageDaysOnMarket: 24.36
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 321
+                            newListings: 26
+                            totalListings: 58
+                          - propertyType: Townhouse
+                            averageRent: 2086
+                            medianRent: 1850
+                            minRent: 1095
+                            maxRent: 3200
+                            averageRentPerSquareFoot: 1.33
+                            medianRentPerSquareFoot: 1.14
+                            minRentPerSquareFoot: 1.05
+                            maxRentPerSquareFoot: 2
+                            averageSquareFootage: 1552
+                            medianSquareFootage: 1598
+                            minSquareFootage: 1040
+                            maxSquareFootage: 1800
+                            averageDaysOnMarket: 43.25
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 260
+                            newListings: 4
+                            totalListings: 8
+                          dataByBedrooms:
+                          - bedrooms: 1
+                            averageRent: 926
+                            medianRent: 945
+                            minRent: 400
+                            maxRent: 1299
+                            averageRentPerSquareFoot: 1.49
+                            medianRentPerSquareFoot: 1.34
+                            minRentPerSquareFoot: 1
+                            maxRentPerSquareFoot: 2.03
+                            averageSquareFootage: 686
+                            medianSquareFootage: 650
+                            minSquareFootage: 590
+                            maxSquareFootage: 800
+                            averageDaysOnMarket: 104.77
+                            medianDaysOnMarket: 107
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 321
+                            newListings: 1
+                            totalListings: 15
+                          - bedrooms: 2
+                            averageRent: 1262
+                            medianRent: 1170
+                            minRent: 875
+                            maxRent: 1850
+                            averageRentPerSquareFoot: 1.32
+                            medianRentPerSquareFoot: 1.29
+                            minRentPerSquareFoot: 1.05
+                            maxRentPerSquareFoot: 2.04
+                            averageSquareFootage: 969
+                            medianSquareFootage: 975
+                            minSquareFootage: 750
+                            maxSquareFootage: 1294
+                            averageDaysOnMarket: 25.47
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 210
+                            newListings: 24
+                            totalListings: 40
+                          - bedrooms: 3
+                            averageRent: 1717
+                            medianRent: 1695
+                            minRent: 995
+                            maxRent: 3200
+                            averageRentPerSquareFoot: 1.3
+                            medianRentPerSquareFoot: 1.19
+                            minRentPerSquareFoot: 0.88
+                            maxRentPerSquareFoot: 2
+                            averageSquareFootage: 1348
+                            medianSquareFootage: 1344
+                            minSquareFootage: 1000
+                            maxSquareFootage: 1800
+                            averageDaysOnMarket: 17.88
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 260
+                            newListings: 20
+                            totalListings: 36
+                          - bedrooms: 4
+                            averageRent: 2348
+                            medianRent: 2400
+                            minRent: 1750
+                            maxRent: 2895
+                            averageRentPerSquareFoot: 1.09
+                            medianRentPerSquareFoot: 1.16
+                            minRentPerSquareFoot: 0.9
+                            maxRentPerSquareFoot: 1.22
+                            averageSquareFootage: 2201
+                            medianSquareFootage: 2500
+                            minSquareFootage: 1430
+                            maxSquareFootage: 2672
+                            averageDaysOnMarket: 14
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 40
+                            newListings: 1
+                            totalListings: 3
+                        2025-08:
+                          date: '2025-08-01T00:00:00.000Z'
+                          averageRent: 1491
+                          medianRent: 1400
+                          minRent: 400
+                          maxRent: 3750
+                          averageRentPerSquareFoot: 1.36
+                          medianRentPerSquareFoot: 1.29
+                          minRentPerSquareFoot: 0.88
+                          maxRentPerSquareFoot: 2.38
+                          averageSquareFootage: 1144
+                          medianSquareFootage: 1024
+                          minSquareFootage: 590
+                          maxSquareFootage: 2562
+                          averageDaysOnMarket: 37.82
+                          medianDaysOnMarket: 1
+                          minDaysOnMarket: 1
+                          maxDaysOnMarket: 322
+                          newListings: 39
+                          totalListings: 94
+                          dataByPropertyType:
+                          - propertyType: Apartment
+                            averageRent: 1139
+                            medianRent: 1025
+                            minRent: 875
+                            maxRent: 1815
+                            averageRentPerSquareFoot: 1.36
+                            medianRentPerSquareFoot: 1.24
+                            minRentPerSquareFoot: 0.88
+                            maxRentPerSquareFoot: 2.01
+                            averageSquareFootage: 875
+                            medianSquareFootage: 950
+                            minSquareFootage: 629
+                            maxSquareFootage: 1192
+                            averageDaysOnMarket: 66.26
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 236
+                            newListings: 8
+                            totalListings: 26
+                          - propertyType: Condo
+                            averageRent: 996
+                            medianRent: 999
+                            minRent: 990
+                            maxRent: 999
+                            averageRentPerSquareFoot: 1.23
+                            medianRentPerSquareFoot: 1.29
+                            minRentPerSquareFoot: 1.1
+                            maxRentPerSquareFoot: 1.29
+                            averageSquareFootage: 817
+                            medianSquareFootage: 775
+                            minSquareFootage: 775
+                            maxSquareFootage: 900
+                            averageDaysOnMarket: 1
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 1
+                            newListings: 2
+                            totalListings: 3
+                          - propertyType: Single Family
+                            averageRent: 1575
+                            medianRent: 1500
+                            minRent: 400
+                            maxRent: 3750
+                            averageRentPerSquareFoot: 1.37
+                            medianRentPerSquareFoot: 1.33
+                            minRentPerSquareFoot: 0.88
+                            maxRentPerSquareFoot: 2.38
+                            averageSquareFootage: 1219
+                            medianSquareFootage: 1100
+                            minSquareFootage: 590
+                            maxSquareFootage: 2562
+                            averageDaysOnMarket: 24.5
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 322
+                            newListings: 23
+                            totalListings: 55
+                          - propertyType: Townhouse
+                            averageRent: 2096
+                            medianRent: 1900
+                            minRent: 1095
+                            maxRent: 3200
+                            averageRentPerSquareFoot: 1.34
+                            medianRentPerSquareFoot: 1.19
+                            minRentPerSquareFoot: 1.02
+                            maxRentPerSquareFoot: 2
+                            averageSquareFootage: 1549
+                            medianSquareFootage: 1589
+                            minSquareFootage: 1040
+                            maxSquareFootage: 1800
+                            averageDaysOnMarket: 43.7
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 273
+                            newListings: 6
+                            totalListings: 10
+                          dataByBedrooms:
+                          - bedrooms: 1
+                            averageRent: 1043
+                            medianRent: 945
+                            minRent: 400
+                            maxRent: 1815
+                            averageRentPerSquareFoot: 1.59
+                            medianRentPerSquareFoot: 1.53
+                            minRentPerSquareFoot: 1.24
+                            maxRentPerSquareFoot: 2.01
+                            averageSquareFootage: 735
+                            medianSquareFootage: 650
+                            minSquareFootage: 590
+                            maxSquareFootage: 1004
+                            averageDaysOnMarket: 154.08
+                            medianDaysOnMarket: 147
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 322
+                            newListings: 1
+                            totalListings: 14
+                          - bedrooms: 2
+                            averageRent: 1294
+                            medianRent: 1250
+                            minRent: 875
+                            maxRent: 2500
+                            averageRentPerSquareFoot: 1.37
+                            medianRentPerSquareFoot: 1.29
+                            minRentPerSquareFoot: 1.05
+                            maxRentPerSquareFoot: 2.38
+                            averageSquareFootage: 945
+                            medianSquareFootage: 950
+                            minSquareFootage: 750
+                            maxSquareFootage: 1168
+                            averageDaysOnMarket: 11.45
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 159
+                            newListings: 20
+                            totalListings: 37
+                          - bedrooms: 3
+                            averageRent: 1739
+                            medianRent: 1695
+                            minRent: 995
+                            maxRent: 3750
+                            averageRentPerSquareFoot: 1.29
+                            medianRentPerSquareFoot: 1.19
+                            minRentPerSquareFoot: 0.88
+                            maxRentPerSquareFoot: 2
+                            averageSquareFootage: 1369
+                            medianSquareFootage: 1400
+                            minSquareFootage: 1000
+                            maxSquareFootage: 1887
+                            averageDaysOnMarket: 24.63
+                            medianDaysOnMarket: 1
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 273
+                            newListings: 14
+                            totalListings: 38
+                          - bedrooms: 4
+                            averageRent: 2305
+                            medianRent: 2175
+                            minRent: 1650
+                            maxRent: 2895
+                            averageRentPerSquareFoot: 1.18
+                            medianRentPerSquareFoot: 1.15
+                            minRentPerSquareFoot: 0.98
+                            maxRentPerSquareFoot: 1.45
+                            averageSquareFootage: 1998
+                            medianSquareFootage: 1500
+                            minSquareFootage: 1430
+                            maxSquareFootage: 2562
+                            averageDaysOnMarket: 13.75
+                            medianDaysOnMarket: 5
+                            minDaysOnMarket: 1
+                            maxDaysOnMarket: 40
+                            newListings: 3
+                            totalListings: 4
+                          - bedrooms: 6
+                            averageRent: 2400
+                            medianRent: 2400
+                            minRent: 2400
+                            maxRent: 2400
+                            averageRentPerSquareFoot: null
+                            medianRentPerSquareFoot: null
+                            minRentPerSquareFoot: null
+                            maxRentPerSquareFoot: null
+                            averageSquareFootage: null
+                            medianSquareFootage: null
+                            minSquareFootage: null
+                            maxSquareFootage: null
+                            averageDaysOnMarket: 18
+                            medianDaysOnMarket: 18
+                            minDaysOnMarket: 18
+                            maxDaysOnMarket: 18
+                            newListings: 1
+                            totalListings: 1
+                  summary: Success
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: '29611'
+                  zipCode:
+                    type: string
+                    example: '29611'
+                  saleData:
+                    type: object
+                    properties:
+                      lastUpdatedDate:
+                        type: string
+                        example: '2024-10-14T00:00:00.000Z'
+                      averagePrice:
+                        type: integer
+                        example: 291933
+                        default: 0
+                      medianPrice:
+                        type: integer
+                        example: 276990
+                        default: 0
+                      minPrice:
+                        type: integer
+                        example: 20000
+                        default: 0
+                      maxPrice:
+                        type: integer
+                        example: 1500000
+                        default: 0
+                      averagePricePerSquareFoot:
+                        type: number
+                        example: 186.53
+                        default: 0
+                      medianPricePerSquareFoot:
+                        type: integer
+                        example: 178
+                        default: 0
+                      minPricePerSquareFoot:
+                        type: number
+                        example: 64.9
+                        default: 0
+                      maxPricePerSquareFoot:
+                        type: integer
+                        example: 500
+                        default: 0
+                      averageSquareFootage:
+                        type: integer
+                        example: 1698
+                        default: 0
+                      medianSquareFootage:
+                        type: integer
+                        example: 1600
+                        default: 0
+                      minSquareFootage:
+                        type: integer
+                        example: 610
+                        default: 0
+                      maxSquareFootage:
+                        type: integer
+                        example: 4588
+                        default: 0
+                      averageDaysOnMarket:
+                        type: number
+                        example: 67.21
+                        default: 0
+                      medianDaysOnMarket:
+                        type: integer
+                        example: 45
+                        default: 0
+                      minDaysOnMarket:
+                        type: integer
+                        example: 2
+                        default: 0
+                      maxDaysOnMarket:
+                        type: integer
+                        example: 348
+                        default: 0
+                      newListings:
+                        type: integer
+                        example: 21
+                        default: 0
+                      totalListings:
+                        type: integer
+                        example: 265
+                        default: 0
+                      dataByPropertyType:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            propertyType:
+                              type: string
+                              example: Condo
+                            averagePrice:
+                              type: integer
+                              example: 144900
+                              default: 0
+                            medianPrice:
+                              type: integer
+                              example: 144900
+                              default: 0
+                            minPrice:
+                              type: integer
+                              example: 144900
+                              default: 0
+                            maxPrice:
+                              type: integer
+                              example: 144900
+                              default: 0
+                            averagePricePerSquareFoot:
+                              type: number
+                              example: 129.26
+                              default: 0
+                            medianPricePerSquareFoot:
+                              type: number
+                              example: 129.26
+                              default: 0
+                            minPricePerSquareFoot:
+                              type: number
+                              example: 129.26
+                              default: 0
+                            maxPricePerSquareFoot:
+                              type: number
+                              example: 129.26
+                              default: 0
+                            averageSquareFootage:
+                              type: integer
+                              example: 1121
+                              default: 0
+                            medianSquareFootage:
+                              type: integer
+                              example: 1121
+                              default: 0
+                            minSquareFootage:
+                              type: integer
+                              example: 1121
+                              default: 0
+                            maxSquareFootage:
+                              type: integer
+                              example: 1121
+                              default: 0
+                            averageDaysOnMarket:
+                              type: integer
+                              example: 61
+                              default: 0
+                            medianDaysOnMarket:
+                              type: integer
+                              example: 61
+                              default: 0
+                            minDaysOnMarket:
+                              type: integer
+                              example: 61
+                              default: 0
+                            maxDaysOnMarket:
+                              type: integer
+                              example: 61
+                              default: 0
+                            newListings:
+                              type: integer
+                              example: 0
+                              default: 0
+                            totalListings:
+                              type: integer
+                              example: 1
+                              default: 0
+                      dataByBedrooms:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            bedrooms:
+                              type: integer
+                              example: 1
+                              default: 0
+                            averagePrice:
+                              type: integer
+                              example: 186725
+                              default: 0
+                            medianPrice:
+                              type: integer
+                              example: 153000
+                              default: 0
+                            minPrice:
+                              type: integer
+                              example: 147900
+                              default: 0
+                            maxPrice:
+                              type: integer
+                              example: 237000
+                              default: 0
+                            averagePricePerSquareFoot:
+                              type: number
+                              example: 240.84
+                              default: 0
+                            medianPricePerSquareFoot:
+                              type: number
+                              example: 191.01
+                              default: 0
+                            minPricePerSquareFoot:
+                              type: number
+                              example: 184.88
+                              default: 0
+                            maxPricePerSquareFoot:
+                              type: number
+                              example: 342.62
+                              default: 0
+                            averageSquareFootage:
+                              type: integer
+                              example: 795
+                              default: 0
+                            medianSquareFootage:
+                              type: integer
+                              example: 800
+                              default: 0
+                            minSquareFootage:
+                              type: integer
+                              example: 610
+                              default: 0
+                            maxSquareFootage:
+                              type: integer
+                              example: 968
+                              default: 0
+                            averageDaysOnMarket:
+                              type: integer
+                              example: 123
+                              default: 0
+                            medianDaysOnMarket:
+                              type: integer
+                              example: 56
+                              default: 0
+                            minDaysOnMarket:
+                              type: integer
+                              example: 20
+                              default: 0
+                            maxDaysOnMarket:
+                              type: integer
+                              example: 314
+                              default: 0
+                            newListings:
+                              type: integer
+                              example: 0
+                              default: 0
+                            totalListings:
+                              type: integer
+                              example: 4
+                              default: 0
+                      history:
+                        type: object
+                        properties:
+                          2024-08:
+                            type: object
+                            properties:
+                              date:
+                                type: string
+                                example: '2024-08-01T00:00:00.000Z'
+                              averagePrice:
+                                type: integer
+                                example: 304256
+                                default: 0
+                              medianPrice:
+                                type: integer
+                                example: 284900
+                                default: 0
+                              minPrice:
+                                type: integer
+                                example: 75000
+                                default: 0
+                              maxPrice:
+                                type: integer
+                                example: 975000
+                                default: 0
+                              averagePricePerSquareFoot:
+                                type: number
+                                example: 177.79
+                                default: 0
+                              medianPricePerSquareFoot:
+                                type: number
+                                example: 174.82
+                                default: 0
+                              minPricePerSquareFoot:
+                                type: number
+                                example: 115.81
+                                default: 0
+                              maxPricePerSquareFoot:
+                                type: number
+                                example: 342.62
+                                default: 0
+                              averageSquareFootage:
+                                type: integer
+                                example: 1759
+                                default: 0
+                              medianSquareFootage:
+                                type: integer
+                                example: 1591
+                                default: 0
+                              minSquareFootage:
+                                type: integer
+                                example: 610
+                                default: 0
+                              maxSquareFootage:
+                                type: integer
+                                example: 4588
+                                default: 0
+                              averageDaysOnMarket:
+                                type: number
+                                example: 56.94
+                                default: 0
+                              medianDaysOnMarket:
+                                type: integer
+                                example: 41
+                                default: 0
+                              minDaysOnMarket:
+                                type: integer
+                                example: 2
+                                default: 0
+                              maxDaysOnMarket:
+                                type: integer
+                                example: 327
+                                default: 0
+                              newListings:
+                                type: integer
+                                example: 56
+                                default: 0
+                              totalListings:
+                                type: integer
+                                example: 215
+                                default: 0
+                              dataByPropertyType:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    propertyType:
+                                      type: string
+                                      example: Condo
+                                    averagePrice:
+                                      type: integer
+                                      example: 175445
+                                      default: 0
+                                    medianPrice:
+                                      type: integer
+                                      example: 154500
+                                      default: 0
+                                    minPrice:
+                                      type: integer
+                                      example: 154500
+                                      default: 0
+                                    maxPrice:
+                                      type: integer
+                                      example: 196390
+                                      default: 0
+                                    averagePricePerSquareFoot: {}
+                                    medianPricePerSquareFoot: {}
+                                    minPricePerSquareFoot: {}
+                                    maxPricePerSquareFoot: {}
+                                    averageSquareFootage: {}
+                                    medianSquareFootage: {}
+                                    minSquareFootage: {}
+                                    maxSquareFootage: {}
+                                    averageDaysOnMarket:
+                                      type: integer
+                                      example: 124
+                                      default: 0
+                                    medianDaysOnMarket:
+                                      type: integer
+                                      example: 18
+                                      default: 0
+                                    minDaysOnMarket:
+                                      type: integer
+                                      example: 18
+                                      default: 0
+                                    maxDaysOnMarket:
+                                      type: integer
+                                      example: 230
+                                      default: 0
+                                    newListings:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                                    totalListings:
+                                      type: integer
+                                      example: 2
+                                      default: 0
+                              dataByBedrooms:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    bedrooms:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                                    averagePrice:
+                                      type: integer
+                                      example: 197967
+                                      default: 0
+                                    medianPrice:
+                                      type: integer
+                                      example: 209000
+                                      default: 0
+                                    minPrice:
+                                      type: integer
+                                      example: 147900
+                                      default: 0
+                                    maxPrice:
+                                      type: integer
+                                      example: 237000
+                                      default: 0
+                                    averagePricePerSquareFoot:
+                                      type: number
+                                      example: 342.62
+                                      default: 0
+                                    medianPricePerSquareFoot:
+                                      type: number
+                                      example: 342.62
+                                      default: 0
+                                    minPricePerSquareFoot:
+                                      type: number
+                                      example: 342.62
+                                      default: 0
+                                    maxPricePerSquareFoot:
+                                      type: number
+                                      example: 342.62
+                                      default: 0
+                                    averageSquareFootage:
+                                      type: integer
+                                      example: 610
+                                      default: 0
+                                    medianSquareFootage:
+                                      type: integer
+                                      example: 610
+                                      default: 0
+                                    minSquareFootage:
+                                      type: integer
+                                      example: 610
+                                      default: 0
+                                    maxSquareFootage:
+                                      type: integer
+                                      example: 610
+                                      default: 0
+                                    averageDaysOnMarket:
+                                      type: integer
+                                      example: 132
+                                      default: 0
+                                    medianDaysOnMarket:
+                                      type: integer
+                                      example: 69
+                                      default: 0
+                                    minDaysOnMarket:
+                                      type: integer
+                                      example: 56
+                                      default: 0
+                                    maxDaysOnMarket:
+                                      type: integer
+                                      example: 271
+                                      default: 0
+                                    newListings:
+                                      type: integer
+                                      example: 0
+                                      default: 0
+                                    totalListings:
+                                      type: integer
+                                      example: 3
+                                      default: 0
+                          2024-09:
+                            type: object
+                            properties:
+                              date:
+                                type: string
+                                example: '2024-09-01T00:00:00.000Z'
+                              averagePrice:
+                                type: integer
+                                example: 291174
+                                default: 0
+                              medianPrice:
+                                type: integer
+                                example: 277990
+                                default: 0
+                              minPrice:
+                                type: integer
+                                example: 20000
+                                default: 0
+                              maxPrice:
+                                type: integer
+                                example: 1500000
+                                default: 0
+                              averagePricePerSquareFoot:
+                                type: number
+                                example: 187.39
+                                default: 0
+                              medianPricePerSquareFoot:
+                                type: integer
+                                example: 178
+                                default: 0
+                              minPricePerSquareFoot:
+                                type: number
+                                example: 64.9
+                                default: 0
+                              maxPricePerSquareFoot:
+                                type: integer
+                                example: 500
+                                default: 0
+                              averageSquareFootage:
+                                type: integer
+                                example: 1695
+                                default: 0
+                              medianSquareFootage:
+                                type: integer
+                                example: 1600
+                                default: 0
+                              minSquareFootage:
+                                type: integer
+                                example: 610
+                                default: 0
+                              maxSquareFootage:
+                                type: integer
+                                example: 4588
+                                default: 0
+                              averageDaysOnMarket:
+                                type: number
+                                example: 63.65
+                                default: 0
+                              medianDaysOnMarket:
+                                type: integer
+                                example: 41
+                                default: 0
+                              minDaysOnMarket:
+                                type: integer
+                                example: 2
+                                default: 0
+                              maxDaysOnMarket:
+                                type: integer
+                                example: 357
+                                default: 0
+                              newListings:
+                                type: integer
+                                example: 66
+                                default: 0
+                              totalListings:
+                                type: integer
+                                example: 269
+                                default: 0
+                              dataByPropertyType:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    propertyType:
+                                      type: string
+                                      example: Condo
+                                    averagePrice:
+                                      type: integer
+                                      example: 149900
+                                      default: 0
+                                    medianPrice:
+                                      type: integer
+                                      example: 149900
+                                      default: 0
+                                    minPrice:
+                                      type: integer
+                                      example: 149900
+                                      default: 0
+                                    maxPrice:
+                                      type: integer
+                                      example: 149900
+                                      default: 0
+                                    averagePricePerSquareFoot:
+                                      type: number
+                                      example: 133.72
+                                      default: 0
+                                    medianPricePerSquareFoot:
+                                      type: number
+                                      example: 133.72
+                                      default: 0
+                                    minPricePerSquareFoot:
+                                      type: number
+                                      example: 133.72
+                                      default: 0
+                                    maxPricePerSquareFoot:
+                                      type: number
+                                      example: 133.72
+                                      default: 0
+                                    averageSquareFootage:
+                                      type: integer
+                                      example: 1121
+                                      default: 0
+                                    medianSquareFootage:
+                                      type: integer
+                                      example: 1121
+                                      default: 0
+                                    minSquareFootage:
+                                      type: integer
+                                      example: 1121
+                                      default: 0
+                                    maxSquareFootage:
+                                      type: integer
+                                      example: 1121
+                                      default: 0
+                                    averageDaysOnMarket:
+                                      type: integer
+                                      example: 47
+                                      default: 0
+                                    medianDaysOnMarket:
+                                      type: integer
+                                      example: 47
+                                      default: 0
+                                    minDaysOnMarket:
+                                      type: integer
+                                      example: 47
+                                      default: 0
+                                    maxDaysOnMarket:
+                                      type: integer
+                                      example: 47
+                                      default: 0
+                                    newListings:
+                                      type: integer
+                                      example: 0
+                                      default: 0
+                                    totalListings:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                              dataByBedrooms:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    bedrooms:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                                    averagePrice:
+                                      type: integer
+                                      example: 188475
+                                      default: 0
+                                    medianPrice:
+                                      type: integer
+                                      example: 160000
+                                      default: 0
+                                    minPrice:
+                                      type: integer
+                                      example: 147900
+                                      default: 0
+                                    maxPrice:
+                                      type: integer
+                                      example: 237000
+                                      default: 0
+                                    averagePricePerSquareFoot:
+                                      type: number
+                                      example: 243.02
+                                      default: 0
+                                    medianPricePerSquareFoot:
+                                      type: number
+                                      example: 199.75
+                                      default: 0
+                                    minPricePerSquareFoot:
+                                      type: number
+                                      example: 184.88
+                                      default: 0
+                                    maxPricePerSquareFoot:
+                                      type: number
+                                      example: 342.62
+                                      default: 0
+                                    averageSquareFootage:
+                                      type: integer
+                                      example: 795
+                                      default: 0
+                                    medianSquareFootage:
+                                      type: integer
+                                      example: 800
+                                      default: 0
+                                    minSquareFootage:
+                                      type: integer
+                                      example: 610
+                                      default: 0
+                                    maxSquareFootage:
+                                      type: integer
+                                      example: 968
+                                      default: 0
+                                    averageDaysOnMarket:
+                                      type: integer
+                                      example: 115
+                                      default: 0
+                                    medianDaysOnMarket:
+                                      type: integer
+                                      example: 56
+                                      default: 0
+                                    minDaysOnMarket:
+                                      type: integer
+                                      example: 6
+                                      default: 0
+                                    maxDaysOnMarket:
+                                      type: integer
+                                      example: 300
+                                      default: 0
+                                    newListings:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                                    totalListings:
+                                      type: integer
+                                      example: 4
+                                      default: 0
+                          2024-10:
+                            type: object
+                            properties:
+                              date:
+                                type: string
+                                example: '2024-10-01T00:00:00.000Z'
+                              averagePrice:
+                                type: integer
+                                example: 291933
+                                default: 0
+                              medianPrice:
+                                type: integer
+                                example: 276990
+                                default: 0
+                              minPrice:
+                                type: integer
+                                example: 20000
+                                default: 0
+                              maxPrice:
+                                type: integer
+                                example: 1500000
+                                default: 0
+                              averagePricePerSquareFoot:
+                                type: number
+                                example: 186.53
+                                default: 0
+                              medianPricePerSquareFoot:
+                                type: integer
+                                example: 178
+                                default: 0
+                              minPricePerSquareFoot:
+                                type: number
+                                example: 64.9
+                                default: 0
+                              maxPricePerSquareFoot:
+                                type: integer
+                                example: 500
+                                default: 0
+                              averageSquareFootage:
+                                type: integer
+                                example: 1698
+                                default: 0
+                              medianSquareFootage:
+                                type: integer
+                                example: 1600
+                                default: 0
+                              minSquareFootage:
+                                type: integer
+                                example: 610
+                                default: 0
+                              maxSquareFootage:
+                                type: integer
+                                example: 4588
+                                default: 0
+                              averageDaysOnMarket:
+                                type: number
+                                example: 67.21
+                                default: 0
+                              medianDaysOnMarket:
+                                type: integer
+                                example: 45
+                                default: 0
+                              minDaysOnMarket:
+                                type: integer
+                                example: 2
+                                default: 0
+                              maxDaysOnMarket:
+                                type: integer
+                                example: 348
+                                default: 0
+                              newListings:
+                                type: integer
+                                example: 21
+                                default: 0
+                              totalListings:
+                                type: integer
+                                example: 265
+                                default: 0
+                              dataByPropertyType:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    propertyType:
+                                      type: string
+                                      example: Condo
+                                    averagePrice:
+                                      type: integer
+                                      example: 144900
+                                      default: 0
+                                    medianPrice:
+                                      type: integer
+                                      example: 144900
+                                      default: 0
+                                    minPrice:
+                                      type: integer
+                                      example: 144900
+                                      default: 0
+                                    maxPrice:
+                                      type: integer
+                                      example: 144900
+                                      default: 0
+                                    averagePricePerSquareFoot:
+                                      type: number
+                                      example: 129.26
+                                      default: 0
+                                    medianPricePerSquareFoot:
+                                      type: number
+                                      example: 129.26
+                                      default: 0
+                                    minPricePerSquareFoot:
+                                      type: number
+                                      example: 129.26
+                                      default: 0
+                                    maxPricePerSquareFoot:
+                                      type: number
+                                      example: 129.26
+                                      default: 0
+                                    averageSquareFootage:
+                                      type: integer
+                                      example: 1121
+                                      default: 0
+                                    medianSquareFootage:
+                                      type: integer
+                                      example: 1121
+                                      default: 0
+                                    minSquareFootage:
+                                      type: integer
+                                      example: 1121
+                                      default: 0
+                                    maxSquareFootage:
+                                      type: integer
+                                      example: 1121
+                                      default: 0
+                                    averageDaysOnMarket:
+                                      type: integer
+                                      example: 61
+                                      default: 0
+                                    medianDaysOnMarket:
+                                      type: integer
+                                      example: 61
+                                      default: 0
+                                    minDaysOnMarket:
+                                      type: integer
+                                      example: 61
+                                      default: 0
+                                    maxDaysOnMarket:
+                                      type: integer
+                                      example: 61
+                                      default: 0
+                                    newListings:
+                                      type: integer
+                                      example: 0
+                                      default: 0
+                                    totalListings:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                              dataByBedrooms:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    bedrooms:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                                    averagePrice:
+                                      type: integer
+                                      example: 186725
+                                      default: 0
+                                    medianPrice:
+                                      type: integer
+                                      example: 153000
+                                      default: 0
+                                    minPrice:
+                                      type: integer
+                                      example: 147900
+                                      default: 0
+                                    maxPrice:
+                                      type: integer
+                                      example: 237000
+                                      default: 0
+                                    averagePricePerSquareFoot:
+                                      type: number
+                                      example: 240.84
+                                      default: 0
+                                    medianPricePerSquareFoot:
+                                      type: number
+                                      example: 191.01
+                                      default: 0
+                                    minPricePerSquareFoot:
+                                      type: number
+                                      example: 184.88
+                                      default: 0
+                                    maxPricePerSquareFoot:
+                                      type: number
+                                      example: 342.62
+                                      default: 0
+                                    averageSquareFootage:
+                                      type: integer
+                                      example: 795
+                                      default: 0
+                                    medianSquareFootage:
+                                      type: integer
+                                      example: 800
+                                      default: 0
+                                    minSquareFootage:
+                                      type: integer
+                                      example: 610
+                                      default: 0
+                                    maxSquareFootage:
+                                      type: integer
+                                      example: 968
+                                      default: 0
+                                    averageDaysOnMarket:
+                                      type: integer
+                                      example: 123
+                                      default: 0
+                                    medianDaysOnMarket:
+                                      type: integer
+                                      example: 56
+                                      default: 0
+                                    minDaysOnMarket:
+                                      type: integer
+                                      example: 20
+                                      default: 0
+                                    maxDaysOnMarket:
+                                      type: integer
+                                      example: 314
+                                      default: 0
+                                    newListings:
+                                      type: integer
+                                      example: 0
+                                      default: 0
+                                    totalListings:
+                                      type: integer
+                                      example: 4
+                                      default: 0
+                  rentalData:
+                    type: object
+                    properties:
+                      lastUpdatedDate:
+                        type: string
+                        example: '2024-10-14T00:00:00.000Z'
+                      averageRent:
+                        type: integer
+                        example: 1521
+                        default: 0
+                      medianRent:
+                        type: integer
+                        example: 1495
+                        default: 0
+                      minRent:
+                        type: integer
+                        example: 750
+                        default: 0
+                      maxRent:
+                        type: integer
+                        example: 2700
+                        default: 0
+                      averageRentPerSquareFoot:
+                        type: number
+                        example: 1.38
+                        default: 0
+                      medianRentPerSquareFoot:
+                        type: number
+                        example: 1.3
+                        default: 0
+                      minRentPerSquareFoot:
+                        type: number
+                        example: 0.86
+                        default: 0
+                      maxRentPerSquareFoot:
+                        type: number
+                        example: 2.59
+                        default: 0
+                      averageSquareFootage:
+                        type: integer
+                        example: 1175
+                        default: 0
+                      medianSquareFootage:
+                        type: integer
+                        example: 1100
+                        default: 0
+                      minSquareFootage:
+                        type: integer
+                        example: 590
+                        default: 0
+                      maxSquareFootage:
+                        type: integer
+                        example: 2100
+                        default: 0
+                      averageDaysOnMarket:
+                        type: integer
+                        example: 25
+                        default: 0
+                      medianDaysOnMarket:
+                        type: integer
+                        example: 8
+                        default: 0
+                      minDaysOnMarket:
+                        type: integer
+                        example: 1
+                        default: 0
+                      maxDaysOnMarket:
+                        type: integer
+                        example: 304
+                        default: 0
+                      newListings:
+                        type: integer
+                        example: 18
+                        default: 0
+                      totalListings:
+                        type: integer
+                        example: 76
+                        default: 0
+                      dataByPropertyType:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            propertyType:
+                              type: string
+                              example: Apartment
+                            averageRent:
+                              type: integer
+                              example: 1148
+                              default: 0
+                            medianRent:
+                              type: integer
+                              example: 1050
+                              default: 0
+                            minRent:
+                              type: integer
+                              example: 750
+                              default: 0
+                            maxRent:
+                              type: integer
+                              example: 1975
+                              default: 0
+                            averageRentPerSquareFoot:
+                              type: number
+                              example: 1.23
+                              default: 0
+                            medianRentPerSquareFoot:
+                              type: number
+                              example: 1.13
+                              default: 0
+                            minRentPerSquareFoot:
+                              type: number
+                              example: 1.03
+                              default: 0
+                            maxRentPerSquareFoot:
+                              type: number
+                              example: 1.59
+                              default: 0
+                            averageSquareFootage:
+                              type: integer
+                              example: 957
+                              default: 0
+                            medianSquareFootage:
+                              type: integer
+                              example: 950
+                              default: 0
+                            minSquareFootage:
+                              type: integer
+                              example: 650
+                              default: 0
+                            maxSquareFootage:
+                              type: integer
+                              example: 1560
+                              default: 0
+                            averageDaysOnMarket:
+                              type: number
+                              example: 17.43
+                              default: 0
+                            medianDaysOnMarket:
+                              type: integer
+                              example: 1
+                              default: 0
+                            minDaysOnMarket:
+                              type: integer
+                              example: 1
+                              default: 0
+                            maxDaysOnMarket:
+                              type: integer
+                              example: 80
+                              default: 0
+                            newListings:
+                              type: integer
+                              example: 5
+                              default: 0
+                            totalListings:
+                              type: integer
+                              example: 15
+                              default: 0
+                      dataByBedrooms:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            bedrooms:
+                              type: integer
+                              example: 1
+                              default: 0
+                            averageRent:
+                              type: integer
+                              example: 842
+                              default: 0
+                            medianRent:
+                              type: integer
+                              example: 850
+                              default: 0
+                            minRent:
+                              type: integer
+                              example: 750
+                              default: 0
+                            maxRent:
+                              type: integer
+                              example: 945
+                              default: 0
+                            averageRentPerSquareFoot:
+                              type: number
+                              example: 1.35
+                              default: 0
+                            medianRentPerSquareFoot:
+                              type: number
+                              example: 1.3
+                              default: 0
+                            minRentPerSquareFoot:
+                              type: number
+                              example: 1.06
+                              default: 0
+                            maxRentPerSquareFoot:
+                              type: number
+                              example: 1.57
+                              default: 0
+                            averageSquareFootage:
+                              type: integer
+                              example: 679
+                              default: 0
+                            medianSquareFootage:
+                              type: integer
+                              example: 650
+                              default: 0
+                            minSquareFootage:
+                              type: integer
+                              example: 590
+                              default: 0
+                            maxSquareFootage:
+                              type: integer
+                              example: 800
+                              default: 0
+                            averageDaysOnMarket:
+                              type: number
+                              example: 27.33
+                              default: 0
+                            medianDaysOnMarket:
+                              type: integer
+                              example: 9
+                              default: 0
+                            minDaysOnMarket:
+                              type: integer
+                              example: 1
+                              default: 0
+                            maxDaysOnMarket:
+                              type: integer
+                              example: 80
+                              default: 0
+                            newListings:
+                              type: integer
+                              example: 1
+                              default: 0
+                            totalListings:
+                              type: integer
+                              example: 7
+                              default: 0
+                      history:
+                        type: object
+                        properties:
+                          2024-08:
+                            type: object
+                            properties:
+                              date:
+                                type: string
+                                example: '2024-08-01T00:00:00.000Z'
+                              averageRent:
+                                type: integer
+                                example: 1496
+                                default: 0
+                              medianRent:
+                                type: integer
+                                example: 1495
+                                default: 0
+                              minRent:
+                                type: integer
+                                example: 750
+                                default: 0
+                              maxRent:
+                                type: integer
+                                example: 2800
+                                default: 0
+                              averageRentPerSquareFoot:
+                                type: number
+                                example: 1.33
+                                default: 0
+                              medianRentPerSquareFoot:
+                                type: number
+                                example: 1.27
+                                default: 0
+                              minRentPerSquareFoot:
+                                type: number
+                                example: 0.86
+                                default: 0
+                              maxRentPerSquareFoot:
+                                type: number
+                                example: 2.52
+                                default: 0
+                              averageSquareFootage:
+                                type: integer
+                                example: 1171
+                                default: 0
+                              medianSquareFootage:
+                                type: integer
+                                example: 1100
+                                default: 0
+                              minSquareFootage:
+                                type: integer
+                                example: 650
+                                default: 0
+                              maxSquareFootage:
+                                type: integer
+                                example: 2100
+                                default: 0
+                              averageDaysOnMarket:
+                                type: number
+                                example: 66.49
+                                default: 0
+                              medianDaysOnMarket:
+                                type: integer
+                                example: 16
+                                default: 0
+                              minDaysOnMarket:
+                                type: integer
+                                example: 1
+                                default: 0
+                              maxDaysOnMarket:
+                                type: integer
+                                example: 365
+                                default: 0
+                              newListings:
+                                type: integer
+                                example: 39
+                                default: 0
+                              totalListings:
+                                type: integer
+                                example: 96
+                                default: 0
+                              dataByPropertyType:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    propertyType:
+                                      type: string
+                                      example: Apartment
+                                    averageRent:
+                                      type: integer
+                                      example: 1118
+                                      default: 0
+                                    medianRent:
+                                      type: integer
+                                      example: 1050
+                                      default: 0
+                                    minRent:
+                                      type: integer
+                                      example: 750
+                                      default: 0
+                                    maxRent:
+                                      type: integer
+                                      example: 1975
+                                      default: 0
+                                    averageRentPerSquareFoot:
+                                      type: number
+                                      example: 1.24
+                                      default: 0
+                                    medianRentPerSquareFoot:
+                                      type: number
+                                      example: 1.07
+                                      default: 0
+                                    minRentPerSquareFoot:
+                                      type: number
+                                      example: 0.98
+                                      default: 0
+                                    maxRentPerSquareFoot:
+                                      type: number
+                                      example: 2.16
+                                      default: 0
+                                    averageSquareFootage:
+                                      type: integer
+                                      example: 922
+                                      default: 0
+                                    medianSquareFootage:
+                                      type: integer
+                                      example: 950
+                                      default: 0
+                                    minSquareFootage:
+                                      type: integer
+                                      example: 650
+                                      default: 0
+                                    maxSquareFootage:
+                                      type: integer
+                                      example: 1560
+                                      default: 0
+                                    averageDaysOnMarket:
+                                      type: number
+                                      example: 63.82
+                                      default: 0
+                                    medianDaysOnMarket:
+                                      type: integer
+                                      example: 17
+                                      default: 0
+                                    minDaysOnMarket:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                                    maxDaysOnMarket:
+                                      type: integer
+                                      example: 365
+                                      default: 0
+                                    newListings:
+                                      type: integer
+                                      example: 8
+                                      default: 0
+                                    totalListings:
+                                      type: integer
+                                      example: 23
+                                      default: 0
+                              dataByBedrooms:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    bedrooms:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                                    averageRent:
+                                      type: integer
+                                      example: 953
+                                      default: 0
+                                    medianRent:
+                                      type: integer
+                                      example: 825
+                                      default: 0
+                                    minRent:
+                                      type: integer
+                                      example: 750
+                                      default: 0
+                                    maxRent:
+                                      type: integer
+                                      example: 1610
+                                      default: 0
+                                    averageRentPerSquareFoot:
+                                      type: number
+                                      example: 1.41
+                                      default: 0
+                                    medianRentPerSquareFoot:
+                                      type: number
+                                      example: 1.3
+                                      default: 0
+                                    minRentPerSquareFoot:
+                                      type: number
+                                      example: 1.06
+                                      default: 0
+                                    maxRentPerSquareFoot:
+                                      type: number
+                                      example: 2.16
+                                      default: 0
+                                    averageSquareFootage:
+                                      type: integer
+                                      example: 732
+                                      default: 0
+                                    medianSquareFootage:
+                                      type: integer
+                                      example: 675
+                                      default: 0
+                                    minSquareFootage:
+                                      type: integer
+                                      example: 650
+                                      default: 0
+                                    maxSquareFootage:
+                                      type: integer
+                                      example: 950
+                                      default: 0
+                                    averageDaysOnMarket:
+                                      type: number
+                                      example: 33.44
+                                      default: 0
+                                    medianDaysOnMarket:
+                                      type: integer
+                                      example: 17
+                                      default: 0
+                                    minDaysOnMarket:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                                    maxDaysOnMarket:
+                                      type: integer
+                                      example: 124
+                                      default: 0
+                                    newListings:
+                                      type: integer
+                                      example: 3
+                                      default: 0
+                                    totalListings:
+                                      type: integer
+                                      example: 10
+                                      default: 0
+                          2024-09:
+                            type: object
+                            properties:
+                              date:
+                                type: string
+                                example: '2024-09-01T00:00:00.000Z'
+                              averageRent:
+                                type: integer
+                                example: 1536
+                                default: 0
+                              medianRent:
+                                type: integer
+                                example: 1550
+                                default: 0
+                              minRent:
+                                type: integer
+                                example: 750
+                                default: 0
+                              maxRent:
+                                type: integer
+                                example: 2800
+                                default: 0
+                              averageRentPerSquareFoot:
+                                type: number
+                                example: 1.38
+                                default: 0
+                              medianRentPerSquareFoot:
+                                type: number
+                                example: 1.33
+                                default: 0
+                              minRentPerSquareFoot:
+                                type: number
+                                example: 0.86
+                                default: 0
+                              maxRentPerSquareFoot:
+                                type: number
+                                example: 2.52
+                                default: 0
+                              averageSquareFootage:
+                                type: integer
+                                example: 1180
+                                default: 0
+                              medianSquareFootage:
+                                type: integer
+                                example: 1120
+                                default: 0
+                              minSquareFootage:
+                                type: integer
+                                example: 590
+                                default: 0
+                              maxSquareFootage:
+                                type: integer
+                                example: 2100
+                                default: 0
+                              averageDaysOnMarket:
+                                type: number
+                                example: 32.03
+                                default: 0
+                              medianDaysOnMarket:
+                                type: integer
+                                example: 8
+                                default: 0
+                              minDaysOnMarket:
+                                type: integer
+                                example: 1
+                                default: 0
+                              maxDaysOnMarket:
+                                type: integer
+                                example: 365
+                                default: 0
+                              newListings:
+                                type: integer
+                                example: 33
+                                default: 0
+                              totalListings:
+                                type: integer
+                                example: 80
+                                default: 0
+                              dataByPropertyType:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    propertyType:
+                                      type: string
+                                      example: Apartment
+                                    averageRent:
+                                      type: integer
+                                      example: 1148
+                                      default: 0
+                                    medianRent:
+                                      type: integer
+                                      example: 975
+                                      default: 0
+                                    minRent:
+                                      type: integer
+                                      example: 750
+                                      default: 0
+                                    maxRent:
+                                      type: integer
+                                      example: 1975
+                                      default: 0
+                                    averageRentPerSquareFoot:
+                                      type: number
+                                      example: 1.25
+                                      default: 0
+                                    medianRentPerSquareFoot:
+                                      type: number
+                                      example: 1.07
+                                      default: 0
+                                    minRentPerSquareFoot:
+                                      type: number
+                                      example: 1.03
+                                      default: 0
+                                    maxRentPerSquareFoot:
+                                      type: number
+                                      example: 1.59
+                                      default: 0
+                                    averageSquareFootage:
+                                      type: integer
+                                      example: 949
+                                      default: 0
+                                    medianSquareFootage:
+                                      type: integer
+                                      example: 850
+                                      default: 0
+                                    minSquareFootage:
+                                      type: integer
+                                      example: 650
+                                      default: 0
+                                    maxSquareFootage:
+                                      type: integer
+                                      example: 1560
+                                      default: 0
+                                    averageDaysOnMarket:
+                                      type: number
+                                      example: 18.69
+                                      default: 0
+                                    medianDaysOnMarket:
+                                      type: integer
+                                      example: 17
+                                      default: 0
+                                    minDaysOnMarket:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                                    maxDaysOnMarket:
+                                      type: integer
+                                      example: 80
+                                      default: 0
+                                    newListings:
+                                      type: integer
+                                      example: 7
+                                      default: 0
+                                    totalListings:
+                                      type: integer
+                                      example: 14
+                                      default: 0
+                              dataByBedrooms:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    bedrooms:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                                    averageRent:
+                                      type: integer
+                                      example: 899
+                                      default: 0
+                                    medianRent:
+                                      type: integer
+                                      example: 850
+                                      default: 0
+                                    minRent:
+                                      type: integer
+                                      example: 750
+                                      default: 0
+                                    maxRent:
+                                      type: integer
+                                      example: 1300
+                                      default: 0
+                                    averageRentPerSquareFoot:
+                                      type: number
+                                      example: 1.35
+                                      default: 0
+                                    medianRentPerSquareFoot:
+                                      type: number
+                                      example: 1.37
+                                      default: 0
+                                    minRentPerSquareFoot:
+                                      type: number
+                                      example: 1.06
+                                      default: 0
+                                    maxRentPerSquareFoot:
+                                      type: number
+                                      example: 1.57
+                                      default: 0
+                                    averageSquareFootage:
+                                      type: integer
+                                      example: 733
+                                      default: 0
+                                    medianSquareFootage:
+                                      type: integer
+                                      example: 675
+                                      default: 0
+                                    minSquareFootage:
+                                      type: integer
+                                      example: 590
+                                      default: 0
+                                    maxSquareFootage:
+                                      type: integer
+                                      example: 950
+                                      default: 0
+                                    averageDaysOnMarket:
+                                      type: number
+                                      example: 27.86
+                                      default: 0
+                                    medianDaysOnMarket:
+                                      type: integer
+                                      example: 21
+                                      default: 0
+                                    minDaysOnMarket:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                                    maxDaysOnMarket:
+                                      type: integer
+                                      example: 80
+                                      default: 0
+                                    newListings:
+                                      type: integer
+                                      example: 3
+                                      default: 0
+                                    totalListings:
+                                      type: integer
+                                      example: 8
+                                      default: 0
+                          2024-10:
+                            type: object
+                            properties:
+                              date:
+                                type: string
+                                example: '2024-10-01T00:00:00.000Z'
+                              averageRent:
+                                type: integer
+                                example: 1521
+                                default: 0
+                              medianRent:
+                                type: integer
+                                example: 1495
+                                default: 0
+                              minRent:
+                                type: integer
+                                example: 750
+                                default: 0
+                              maxRent:
+                                type: integer
+                                example: 2700
+                                default: 0
+                              averageRentPerSquareFoot:
+                                type: number
+                                example: 1.38
+                                default: 0
+                              medianRentPerSquareFoot:
+                                type: number
+                                example: 1.3
+                                default: 0
+                              minRentPerSquareFoot:
+                                type: number
+                                example: 0.86
+                                default: 0
+                              maxRentPerSquareFoot:
+                                type: number
+                                example: 2.59
+                                default: 0
+                              averageSquareFootage:
+                                type: integer
+                                example: 1175
+                                default: 0
+                              medianSquareFootage:
+                                type: integer
+                                example: 1100
+                                default: 0
+                              minSquareFootage:
+                                type: integer
+                                example: 590
+                                default: 0
+                              maxSquareFootage:
+                                type: integer
+                                example: 2100
+                                default: 0
+                              averageDaysOnMarket:
+                                type: integer
+                                example: 25
+                                default: 0
+                              medianDaysOnMarket:
+                                type: integer
+                                example: 8
+                                default: 0
+                              minDaysOnMarket:
+                                type: integer
+                                example: 1
+                                default: 0
+                              maxDaysOnMarket:
+                                type: integer
+                                example: 304
+                                default: 0
+                              newListings:
+                                type: integer
+                                example: 18
+                                default: 0
+                              totalListings:
+                                type: integer
+                                example: 76
+                                default: 0
+                              dataByPropertyType:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    propertyType:
+                                      type: string
+                                      example: Apartment
+                                    averageRent:
+                                      type: integer
+                                      example: 1148
+                                      default: 0
+                                    medianRent:
+                                      type: integer
+                                      example: 1050
+                                      default: 0
+                                    minRent:
+                                      type: integer
+                                      example: 750
+                                      default: 0
+                                    maxRent:
+                                      type: integer
+                                      example: 1975
+                                      default: 0
+                                    averageRentPerSquareFoot:
+                                      type: number
+                                      example: 1.23
+                                      default: 0
+                                    medianRentPerSquareFoot:
+                                      type: number
+                                      example: 1.13
+                                      default: 0
+                                    minRentPerSquareFoot:
+                                      type: number
+                                      example: 1.03
+                                      default: 0
+                                    maxRentPerSquareFoot:
+                                      type: number
+                                      example: 1.59
+                                      default: 0
+                                    averageSquareFootage:
+                                      type: integer
+                                      example: 957
+                                      default: 0
+                                    medianSquareFootage:
+                                      type: integer
+                                      example: 950
+                                      default: 0
+                                    minSquareFootage:
+                                      type: integer
+                                      example: 650
+                                      default: 0
+                                    maxSquareFootage:
+                                      type: integer
+                                      example: 1560
+                                      default: 0
+                                    averageDaysOnMarket:
+                                      type: number
+                                      example: 17.43
+                                      default: 0
+                                    medianDaysOnMarket:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                                    minDaysOnMarket:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                                    maxDaysOnMarket:
+                                      type: integer
+                                      example: 80
+                                      default: 0
+                                    newListings:
+                                      type: integer
+                                      example: 5
+                                      default: 0
+                                    totalListings:
+                                      type: integer
+                                      example: 15
+                                      default: 0
+                              dataByBedrooms:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    bedrooms:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                                    averageRent:
+                                      type: integer
+                                      example: 842
+                                      default: 0
+                                    medianRent:
+                                      type: integer
+                                      example: 850
+                                      default: 0
+                                    minRent:
+                                      type: integer
+                                      example: 750
+                                      default: 0
+                                    maxRent:
+                                      type: integer
+                                      example: 945
+                                      default: 0
+                                    averageRentPerSquareFoot:
+                                      type: number
+                                      example: 1.35
+                                      default: 0
+                                    medianRentPerSquareFoot:
+                                      type: number
+                                      example: 1.3
+                                      default: 0
+                                    minRentPerSquareFoot:
+                                      type: number
+                                      example: 1.06
+                                      default: 0
+                                    maxRentPerSquareFoot:
+                                      type: number
+                                      example: 1.57
+                                      default: 0
+                                    averageSquareFootage:
+                                      type: integer
+                                      example: 679
+                                      default: 0
+                                    medianSquareFootage:
+                                      type: integer
+                                      example: 650
+                                      default: 0
+                                    minSquareFootage:
+                                      type: integer
+                                      example: 590
+                                      default: 0
+                                    maxSquareFootage:
+                                      type: integer
+                                      example: 800
+                                      default: 0
+                                    averageDaysOnMarket:
+                                      type: number
+                                      example: 27.33
+                                      default: 0
+                                    medianDaysOnMarket:
+                                      type: integer
+                                      example: 9
+                                      default: 0
+                                    minDaysOnMarket:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                                    maxDaysOnMarket:
+                                      type: integer
+                                      example: 80
+                                      default: 0
+                                    newListings:
+                                      type: integer
+                                      example: 1
+                                      default: 0
+                                    totalListings:
+                                      type: integer
+                                      example: 7
+                                      default: 0
+        '401':
+          description: Auth Error
+          content:
+            application/json:
+              examples:
+                Auth Error:
+                  value:
+                    status: 401
+                    error: auth/api-key-invalid
+                    message: No API key provided in request. An API key must be provided in the 'X-Api-Key' header
+                  summary: Auth Error
+              schema:
+                properties:
+                  status:
+                    type: integer
+                  error:
+                    type: string
+                  message:
+                    type: string
+                type: object
+      deprecated: false
+      tags:
+      - Markets
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

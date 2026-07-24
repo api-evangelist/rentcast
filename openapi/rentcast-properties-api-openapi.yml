@@ -1,0 +1,1684 @@
+openapi: 3.1.0
+info:
+  title: RentCast Avm Properties API
+  version: '1.0'
+servers:
+- url: https://api.rentcast.io/v1
+security:
+- sec0: []
+tags:
+- name: Properties
+paths:
+  /properties:
+    get:
+      summary: Property Records
+      description: Search for property records in a geographical area, or by a specific address.
+      operationId: property-records
+      parameters:
+      - name: address
+        in: query
+        description: The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for properties in a circular area
+        schema:
+          type: string
+          default: 5500 Grand Lake Dr, San Antonio, TX, 78244
+      - name: city
+        in: query
+        description: The name of the city, used to search for properties in a specific city. This parameter is case-sensitive
+        schema:
+          type: string
+      - name: state
+        in: query
+        description: The 2-character state abbreviation, used to search for properties in a specific state. This parameter is case-sensitive
+        schema:
+          type: string
+      - name: zipCode
+        in: query
+        description: The 5-digit zip code, used to search for properties in a specific zip code
+        schema:
+          type: string
+      - name: latitude
+        in: query
+        description: The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a circular area
+        schema:
+          type: number
+          format: float
+      - name: longitude
+        in: query
+        description: The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for properties in a circular area
+        schema:
+          type: number
+          format: float
+      - name: radius
+        in: query
+        description: The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for properties in a circular area
+        schema:
+          type: number
+          format: float
+      - name: propertyType
+        in: query
+        description: The type of the property, used to search for properties matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        schema:
+          type: string
+          enum:
+          - Single Family
+          - Condo
+          - Townhouse
+          - Manufactured
+          - Multi-Family
+          - Apartment
+          - Land
+      - name: bedrooms
+        in: query
+        description: The number of bedrooms, used to search for properties matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        schema:
+          type: string
+      - name: bathrooms
+        in: query
+        description: The number of bathrooms, used to search for properties matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        schema:
+          type: string
+      - name: squareFootage
+        in: query
+        description: The total living area size in square feet, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        schema:
+          type: string
+      - name: lotSize
+        in: query
+        description: The total lot size in square feet, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        schema:
+          type: string
+      - name: yearBuilt
+        in: query
+        description: The year of construction, used to search for properties matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)
+        schema:
+          type: string
+      - in: query
+        name: saleDateRange
+        schema:
+          type: string
+        description: The number of days since a property was last sold, with a minimum of 1. Used to search for properties that were sold within the specified date range. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          format: int32
+        description: The maximum number of property records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          format: int32
+        description: The index of the first property record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination
+      - in: query
+        name: includeTotalCount
+        schema:
+          type: boolean
+        description: When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              examples:
+                Success:
+                  summary: Success
+                  value:
+                  - id: 5500-Grand-Lake-Dr,-San-Antonio,-TX-78244
+                    formattedAddress: 5500 Grand Lake Dr, San Antonio, TX 78244
+                    addressLine1: 5500 Grand Lake Dr
+                    addressLine2: null
+                    city: San Antonio
+                    state: TX
+                    stateFips: '48'
+                    zipCode: '78244'
+                    county: Bexar
+                    countyFips: 029
+                    latitude: 29.475962
+                    longitude: -98.351442
+                    propertyType: Single Family
+                    bedrooms: 3
+                    bathrooms: 2
+                    squareFootage: 1878
+                    lotSize: 8850
+                    yearBuilt: 1973
+                    assessorID: 05076-103-0500
+                    legalDescription: CB 5076A BLK 3 LOT 50
+                    subdivision: WOODLAKE
+                    zoning: RH
+                    lastSaleDate: '2024-11-18T00:00:00.000Z'
+                    lastSalePrice: 270000
+                    hoa:
+                      fee: 175
+                    features:
+                      architectureType: Contemporary
+                      cooling: true
+                      coolingType: Central
+                      exteriorType: Wood
+                      fireplace: true
+                      fireplaceType: Masonry
+                      floorCount: 1
+                      foundationType: Slab / Mat / Raft
+                      garage: true
+                      garageSpaces: 2
+                      garageType: Garage
+                      heating: true
+                      heatingType: Forced Air
+                      pool: true
+                      poolType: Concrete
+                      roofType: Asphalt
+                      roomCount: 5
+                      unitCount: 1
+                      viewType: City
+                    taxAssessments:
+                      '2020':
+                        year: 2020
+                        value: 142610
+                        land: 23450
+                        improvements: 119160
+                      '2021':
+                        year: 2021
+                        value: 163440
+                        land: 45050
+                        improvements: 118390
+                      '2022':
+                        year: 2022
+                        value: 197600
+                        land: 49560
+                        improvements: 148040
+                      '2023':
+                        year: 2023
+                        value: 225790
+                        land: 59380
+                        improvements: 166410
+                      '2024':
+                        year: 2024
+                        value: 216513
+                        land: 59380
+                        improvements: 157133
+                    propertyTaxes:
+                      '2020':
+                        year: 2020
+                        total: 3023
+                      '2021':
+                        year: 2021
+                        total: 3455
+                      '2022':
+                        year: 2022
+                        total: 4077
+                      '2023':
+                        year: 2023
+                        total: 4201
+                      '2024':
+                        year: 2024
+                        total: 4065
+                    history:
+                      '2017-10-19':
+                        event: Sale
+                        date: '2017-10-19T00:00:00.000Z'
+                        price: 185000
+                      '2024-11-18':
+                        event: Sale
+                        date: '2024-11-18T00:00:00.000Z'
+                        price: 270000
+                    owner:
+                      names:
+                      - Rolando Villarreal
+                      type: Individual
+                      mailingAddress:
+                        id: 5500-Grand-Lake-Dr,-San-Antonio,-TX-78244
+                        formattedAddress: 5500 Grand Lake Dr, San Antonio, TX 78244
+                        addressLine1: 5500 Grand Lake Dr
+                        addressLine2: null
+                        city: San Antonio
+                        state: TX
+                        stateFips: '48'
+                        zipCode: '78244'
+                    ownerOccupied: true
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: 5500-Grand-Lake-Dr,-San-Antonio,-TX-78244
+                    formattedAddress:
+                      type: string
+                      example: 5500 Grand Lake Dr, San Antonio, TX 78244
+                    addressLine1:
+                      type: string
+                      example: 5500 Grand Lake Dr
+                    addressLine2: {}
+                    city:
+                      type: string
+                      example: San Antonio
+                    state:
+                      type: string
+                      example: TX
+                    zipCode:
+                      type: string
+                      example: '78244'
+                    county:
+                      type: string
+                      example: Bexar
+                    latitude:
+                      type: number
+                      example: 29.476011
+                      default: 0
+                    longitude:
+                      type: number
+                      example: -98.351454
+                      default: 0
+                    propertyType:
+                      type: string
+                      example: Single Family
+                    bedrooms:
+                      type: integer
+                      example: 3
+                      default: 0
+                    bathrooms:
+                      type: integer
+                      example: 2
+                      default: 0
+                    squareFootage:
+                      type: integer
+                      example: 1878
+                      default: 0
+                    lotSize:
+                      type: integer
+                      example: 8843
+                      default: 0
+                    yearBuilt:
+                      type: integer
+                      example: 1973
+                      default: 0
+                    assessorID:
+                      type: string
+                      example: 05076-103-0500
+                    legalDescription:
+                      type: string
+                      example: CB 5076A BLK 3 LOT 50
+                    subdivision:
+                      type: string
+                      example: CONV A/S CODE
+                    zoning:
+                      type: string
+                      example: RH
+                    lastSaleDate:
+                      type: string
+                      example: '2017-10-19T00:00:00.000Z'
+                    lastSalePrice:
+                      type: integer
+                      example: 185000
+                      default: 0
+                    hoa:
+                      type: object
+                      properties:
+                        fee:
+                          type: integer
+                          example: 175
+                          default: 0
+                    features:
+                      type: object
+                      properties:
+                        architectureType:
+                          type: string
+                          example: Contemporary
+                        cooling:
+                          type: boolean
+                          example: true
+                          default: true
+                        coolingType:
+                          type: string
+                          example: Central
+                        exteriorType:
+                          type: string
+                          example: Wood
+                        fireplace:
+                          type: boolean
+                          example: true
+                          default: true
+                        fireplaceType:
+                          type: string
+                          example: Masonry
+                        floorCount:
+                          type: integer
+                          example: 1
+                          default: 0
+                        foundationType:
+                          type: string
+                          example: Slab / Mat / Raft
+                        garage:
+                          type: boolean
+                          example: true
+                          default: true
+                        garageSpaces:
+                          type: integer
+                          example: 2
+                          default: 0
+                        garageType:
+                          type: string
+                          example: Garage
+                        heating:
+                          type: boolean
+                          example: true
+                          default: true
+                        heatingType:
+                          type: string
+                          example: Forced Air
+                        pool:
+                          type: boolean
+                          example: true
+                          default: true
+                        poolType:
+                          type: string
+                          example: Concrete
+                        roofType:
+                          type: string
+                          example: Asphalt
+                        roomCount:
+                          type: integer
+                          example: 5
+                          default: 0
+                        unitCount:
+                          type: integer
+                          example: 1
+                          default: 0
+                        viewType:
+                          type: string
+                          example: City
+                    taxAssessments:
+                      type: object
+                      properties:
+                        '2019':
+                          type: object
+                          properties:
+                            year:
+                              type: integer
+                              example: 2019
+                              default: 0
+                            value:
+                              type: integer
+                              example: 135430
+                              default: 0
+                            land:
+                              type: integer
+                              example: 23450
+                              default: 0
+                            improvements:
+                              type: integer
+                              example: 111980
+                              default: 0
+                        '2020':
+                          type: object
+                          properties:
+                            year:
+                              type: integer
+                              example: 2020
+                              default: 0
+                            value:
+                              type: integer
+                              example: 142610
+                              default: 0
+                            land:
+                              type: integer
+                              example: 23450
+                              default: 0
+                            improvements:
+                              type: integer
+                              example: 119160
+                              default: 0
+                        '2021':
+                          type: object
+                          properties:
+                            year:
+                              type: integer
+                              example: 2021
+                              default: 0
+                            value:
+                              type: integer
+                              example: 163440
+                              default: 0
+                            land:
+                              type: integer
+                              example: 45050
+                              default: 0
+                            improvements:
+                              type: integer
+                              example: 118390
+                              default: 0
+                        '2022':
+                          type: object
+                          properties:
+                            year:
+                              type: integer
+                              example: 2022
+                              default: 0
+                            value:
+                              type: integer
+                              example: 197600
+                              default: 0
+                            land:
+                              type: integer
+                              example: 49560
+                              default: 0
+                            improvements:
+                              type: integer
+                              example: 148040
+                              default: 0
+                        '2023':
+                          type: object
+                          properties:
+                            year:
+                              type: integer
+                              example: 2023
+                              default: 0
+                            value:
+                              type: integer
+                              example: 225790
+                              default: 0
+                            land:
+                              type: integer
+                              example: 59380
+                              default: 0
+                            improvements:
+                              type: integer
+                              example: 166410
+                              default: 0
+                    propertyTaxes:
+                      type: object
+                      properties:
+                        '2019':
+                          type: object
+                          properties:
+                            year:
+                              type: integer
+                              example: 2019
+                              default: 0
+                            total:
+                              type: integer
+                              example: 2984
+                              default: 0
+                        '2020':
+                          type: object
+                          properties:
+                            year:
+                              type: integer
+                              example: 2020
+                              default: 0
+                            total:
+                              type: integer
+                              example: 3023
+                              default: 0
+                        '2021':
+                          type: object
+                          properties:
+                            year:
+                              type: integer
+                              example: 2021
+                              default: 0
+                            total:
+                              type: integer
+                              example: 3455
+                              default: 0
+                        '2022':
+                          type: object
+                          properties:
+                            year:
+                              type: integer
+                              example: 2022
+                              default: 0
+                            total:
+                              type: integer
+                              example: 4091
+                              default: 0
+                        '2023':
+                          type: object
+                          properties:
+                            year:
+                              type: integer
+                              example: 2023
+                              default: 0
+                            total:
+                              type: integer
+                              example: 4201
+                              default: 0
+                    history:
+                      type: object
+                      properties:
+                        '2004-06-16':
+                          type: object
+                          properties:
+                            event:
+                              type: string
+                              example: Sale
+                            date:
+                              type: string
+                              example: '2004-06-16T00:00:00.000Z'
+                            price:
+                              type: integer
+                              example: 95000
+                              default: 0
+                        '2017-10-19':
+                          type: object
+                          properties:
+                            event:
+                              type: string
+                              example: Sale
+                            date:
+                              type: string
+                              example: '2017-10-19T00:00:00.000Z'
+                            price:
+                              type: integer
+                              example: 185000
+                              default: 0
+                    owner:
+                      type: object
+                      properties:
+                        names:
+                          type: array
+                          items:
+                            type: string
+                            example: Michael Smith
+                        type:
+                          type: string
+                          example: Individual
+                        mailingAddress:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: 149-Weaver-Blvd,---264,-Weaverville,-NC-28787
+                            formattedAddress:
+                              type: string
+                              example: '149 Weaver Blvd, # 264, Weaverville, NC 28787'
+                            addressLine1:
+                              type: string
+                              example: 149 Weaver Blvd
+                            addressLine2:
+                              type: string
+                              example: '# 264'
+                            city:
+                              type: string
+                              example: Weaverville
+                            state:
+                              type: string
+                              example: NC
+                            zipCode:
+                              type: string
+                              example: '28787'
+                    ownerOccupied:
+                      type: boolean
+                      example: false
+                      default: true
+        '401':
+          description: Auth Error
+          content:
+            application/json:
+              examples:
+                Auth Error:
+                  value:
+                    status: 401
+                    error: auth/api-key-invalid
+                    message: No API key provided in request. An API key must be provided in the 'X-Api-Key' header
+                  summary: Auth Error
+              schema:
+                properties:
+                  status:
+                    type: integer
+                  error:
+                    type: string
+                  message:
+                    type: string
+                type: object
+      deprecated: false
+      tags:
+      - Properties
+  /properties/random:
+    get:
+      summary: Random Property Records
+      description: Returns a list of property records selected at random.
+      operationId: property-records-random
+      parameters:
+      - name: limit
+        in: query
+        description: The number of property records to return, between 1 and 500. Defaults to `50` if not provided
+        schema:
+          type: integer
+          default: 5
+          format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              examples:
+                Success:
+                  value:
+                  - id: 5500-Grand-Lake-Dr,-San-Antonio,-TX-78244
+                    formattedAddress: 5500 Grand Lake Dr, San Antonio, TX 78244
+                    addressLine1: 5500 Grand Lake Dr
+                    addressLine2: null
+                    city: San Antonio
+                    state: TX
+                    stateFips: '48'
+                    zipCode: '78244'
+                    county: Bexar
+                    countyFips: 029
+                    latitude: 29.475962
+                    longitude: -98.351442
+                    propertyType: Single Family
+                    bedrooms: 3
+                    bathrooms: 2
+                    squareFootage: 1878
+                    lotSize: 8850
+                    yearBuilt: 1973
+                    assessorID: 05076-103-0500
+                    legalDescription: CB 5076A BLK 3 LOT 50
+                    subdivision: WOODLAKE
+                    zoning: RH
+                    lastSaleDate: '2024-11-18T00:00:00.000Z'
+                    lastSalePrice: 270000
+                    hoa:
+                      fee: 175
+                    features:
+                      architectureType: Contemporary
+                      cooling: true
+                      coolingType: Central
+                      exteriorType: Wood
+                      fireplace: true
+                      fireplaceType: Masonry
+                      floorCount: 1
+                      foundationType: Slab / Mat / Raft
+                      garage: true
+                      garageSpaces: 2
+                      garageType: Garage
+                      heating: true
+                      heatingType: Forced Air
+                      pool: true
+                      poolType: Concrete
+                      roofType: Asphalt
+                      roomCount: 5
+                      unitCount: 1
+                      viewType: City
+                    taxAssessments:
+                      '2020':
+                        year: 2020
+                        value: 142610
+                        land: 23450
+                        improvements: 119160
+                      '2021':
+                        year: 2021
+                        value: 163440
+                        land: 45050
+                        improvements: 118390
+                      '2022':
+                        year: 2022
+                        value: 197600
+                        land: 49560
+                        improvements: 148040
+                      '2023':
+                        year: 2023
+                        value: 225790
+                        land: 59380
+                        improvements: 166410
+                      '2024':
+                        year: 2024
+                        value: 216513
+                        land: 59380
+                        improvements: 157133
+                    propertyTaxes:
+                      '2020':
+                        year: 2020
+                        total: 3023
+                      '2021':
+                        year: 2021
+                        total: 3455
+                      '2022':
+                        year: 2022
+                        total: 4077
+                      '2023':
+                        year: 2023
+                        total: 4201
+                      '2024':
+                        year: 2024
+                        total: 4065
+                    history:
+                      '2017-10-19':
+                        event: Sale
+                        date: '2017-10-19T00:00:00.000Z'
+                        price: 185000
+                      '2024-11-18':
+                        event: Sale
+                        date: '2024-11-18T00:00:00.000Z'
+                        price: 270000
+                    owner:
+                      names:
+                      - Rolando Villarreal
+                      type: Individual
+                      mailingAddress:
+                        id: 5500-Grand-Lake-Dr,-San-Antonio,-TX-78244
+                        formattedAddress: 5500 Grand Lake Dr, San Antonio, TX 78244
+                        addressLine1: 5500 Grand Lake Dr
+                        addressLine2: null
+                        city: San Antonio
+                        state: TX
+                        stateFips: '48'
+                        zipCode: '78244'
+                    ownerOccupied: true
+                  - id: 1824-Nw-32nd-St,-Oklahoma-City,-OK-73118
+                    formattedAddress: 1824 Nw 32nd St, Oklahoma City, OK 73118
+                    addressLine1: 1824 Nw 32nd St
+                    addressLine2: null
+                    city: Oklahoma City
+                    state: OK
+                    stateFips: '40'
+                    zipCode: '73118'
+                    county: Oklahoma
+                    countyFips: '109'
+                    latitude: 35.502556
+                    longitude: -97.543355
+                    propertyType: Single Family
+                    bedrooms: 2
+                    bathrooms: 1
+                    squareFootage: 1205
+                    lotSize: 12763
+                    yearBuilt: 1935
+                    assessorID: 05-155-6980
+                    legalDescription: MILITARY PARK ADD 037 000 LOTS 3 4 & 5
+                    subdivision: MILITARY PARK ADD
+                    lastSaleDate: '2019-10-02T00:00:00.000Z'
+                    lastSalePrice: 92650
+                    features:
+                      architectureType: Ranch
+                      cooling: true
+                      coolingType: Central
+                      exteriorType: Brick Veneer
+                      fireplace: true
+                      floorCount: 1
+                      foundationType: Raised
+                      garage: true
+                      garageSpaces: 2
+                      garageType: Carport
+                      heating: true
+                      heatingType: Central
+                      roofType: Composition Shingle
+                      roomCount: 6
+                      unitCount: 1
+                    taxAssessments:
+                      '2020':
+                        year: 2020
+                        value: 10945
+                        land: 3884
+                        improvements: 7061
+                      '2022':
+                        year: 2022
+                        value: 12066
+                        land: 2802
+                        improvements: 9264
+                      '2023':
+                        year: 2023
+                        value: 12669
+                        land: 2496
+                        improvements: 10173
+                      '2024':
+                        year: 2024
+                        value: 13303
+                        land: 2575
+                        improvements: 10728
+                    propertyTaxes:
+                      '2020':
+                        year: 2020
+                        total: 1303
+                      '2022':
+                        year: 2022
+                        total: 1419
+                      '2023':
+                        year: 2023
+                        total: 1556
+                      '2024':
+                        year: 2024
+                        total: 1648
+                    history:
+                      '2019-10-02':
+                        event: Sale
+                        date: '2019-10-02T00:00:00.000Z'
+                        price: 92650
+                    owner:
+                      names:
+                      - Kimberly A Camp
+                      type: Individual
+                      mailingAddress:
+                        id: PO-BOX-722348,-Norman,-OK-73070
+                        formattedAddress: PO BOX 722348, Norman, OK 73070
+                        addressLine1: PO BOX 722348
+                        addressLine2: null
+                        city: Norman
+                        state: OK
+                        stateFips: '40'
+                        zipCode: '73070'
+                    ownerOccupied: false
+                  - id: 735-Tulip-Grove-Rd,-Apt-126,-Hermitage,-TN-37076
+                    formattedAddress: 735 Tulip Grove Rd, Apt 126, Hermitage, TN 37076
+                    addressLine1: 735 Tulip Grove Rd
+                    addressLine2: Apt 126
+                    city: Hermitage
+                    state: TN
+                    stateFips: '47'
+                    zipCode: '37076'
+                    county: Davidson
+                    countyFips: '037'
+                    latitude: 36.202462
+                    longitude: -86.590874
+                    propertyType: Townhouse
+                    bedrooms: 3
+                    bathrooms: 2.5
+                    squareFootage: 2030
+                    yearBuilt: 2006
+                    assessorID: 075-12-0F-014-00
+                    legalDescription: UNIT 126 TULIP COVE TOWNHOMES PH 1 FIRST AMENDMENT
+                    subdivision: TULIP COVE TWNHMS
+                    zoning: RM6
+                    lastSaleDate: '2020-10-05T00:00:00.000Z'
+                    lastSalePrice: 262000
+                    features:
+                      architectureType: Condo / Apartment
+                      cooling: true
+                      coolingType: Central
+                      exteriorType: Wood
+                      floorCount: 2
+                      foundationType: Slab / Mat / Raft
+                      garage: true
+                      garageSpaces: 1
+                      garageType: Attached
+                      roomCount: 5
+                      unitCount: 1
+                    taxAssessments:
+                      '2021':
+                        year: 2021
+                        value: 64300
+                        land: 12500
+                        improvements: 51800
+                      '2022':
+                        year: 2022
+                        value: 64300
+                        land: 12500
+                        improvements: 51800
+                      '2023':
+                        year: 2023
+                        value: 64300
+                        land: 12500
+                        improvements: 51800
+                      '2024':
+                        year: 2024
+                        value: 64300
+                        land: 12500
+                        improvements: 51800
+                    propertyTaxes:
+                      '2021':
+                        year: 2021
+                        total: 1899
+                      '2022':
+                        year: 2022
+                        total: 2436
+                      '2023':
+                        year: 2023
+                        total: 1879
+                      '2024':
+                        year: 2024
+                        total: 1879
+                    history:
+                      '2020-10-05':
+                        event: Sale
+                        date: '2020-10-05T00:00:00.000Z'
+                        price: 262000
+                    owner:
+                      names:
+                      - Hicock Kathryn Anne
+                      - Spragan Michael Willard
+                      type: Individual
+                      mailingAddress:
+                        id: 735-Tulip-Grove-Rd,-APT-126,-Hermitage,-TN-37076
+                        formattedAddress: 735 Tulip Grove Rd, APT 126, Hermitage, TN 37076
+                        addressLine1: 735 Tulip Grove Rd
+                        addressLine2: APT 126
+                        city: Hermitage
+                        state: TN
+                        stateFips: '47'
+                        zipCode: '37076'
+                    ownerOccupied: true
+                  - id: 3550-Bay-Sands-Dr,-Apt-3061,-Laughlin,-NV-89029
+                    formattedAddress: 3550 Bay Sands Dr, Apt 3061, Laughlin, NV 89029
+                    addressLine1: 3550 Bay Sands Dr
+                    addressLine2: Apt 3061
+                    city: Laughlin
+                    state: NV
+                    stateFips: '32'
+                    zipCode: '89029'
+                    county: Clark
+                    countyFips: '003'
+                    latitude: 35.132905
+                    longitude: -114.619628
+                    propertyType: Condo
+                    bedrooms: 1
+                    bathrooms: 1
+                    squareFootage: 716
+                    lotSize: 1560
+                    yearBuilt: 1990
+                    assessorID: 264-28-610-202
+                    legalDescription: DESERT SANDS AMD PLAT BOOK 46 PAGE 80 UNIT 202 BLDG 8
+                    subdivision: DESERT SANDS AMD
+                    lastSaleDate: '2023-02-08T00:00:00.000Z'
+                    lastSalePrice: 115000
+                    hoa:
+                      fee: 259
+                    features:
+                      architectureType: Condo / Apartment
+                      cooling: true
+                      coolingType: Central
+                      exteriorType: Stucco
+                      floorCount: 1
+                      garage: true
+                      garageSpaces: 1
+                      garageType: Carport
+                      heating: true
+                      heatingType: Forced Air
+                      roofType: Tile
+                      roomCount: 3
+                      unitCount: 1
+                    taxAssessments:
+                      '2022':
+                        year: 2021
+                        value: 23927
+                        land: 9450
+                        improvements: 14477
+                      '2023':
+                        year: 2023
+                        value: 29251
+                        land: 13300
+                        improvements: 15951
+                      '2024':
+                        year: 2024
+                        value: 24334
+                        land: 6650
+                        improvements: 17684
+                    propertyTaxes:
+                      '2022':
+                        year: 2020
+                        total: 571
+                      '2023':
+                        year: 2022
+                        total: 607
+                      '2024':
+                        year: 2023
+                        total: 656
+                    history:
+                      '2023-02-08':
+                        event: Sale
+                        date: '2023-02-08T00:00:00.000Z'
+                        price: 115000
+                    owner:
+                      names:
+                      - Kevin Stalcup
+                      - Elizabeth Akers
+                      type: Individual
+                      mailingAddress:
+                        id: 3550-Bay-Sands-Dr,-APT-3061,-Laughlin,-NV-89029
+                        formattedAddress: 3550 Bay Sands Dr, APT 3061, Laughlin, NV 89029
+                        addressLine1: 3550 Bay Sands Dr
+                        addressLine2: APT 3061
+                        city: Laughlin
+                        state: NV
+                        stateFips: '32'
+                        zipCode: '89029'
+                    ownerOccupied: true
+                  - id: 439-Tate-Dr,-Desoto,-TX-75115
+                    formattedAddress: 439 Tate Dr, Desoto, TX 75115
+                    addressLine1: 439 Tate Dr
+                    addressLine2: null
+                    city: Desoto
+                    state: TX
+                    stateFips: '48'
+                    zipCode: '75115'
+                    county: Dallas
+                    countyFips: '113'
+                    latitude: 32.578915
+                    longitude: -96.865209
+                    propertyType: Single Family
+                    bedrooms: 4
+                    bathrooms: 2
+                    squareFootage: 2519
+                    lotSize: 8110
+                    yearBuilt: 1991
+                    assessorID: 200320100J0150000
+                    legalDescription: EAGLE DOWNS PH 1 BLK J LOT 15 INT202100351950 DD11092021 CO-DC 0320100J01500 4CS0320100J
+                    subdivision: EAGLE DOWNS
+                    zoning: Z313
+                    lastSaleDate: '2023-05-08T00:00:00.000Z'
+                    features:
+                      cooling: true
+                      coolingType: Central
+                      exteriorType: Brick Veneer
+                      fireplace: true
+                      floorCount: 1
+                      foundationType: Slab / Mat / Raft
+                      garage: true
+                      garageType: Attached
+                      heating: true
+                      heatingType: Central
+                      roofType: Composition Shingle
+                      unitCount: 1
+                    taxAssessments:
+                      '2022':
+                        year: 2022
+                        value: 328550
+                        land: 60000
+                        improvements: 268550
+                      '2023':
+                        year: 2023
+                        value: 328550
+                        land: 60000
+                        improvements: 268550
+                      '2024':
+                        year: 2024
+                        value: 328550
+                        land: 60000
+                        improvements: 268550
+                    propertyTaxes:
+                      '2022':
+                        year: 2022
+                        total: 6392
+                      '2023':
+                        year: 2023
+                        total: 5048
+                      '2024':
+                        year: 2024
+                        total: 5048
+                    history:
+                      '2023-05-08':
+                        event: Sale
+                        date: '2023-05-08T00:00:00.000Z'
+                    owner:
+                      names:
+                      - Ruth A Peel
+                      type: Individual
+                      mailingAddress:
+                        id: 439-Tate-Dr,-Desoto,-TX-75115
+                        formattedAddress: 439 Tate Dr, Desoto, TX 75115
+                        addressLine1: 439 Tate Dr
+                        addressLine2: null
+                        city: Desoto
+                        state: TX
+                        stateFips: '48'
+                        zipCode: '75115'
+                    ownerOccupied: true
+                  summary: Success
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: 5500-Grand-Lake-Dr,-San-Antonio,-TX-78244
+                    formattedAddress:
+                      type: string
+                      example: 5500 Grand Lake Dr, San Antonio, TX 78244
+                    addressLine1:
+                      type: string
+                      example: 5500 Grand Lake Dr
+                    addressLine2: {}
+                    city:
+                      type: string
+                      example: San Antonio
+                    state:
+                      type: string
+                      example: TX
+                    zipCode:
+                      type: string
+                      example: '78244'
+                    county:
+                      type: string
+                      example: Bexar
+                    latitude:
+                      type: number
+                      example: 29.476011
+                      default: 0
+                    longitude:
+                      type: number
+                      example: -98.351454
+                      default: 0
+                    propertyType:
+                      type: string
+                      example: Single Family
+                    bedrooms:
+                      type: integer
+                      example: 3
+                      default: 0
+                    bathrooms:
+                      type: integer
+                      example: 2
+                      default: 0
+                    squareFootage:
+                      type: integer
+                      example: 1878
+                      default: 0
+                    lotSize:
+                      type: integer
+                      example: 8843
+                      default: 0
+                    yearBuilt:
+                      type: integer
+                      example: 1973
+                      default: 0
+                    assessorID:
+                      type: string
+                      example: 05076-103-0500
+                    legalDescription:
+                      type: string
+                      example: CB 5076A BLK 3 LOT 50
+                    subdivision:
+                      type: string
+                      example: CONV A/S CODE
+                    zoning:
+                      type: string
+                      example: RH
+                    lastSaleDate:
+                      type: string
+                      example: '2017-10-19T00:00:00.000Z'
+                    lastSalePrice:
+                      type: integer
+                      example: 185000
+                      default: 0
+                    hoa:
+                      type: object
+                      properties:
+                        fee:
+                          type: integer
+                          example: 175
+                          default: 0
+                    features:
+                      type: object
+                      properties:
+                        architectureType:
+                          type: string
+                          example: Contemporary
+                        cooling:
+                          type: boolean
+                          example: true
+                          default: true
+                        coolingType:
+                          type: string
+                          example: Central
+                        exteriorType:
+                          type: string
+                          example: Wood
+                        fireplace:
+                          type: boolean
+                          example: true
+                          default: true
+                        fireplaceType:
+                          type: string
+                          example: Masonry
+                        floorCount:
+                          type: integer
+                          example: 1
+                          default: 0
+                        foundationType:
+                          type: string
+                          example: Slab / Mat / Raft
+                        garage:
+                          type: boolean
+                          example: true
+                          default: true
+                        garageSpaces:
+                          type: integer
+                          example: 2
+                          default: 0
+                        garageType:
+                          type: string
+                          example: Garage
+                        heating:
+                          type: boolean
+                          example: true
+                          default: true
+                        heatingType:
+                          type: string
+                          example: Forced Air
+                        pool:
+                          type: boolean
+                          example: true
+                          default: true
+                        poolType:
+                          type: string
+                          example: Concrete
+                        roofType:
+                          type: string
+                          example: Asphalt
+                        roomCount:
+                          type: integer
+                          example: 5
+                          default: 0
+                        unitCount:
+                          type: integer
+                          example: 1
+                          default: 0
+                        viewType:
+                          type: string
+                          example: City
+                    taxAssessments:
+                      type: object
+                      properties:
+                        '2019':
+                          type: object
+                          properties:
+                            year:
+                              type: integer
+                              example: 2019
+                              default: 0
+                            value:
+                              type: integer
+                              example: 135430
+                              default: 0
+                            land:
+                              type: integer
+                              example: 23450
+                              default: 0
+                            improvements:
+                              type: integer
+                              example: 111980
+                              default: 0
+                        '2020':
+                          type: object
+                          properties:
+                            year:
+                              type: integer
+                              example: 2020
+                              default: 0
+                            value:
+                              type: integer
+                              example: 142610
+                              default: 0
+                            land:
+                              type: integer
+                              example: 23450
+                              default: 0
+                            improvements:
+                              type: integer
+                              example: 119160
+                              default: 0
+                        '2021':
+                          type: object
+                          properties:
+                            year:
+                              type: integer
+                              example: 2021
+                              default: 0
+                            value:
+                              type: integer
+                              example: 163440
+                              default: 0
+                            land:
+                              type: integer
+                              example: 45050
+                              default: 0
+                            improvements:
+                              type: integer
+                              example: 118390
+                              default: 0
+                        '2022':
+                          type: object
+                          properties:
+                            year:
+                              type: integer
+                              example: 2022
+                              default: 0
+                            value:
+                              type: integer
+                              example: 197600
+                              default: 0
+                            land:
+                              type: integer
+                              example: 49560
+                              default: 0
+                            improvements:
+                              type: integer
+                              example: 148040
+                              default: 0
+                        '2023':
+                          type: object
+                          properties:
+                            year:
+                              type: integer
+                              example: 2023
+                              default: 0
+                            value:
+                              type: integer
+                              example: 225790
+                              default: 0
+                            land:
+                              type: integer
+                              example: 59380
+                              default: 0
+                            improvements:
+                              type: integer
+                              example: 166410
+                              default: 0
+                    propertyTaxes:
+                      type: object
+                      properties:
+                        '2019':
+                          type: object
+                          properties:
+                            year:
+                              type: integer
+                              example: 2019
+                              default: 0
+                            total:
+                              type: integer
+                              example: 2984
+                              default: 0
+                        '2020':
+                          type: object
+                          properties:
+                            year:
+                              type: integer
+                              example: 2020
+                              default: 0
+                            total:
+                              type: integer
+                              example: 3023
+                              default: 0
+                        '2021':
+                          type: object
+                          properties:
+                            year:
+                              type: integer
+                              example: 2021
+                              default: 0
+                            total:
+                              type: integer
+                              example: 3455
+                              default: 0
+                        '2022':
+                          type: object
+                          properties:
+                            year:
+                              type: integer
+                              example: 2022
+                              default: 0
+                            total:
+                              type: integer
+                              example: 4091
+                              default: 0
+                        '2023':
+                          type: object
+                          properties:
+                            year:
+                              type: integer
+                              example: 2023
+                              default: 0
+                            total:
+                              type: integer
+                              example: 4201
+                              default: 0
+                    history:
+                      type: object
+                      properties:
+                        '2004-06-16':
+                          type: object
+                          properties:
+                            event:
+                              type: string
+                              example: Sale
+                            date:
+                              type: string
+                              example: '2004-06-16T00:00:00.000Z'
+                            price:
+                              type: integer
+                              example: 95000
+                              default: 0
+                        '2017-10-19':
+                          type: object
+                          properties:
+                            event:
+                              type: string
+                              example: Sale
+                            date:
+                              type: string
+                              example: '2017-10-19T00:00:00.000Z'
+                            price:
+                              type: integer
+                              example: 185000
+                              default: 0
+                    owner:
+                      type: object
+                      properties:
+                        names:
+                          type: array
+                          items:
+                            type: string
+                            example: Michael Smith
+                        type:
+                          type: string
+                          example: Individual
+                        mailingAddress:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: 149-Weaver-Blvd,---264,-Weaverville,-NC-28787
+                            formattedAddress:
+                              type: string
+                              example: '149 Weaver Blvd, # 264, Weaverville, NC 28787'
+                            addressLine1:
+                              type: string
+                              example: 149 Weaver Blvd
+                            addressLine2:
+                              type: string
+                              example: '# 264'
+                            city:
+                              type: string
+                              example: Weaverville
+                            state:
+                              type: string
+                              example: NC
+                            zipCode:
+                              type: string
+                              example: '28787'
+                    ownerOccupied:
+                      type: boolean
+                      example: false
+                      default: true
+        '401':
+          description: Auth Error
+          content:
+            application/json:
+              examples:
+                Auth Error:
+                  value:
+                    status: 401
+                    error: auth/api-key-invalid
+                    message: No API key provided in request. An API key must be provided in the 'X-Api-Key' header
+                  summary: Auth Error
+              schema:
+                properties:
+                  status:
+                    type: integer
+                  error:
+                    type: string
+                  message:
+                    type: string
+                type: object
+      deprecated: false
+      tags:
+      - Properties
+  /properties/{id}:
+    get:
+      summary: Property Record by Id
+      description: Returns a single property record matching the specified id.
+      operationId: property-record-by-id
+      parameters:
+      - name: id
+        in: path
+        description: The id of the property record to return
+        schema:
+          type: string
+          default: 5500-Grand-Lake-Dr,-San-Antonio,-TX-78244
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              examples:
+                Success:
+                  summary: Success
+                  value:
+                    id: 5500-Grand-Lake-Dr,-San-Antonio,-TX-78244
+                    formattedAddress: 5500 Grand Lake Dr, San Antonio, TX 78244
+                    addressLine1: 5500 Grand Lake Dr
+                    addressLine2: null
+                    city: San Antonio
+                    state: TX
+                    stateFips: '48'
+                    zipCode: '78244'
+                    county: Bexar
+                    countyFips: 029
+                    latitude: 29.475962
+                    longitude: -98.351442
+                    propertyType: Single Family
+                    bedrooms: 3
+                    bathrooms: 2
+                    squareFootage: 1878
+                    lotSize: 8850
+                    yearBuilt: 1973
+                    assessorID: 05076-103-0500
+                    legalDescription: CB 5076A BLK 3 LOT 50
+                    subdivision: WOODLAKE
+                    zoning: RH
+                    lastSaleDate: '2024-11-18T00:00:00.000Z'
+                    lastSalePrice: 270000
+                    hoa:
+                      fee: 175
+                    features:
+                      architectureType: Contemporary
+                      cooling: true
+                      coolingType: Central
+                      exteriorType: Wood
+                      fireplace: true
+                      fireplaceType: Masonry
+                      floorCount: 1
+                      foundationType: Slab / Mat / Raft
+                      garage: true
+                      garageSpaces: 2
+                      garageType: Garage
+                      heating: true
+                      heatingType: Forced Air
+                      pool: true
+                      poolType: Concrete
+                      roofType: Asphalt
+                      roomCount: 5
+                      unitCount: 1
+                      viewType: City
+                    taxAssessments:
+                      '2020':
+                        year: 2020
+                        value: 142610
+                        land: 23450
+                        improvements: 119160
+                      '2021':
+                        year: 2021
+                        value: 163440
+                        land: 45050
+                        improvements: 118390
+                      '2022':
+                        year: 2022
+                        value: 197600
+                        land: 49560
+                        improvements: 148040
+                      '2023':
+                        year: 2023
+                        value: 225790
+                        land: 59380
+                        improvements: 166410
+                      '2024':
+                        year: 2024
+                        value: 216513
+                        land: 59380
+                        improvements: 157133
+                    propertyTaxes:
+                      '2020':
+                        year: 2020
+                        total: 3023
+                      '2021':
+                        year: 2021
+                        total: 3455
+                      '2022':
+                        year: 2022
+                        total: 4077
+                      '2023':
+                        year: 2023
+                        total: 4201
+                      '2024':
+                        year: 2024
+                        total: 4065
+                    history:
+                      '2017-10-19':
+                        event: Sale
+                        date: '2017-10-19T00:00:00.000Z'
+                        price: 185000
+                      '2024-11-18':
+                        event: Sale
+                        date: '2024-11-18T00:00:00.000Z'
+                        price: 270000
+                    owner:
+                      names:
+                      - Rolando Villarreal
+                      type: Individual
+                      mailingAddress:
+                        id: 5500-Grand-Lake-Dr,-San-Antonio,-TX-78244
+                        formattedAddress: 5500 Grand Lake Dr, San Antonio, TX 78244
+                        addressLine1: 5500 Grand Lake Dr
+                        addressLine2: null
+                        city: San Antonio
+                        state: TX
+                        stateFips: '48'
+                        zipCode: '78244'
+                    ownerOccupied: true
+        '401':
+          description: Auth Error
+          content:
+            application/json:
+              examples:
+                Auth Error:
+                  value:
+                    status: 401
+                    error: auth/api-key-invalid
+                    message: No API key provided in request. An API key must be provided in the 'X-Api-Key' header
+                  summary: Auth Error
+              schema:
+                properties:
+                  status:
+                    type: integer
+                  error:
+                    type: string
+                  message:
+                    type: string
+                type: object
+      deprecated: false
+      security:
+      - sec0: []
+      tags:
+      - Properties
+components:
+  securitySchemes:
+    sec0:
+      type: apiKey
+      in: header
+      name: X-Api-Key
+x-readme:
+  headers: []
+  explorer-enabled: true
+  proxy-enabled: true
+x-readme-fauxas: true

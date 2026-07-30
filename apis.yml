@@ -7,7 +7,20 @@ description: >-
   proptech applications to programmatically access comprehensive residential and commercial property data across all 50
   US states.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/rentcast.png
 tags:
   - Real Estate
   - Property Data
@@ -19,41 +32,122 @@ created: '2025-03-01'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: rentcast:rentcast-api
-    name: RentCast API
-    description: >-
-      The RentCast API provides programmatic access to US real estate data including 140+ million property records with
-      ownership details, automated valuation model (AVM) rent and home value estimates with comparable properties,
-      active and inactive sale and rental listings across all 50 states, and aggregate market statistics for zip codes.
-      Authentication uses an X-Api-Key header. All endpoints are read-only GET requests.
-    humanURL: https://www.rentcast.io/api
-    baseURL: https://api.rentcast.io/v1
-    tags:
-      - Real Estate
-      - Property Data
-      - Valuation
-      - Rental Market
-    properties:
-      - type: Documentation
-        url: https://developers.rentcast.io/reference/introduction
-      - type: OpenAPI
-        url: openapi/rentcast-openapi.json
-      - type: PostmanCollection
-        url: https://www.postman.com/rentcast/rentcast-api/documentation/ca4yudw/rentcast-api-endpoints
-      - type: GitHubOrganization
-        url: https://github.com/RentCast
-      - type: Rules
-        url: rules/rentcast-rules.yml
-      - type: Capabilities
-        url: capabilities/property-research.yaml
-      - type: JSONSchema
-        url: json-schema/rentcast-property-schema.json
-      - type: JSONStructure
-        url: json-structure/rentcast-property-structure.json
-      - type: JSONLD
-        url: json-ld/rentcast-context.jsonld
-      - type: Vocabulary
-        url: vocabulary/rentcast-vocabulary.yml
+- aid: rentcast:rentcast-avm-api
+  name: RentCast Avm API
+  description: The Avm API from RentCast — 2 operation(s) for avm.
+  humanURL: https://www.rentcast.io/api
+  baseURL: https://api.rentcast.io/v1
+  tags:
+  - Avm
+  properties:
+  - type: OpenAPI
+    url: openapi/rentcast-avm-api-openapi.yml
+  - type: Documentation
+    url: https://developers.rentcast.io/reference/introduction
+  - type: PostmanCollection
+    url: >-
+      https://www.postman.com/rentcast/rentcast-api/documentation/ca4yudw/rentcast-api-endpoints
+  - type: GitHubOrganization
+    url: https://github.com/RentCast
+  - type: Rules
+    url: rules/rentcast-rules.yml
+  - type: Capabilities
+    url: capabilities/property-research.yaml
+  - type: JSONSchema
+    url: json-schema/rentcast-property-schema.json
+  - type: JSONStructure
+    url: json-structure/rentcast-property-structure.json
+  - type: JSONLD
+    url: json-ld/rentcast-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/rentcast-vocabulary.yml
+- aid: rentcast:rentcast-listings-api
+  name: RentCast Listings API
+  description: The Listings API from RentCast — 4 operation(s) for listings.
+  humanURL: https://www.rentcast.io/api
+  baseURL: https://api.rentcast.io/v1
+  tags:
+  - Listings
+  properties:
+  - type: OpenAPI
+    url: openapi/rentcast-listings-api-openapi.yml
+  - type: Documentation
+    url: https://developers.rentcast.io/reference/introduction
+  - type: PostmanCollection
+    url: >-
+      https://www.postman.com/rentcast/rentcast-api/documentation/ca4yudw/rentcast-api-endpoints
+  - type: GitHubOrganization
+    url: https://github.com/RentCast
+  - type: Rules
+    url: rules/rentcast-rules.yml
+  - type: Capabilities
+    url: capabilities/property-research.yaml
+  - type: JSONSchema
+    url: json-schema/rentcast-property-schema.json
+  - type: JSONStructure
+    url: json-structure/rentcast-property-structure.json
+  - type: JSONLD
+    url: json-ld/rentcast-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/rentcast-vocabulary.yml
+- aid: rentcast:rentcast-markets-api
+  name: RentCast Markets API
+  description: The Markets API from RentCast — 1 operation(s) for markets.
+  humanURL: https://www.rentcast.io/api
+  baseURL: https://api.rentcast.io/v1
+  tags:
+  - Markets
+  properties:
+  - type: OpenAPI
+    url: openapi/rentcast-markets-api-openapi.yml
+  - type: Documentation
+    url: https://developers.rentcast.io/reference/introduction
+  - type: PostmanCollection
+    url: >-
+      https://www.postman.com/rentcast/rentcast-api/documentation/ca4yudw/rentcast-api-endpoints
+  - type: GitHubOrganization
+    url: https://github.com/RentCast
+  - type: Rules
+    url: rules/rentcast-rules.yml
+  - type: Capabilities
+    url: capabilities/property-research.yaml
+  - type: JSONSchema
+    url: json-schema/rentcast-property-schema.json
+  - type: JSONStructure
+    url: json-structure/rentcast-property-structure.json
+  - type: JSONLD
+    url: json-ld/rentcast-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/rentcast-vocabulary.yml
+- aid: rentcast:rentcast-properties-api
+  name: RentCast Properties API
+  description: The Properties API from RentCast — 3 operation(s) for properties.
+  humanURL: https://www.rentcast.io/api
+  baseURL: https://api.rentcast.io/v1
+  tags:
+  - Properties
+  properties:
+  - type: OpenAPI
+    url: openapi/rentcast-properties-api-openapi.yml
+  - type: Documentation
+    url: https://developers.rentcast.io/reference/introduction
+  - type: PostmanCollection
+    url: >-
+      https://www.postman.com/rentcast/rentcast-api/documentation/ca4yudw/rentcast-api-endpoints
+  - type: GitHubOrganization
+    url: https://github.com/RentCast
+  - type: Rules
+    url: rules/rentcast-rules.yml
+  - type: Capabilities
+    url: capabilities/property-research.yaml
+  - type: JSONSchema
+    url: json-schema/rentcast-property-schema.json
+  - type: JSONStructure
+    url: json-structure/rentcast-property-structure.json
+  - type: JSONLD
+    url: json-ld/rentcast-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/rentcast-vocabulary.yml
 common:
   - type: AgenticAccess
     url: agentic-access/rentcast-agentic-access.yml

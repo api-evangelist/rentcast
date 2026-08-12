@@ -51,8 +51,6 @@ apis:
     url: https://github.com/RentCast
   - type: Rules
     url: rules/rentcast-rules.yml
-  - type: Capabilities
-    url: capabilities/property-research.yaml
   - type: JSONSchema
     url: json-schema/rentcast-property-schema.json
   - type: JSONStructure
@@ -80,8 +78,6 @@ apis:
     url: https://github.com/RentCast
   - type: Rules
     url: rules/rentcast-rules.yml
-  - type: Capabilities
-    url: capabilities/property-research.yaml
   - type: JSONSchema
     url: json-schema/rentcast-property-schema.json
   - type: JSONStructure
@@ -109,8 +105,6 @@ apis:
     url: https://github.com/RentCast
   - type: Rules
     url: rules/rentcast-rules.yml
-  - type: Capabilities
-    url: capabilities/property-research.yaml
   - type: JSONSchema
     url: json-schema/rentcast-property-schema.json
   - type: JSONStructure
@@ -138,8 +132,6 @@ apis:
     url: https://github.com/RentCast
   - type: Rules
     url: rules/rentcast-rules.yml
-  - type: Capabilities
-    url: capabilities/property-research.yaml
   - type: JSONSchema
     url: json-schema/rentcast-property-schema.json
   - type: JSONStructure

@@ -1,0 +1,614 @@
+{
+  "item": [
+    {
+      "id": "7bb8ab1b-b68f-41fe-b0d6-0b84973e37d5",
+      "name": "Avm",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "22f3647e-e6e5-4139-a964-c59f63d61770",
+          "name": "Value Estimate",
+          "request": {
+            "name": "Value Estimate",
+            "description": {
+              "content": "Returns a property value estimate and comparable properties.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "avm",
+                "value"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "5500 Grand Lake Dr, San Antonio, TX, 78244",
+                  "description": "The **full address** of the property, in the format `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters"
+                },
+                {
+                  "disabled": false,
+                  "key": "latitude",
+                  "value": "<float>",
+                  "description": "The latitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter"
+                },
+                {
+                  "disabled": false,
+                  "key": "longitude",
+                  "value": "<float>",
+                  "description": "The longitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter"
+                },
+                {
+                  "disabled": false,
+                  "key": "propertyType",
+                  "value": "",
+                  "description": "The type of the property. See [explanation of property types](https://developers.rentcast.io/reference/property-types)"
+                },
+                {
+                  "disabled": false,
+                  "key": "bedrooms",
+                  "value": "",
+                  "description": "The number of bedrooms in the property. Use `0` to indicate a studio layout"
+                },
+                {
+                  "disabled": false,
+                  "key": "bathrooms",
+                  "value": "",
+                  "description": "The number of bathrooms in the property. Supports fractions to indicate partial bathrooms"
+                },
+                {
+                  "disabled": false,
+                  "key": "squareFootage",
+                  "value": "",
+                  "description": "The total living area size of the property, in square feet"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxRadius",
+                  "value": "<float>",
+                  "description": "The maximum distance between comparable listings and the subject property, in miles"
+                },
+                {
+                  "disabled": false,
+                  "key": "daysOld",
+                  "value": "<integer>",
+                  "description": "The maximum number of days since comparable listings were last seen on the market, with a minimum of 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "compCount",
+                  "value": "5",
+                  "description": "The number of comparable listings to use when calculating the value estimate, between 5 and 25. Defaults to `15` if not provided"
+                },
+                {
+                  "disabled": false,
+                  "key": "lookupSubjectAttributes",
+                  "value": "",
+                  "description": "When enabled, will attempt to look up subject property attributes to find more relevant comps. Defaults to `true` if not provided. [Learn more](https://developers.rentcast.io/reference/property-valuation#subject-property-attribute-lookup) about this feature"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "671b4af5-5438-47c8-9646-1e6dc92d0124",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "avm",
+                    "value"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "5500 Grand Lake Dr, San Antonio, TX, 78244"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "propertyType",
+                      "value": ""
+                    },
+                    {
+                      "key": "bedrooms",
+                      "value": ""
+                    },
+                    {
+                      "key": "bathrooms",
+                      "value": ""
+                    },
+                    {
+                      "key": "squareFootage",
+                      "value": ""
+                    },
+                    {
+                      "key": "maxRadius",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "daysOld",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "compCount",
+                      "value": "5"
+                    },
+                    {
+                      "key": "lookupSubjectAttributes",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"price\": 250000,\n  \"priceRangeLow\": 195000,\n  \"priceRangeHigh\": 304000,\n  \"subjectProperty\": {\n    \"id\": \"5500-Grand-Lake-Dr,-San-Antonio,-TX-78244\",\n    \"formattedAddress\": \"5500 Grand Lake Dr, San Antonio, TX 78244\",\n    \"addressLine1\": \"5500 Grand Lake Dr\",\n    \"addressLine2\": null,\n    \"city\": \"San Antonio\",\n    \"state\": \"TX\",\n    \"stateFips\": \"48\",\n    \"zipCode\": \"78244\",\n    \"county\": \"Bexar\",\n    \"countyFips\": 29,\n    \"latitude\": 29.476011,\n    \"longitude\": -98.351454,\n    \"propertyType\": \"Single Family\",\n    \"bedrooms\": 3,\n    \"bathrooms\": 2,\n    \"squareFootage\": 1878,\n    \"lotSize\": 8843,\n    \"yearBuilt\": 1973,\n    \"lastSaleDate\": \"2024-11-18T00:00:00.000Z\",\n    \"lastSalePrice\": 270000\n  },\n  \"comparables\": [\n    {\n      \"id\": \"5207-Pine-Lake-Dr,-San-Antonio,-TX-78244\",\n      \"formattedAddress\": \"5207 Pine Lake Dr, San Antonio, TX 78244\",\n      \"addressLine1\": \"5207 Pine Lake Dr\",\n      \"addressLine2\": null,\n      \"city\": \"San Antonio\",\n      \"state\": \"TX\",\n      \"stateFips\": \"48\",\n      \"zipCode\": \"78244\",\n      \"county\": \"Bexar\",\n      \"countyFips\": 29,\n      \"latitude\": 29.47046,\n      \"longitude\": -98.351561,\n      \"propertyType\": \"Single Family\",\n      \"bedrooms\": 3,\n      \"bathrooms\": 2,\n      \"squareFootage\": 1895,\n      \"lotSize\": 6882,\n      \"yearBuilt\": 1988,\n      \"status\": \"Active\",\n      \"price\": 289444,\n      \"listingType\": \"Standard\",\n      \"listedDate\": \"2025-04-11T00:00:00.000Z\",\n      \"removedDate\": null,\n      \"lastSeenDate\": \"2025-09-03T10:57:39.532Z\",\n      \"daysOnMarket\": 146,\n      \"distance\": 0.384,\n      \"daysOld\": 1,\n      \"correlation\": 0.9916\n    },\n    {\n      \"id\": \"6707-Lake-Cliff-St,-San-Antonio,-TX-78244\",\n      \"formattedAddress\": \"6707 Lake Cliff St, San Antonio, TX 78244\",\n      \"addressLine1\": \"6707 Lake Cliff St\",\n      \"addressLine2\": null,\n      \"city\": \"San Antonio\",\n      \"state\": \"TX\",\n      \"stateFips\": \"48\",\n      \"zipCode\": \"78244\",\n      \"county\": \"Bexar\",\n      \"countyFips\": 29,\n      \"latitude\": 29.47617,\n      \"longitude\": -98.356908,\n      \"propertyType\": \"Single Family\",\n      \"bedrooms\": 3,\n      \"bathrooms\": 2,\n      \"squareFootage\": 1811,\n      \"lotSize\": 8146,\n      \"yearBuilt\": 1977,\n      \"status\": \"Inactive\",\n      \"price\": 279000,\n      \"listingType\": \"Standard\",\n      \"listedDate\": \"2025-06-06T00:00:00.000Z\",\n      \"removedDate\": \"2025-07-12T00:00:00.000Z\",\n      \"lastSeenDate\": \"2025-07-11T13:21:20.968Z\",\n      \"daysOnMarket\": 36,\n      \"distance\": 0.3286,\n      \"daysOld\": 55,\n      \"correlation\": 0.9887\n    },\n    {\n      \"id\": \"6917-Deep-Lake-Dr,-San-Antonio,-TX-78244\",\n      \"formattedAddress\": \"6917 Deep Lake Dr, San Antonio, TX 78244\",\n      \"addressLine1\": \"6917 Deep Lake Dr\",\n      \"addressLine2\": null,\n      \"city\": \"San Antonio\",\n      \"state\": \"TX\",\n      \"stateFips\": \"48\",\n      \"zipCode\": \"78244\",\n      \"county\": \"Bexar\",\n      \"countyFips\": 29,\n      \"latitude\": 29.479375,\n      \"longitude\": -98.351978,\n      \"propertyType\": \"Single Family\",\n      \"bedrooms\": 3,\n      \"bathrooms\": 2,\n      \"squareFootage\": 1753,\n      \"lotSize\": 11151,\n      \"yearBuilt\": 1974,\n      \"status\": \"Inactive\",\n      \"price\": 199900,\n      \"listingType\": \"Standard\",\n      \"listedDate\": \"2025-05-22T00:00:00.000Z\",\n      \"removedDate\": \"2025-08-27T00:00:00.000Z\",\n      \"lastSeenDate\": \"2025-08-26T12:36:31.859Z\",\n      \"daysOnMarket\": 97,\n      \"distance\": 0.2348,\n      \"daysOld\": 9,\n      \"correlation\": 0.9863\n    },\n    {\n      \"id\": \"5314-Lost-Tree,-San-Antonio,-TX-78244\",\n      \"formattedAddress\": \"5314 Lost Tree, San Antonio, TX 78244\",\n      \"addressLine1\": \"5314 Lost Tree\",\n      \"addressLine2\": null,\n      \"city\": \"San Antonio\",\n      \"state\": \"TX\",\n      \"stateFips\": \"48\",\n      \"zipCode\": \"78244\",\n      \"county\": \"Bexar\",\n      \"countyFips\": 29,\n      \"latitude\": 29.477064,\n      \"longitude\": -98.343686,\n      \"propertyType\": \"Single Family\",\n      \"bedrooms\": 3,\n      \"bathrooms\": 2,\n      \"squareFootage\": 1948,\n      \"lotSize\": 9017,\n      \"yearBuilt\": 2000,\n      \"status\": \"Inactive\",\n      \"price\": 159900,\n      \"listingType\": \"Standard\",\n      \"listedDate\": \"2025-06-23T00:00:00.000Z\",\n      \"removedDate\": \"2025-06-28T00:00:00.000Z\",\n      \"lastSeenDate\": \"2025-06-27T11:02:28.080Z\",\n      \"daysOnMarket\": 5,\n      \"distance\": 0.4734,\n      \"daysOld\": 69,\n      \"correlation\": 0.9859\n    },\n    {\n      \"id\": \"7207-Solar-Eclipse,-Converse,-TX-78109\",\n      \"formattedAddress\": \"7207 Solar Eclipse, Converse, TX 78109\",\n      \"addressLine1\": \"7207 Solar Eclipse\",\n      \"addressLine2\": null,\n      \"city\": \"Converse\",\n      \"state\": \"TX\",\n      \"stateFips\": \"48\",\n      \"zipCode\": \"78109\",\n      \"county\": \"Bexar\",\n      \"countyFips\": 29,\n      \"latitude\": 29.463689,\n      \"longitude\": -98.348663,\n      \"propertyType\": \"Single Family\",\n      \"bedrooms\": 3,\n      \"bathrooms\": 2,\n      \"squareFootage\": 1883,\n      \"lotSize\": 5140,\n      \"yearBuilt\": 2022,\n      \"status\": \"Active\",\n      \"price\": 320000,\n      \"listingType\": \"Standard\",\n      \"listedDate\": \"2025-03-10T00:00:00.000Z\",\n      \"removedDate\": null,\n      \"lastSeenDate\": \"2025-09-03T10:33:44.607Z\",\n      \"daysOnMarket\": 178,\n      \"distance\": 0.8687,\n      \"daysOld\": 1,\n      \"correlation\": 0.9835\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "061bba56-0581-47f1-a2d1-18b2b7b4f174",
+              "name": "Auth Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "avm",
+                    "value"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "5500 Grand Lake Dr, San Antonio, TX, 78244"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "propertyType",
+                      "value": ""
+                    },
+                    {
+                      "key": "bedrooms",
+                      "value": ""
+                    },
+                    {
+                      "key": "bathrooms",
+                      "value": ""
+                    },
+                    {
+                      "key": "squareFootage",
+                      "value": ""
+                    },
+                    {
+                      "key": "maxRadius",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "daysOld",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "compCount",
+                      "value": "5"
+                    },
+                    {
+                      "key": "lookupSubjectAttributes",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 401,\n  \"error\": \"auth/api-key-invalid\",\n  \"message\": \"No API key provided in request. An API key must be provided in the 'X-Api-Key' header\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c42ef028-2f5a-4475-bd09-1729c06f7b93",
+          "name": "Rent Estimate",
+          "request": {
+            "name": "Rent Estimate",
+            "description": {
+              "content": "Returns a property rent estimate and comparable properties.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "avm",
+                "rent",
+                "long-term"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "5500 Grand Lake Dr, San Antonio, TX, 78244",
+                  "description": "The **full address** of the property, in the format `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters"
+                },
+                {
+                  "disabled": false,
+                  "key": "latitude",
+                  "value": "<float>",
+                  "description": "The latitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter"
+                },
+                {
+                  "disabled": false,
+                  "key": "longitude",
+                  "value": "<float>",
+                  "description": "The longitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter"
+                },
+                {
+                  "disabled": false,
+                  "key": "propertyType",
+                  "value": "",
+                  "description": "The type of the property. See [explanation of property types](https://developers.rentcast.io/reference/property-types)"
+                },
+                {
+                  "disabled": false,
+                  "key": "bedrooms",
+                  "value": "",
+                  "description": "The number of bedrooms in the property. Use `0` to indicate a studio layout"
+                },
+                {
+                  "disabled": false,
+                  "key": "bathrooms",
+                  "value": "",
+                  "description": "The number of bathrooms in the property. Supports fractions to indicate partial bathrooms"
+                },
+                {
+                  "disabled": false,
+                  "key": "squareFootage",
+                  "value": "",
+                  "description": "The total living area size of the property, in square feet"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxRadius",
+                  "value": "<float>",
+                  "description": "The maximum distance between comparable listings and the subject property, in miles"
+                },
+                {
+                  "disabled": false,
+                  "key": "daysOld",
+                  "value": "<integer>",
+                  "description": "The maximum number of days since comparable listings were last seen on the market, with a minimum of 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "compCount",
+                  "value": "5",
+                  "description": "The number of comparable listings to use when calculating the rent estimate, between 5 and 25. Defaults to `15` if not provided"
+                },
+                {
+                  "disabled": false,
+                  "key": "lookupSubjectAttributes",
+                  "value": "<boolean>",
+                  "description": "When enabled, will attempt to look up subject property attributes to find more relevant comps. Defaults to `true` if not provided. [Learn more](https://developers.rentcast.io/reference/property-valuation#subject-property-attribute-lookup) about this feature"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd6c30e2-51b5-4597-b513-7e4dd5142ba6",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "avm",
+                    "rent",
+                    "long-term"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "5500 Grand Lake Dr, San Antonio, TX, 78244"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "propertyType",
+                      "value": ""
+                    },
+                    {
+                      "key": "bedrooms",
+                      "value": ""
+                    },
+                    {
+                      "key": "bathrooms",
+                      "value": ""
+                    },
+                    {
+                      "key": "squareFootage",
+                      "value": ""
+                    },
+                    {
+                      "key": "maxRadius",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "daysOld",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "compCount",
+                      "value": "5"
+                    },
+                    {
+                      "key": "lookupSubjectAttributes",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rent\": 1620,\n  \"rentRangeLow\": 1550,\n  \"rentRangeHigh\": 1690,\n  \"subjectProperty\": {\n    \"id\": \"5500-Grand-Lake-Dr,-San-Antonio,-TX-78244\",\n    \"formattedAddress\": \"5500 Grand Lake Dr, San Antonio, TX 78244\",\n    \"addressLine1\": \"5500 Grand Lake Dr\",\n    \"addressLine2\": null,\n    \"city\": \"San Antonio\",\n    \"state\": \"TX\",\n    \"stateFips\": \"48\",\n    \"zipCode\": \"78244\",\n    \"county\": \"Bexar\",\n    \"countyFips\": 29,\n    \"latitude\": 29.476011,\n    \"longitude\": -98.351454,\n    \"propertyType\": \"Single Family\",\n    \"bedrooms\": 3,\n    \"bathrooms\": 2,\n    \"squareFootage\": 1878,\n    \"lotSize\": 8843,\n    \"yearBuilt\": 1973,\n    \"lastSaleDate\": \"2024-11-18T00:00:00.000Z\",\n    \"lastSalePrice\": 270000\n  },\n  \"comparables\": [\n    {\n      \"id\": \"7306-Kingsland-Dr,-San-Antonio,-TX-78244\",\n      \"formattedAddress\": \"7306 Kingsland Dr, San Antonio, TX 78244\",\n      \"addressLine1\": \"7306 Kingsland Dr\",\n      \"addressLine2\": null,\n      \"city\": \"San Antonio\",\n      \"state\": \"TX\",\n      \"stateFips\": \"48\",\n      \"zipCode\": \"78244\",\n      \"county\": \"Bexar\",\n      \"countyFips\": 29,\n      \"latitude\": 29.473782,\n      \"longitude\": -98.344684,\n      \"propertyType\": \"Single Family\",\n      \"bedrooms\": 3,\n      \"bathrooms\": 2,\n      \"squareFootage\": 1835,\n      \"lotSize\": 7405,\n      \"yearBuilt\": 1997,\n      \"status\": \"Inactive\",\n      \"price\": 1627,\n      \"listingType\": \"Standard\",\n      \"listedDate\": \"2025-02-06T00:00:00.000Z\",\n      \"removedDate\": \"2025-02-07T00:00:00.000Z\",\n      \"lastSeenDate\": \"2025-02-06T05:09:03.727Z\",\n      \"daysOnMarket\": 1,\n      \"distance\": 0.4359,\n      \"daysOld\": 210,\n      \"correlation\": 0.9873\n    },\n    {\n      \"id\": \"4907-Lakebend-East-Dr,-San-Antonio,-TX-78244\",\n      \"formattedAddress\": \"4907 Lakebend East Dr, San Antonio, TX 78244\",\n      \"addressLine1\": \"4907 Lakebend East Dr\",\n      \"addressLine2\": null,\n      \"city\": \"San Antonio\",\n      \"state\": \"TX\",\n      \"stateFips\": \"48\",\n      \"zipCode\": \"78244\",\n      \"county\": \"Bexar\",\n      \"countyFips\": 29,\n      \"latitude\": 29.471408,\n      \"longitude\": -98.348191,\n      \"propertyType\": \"Single Family\",\n      \"bedrooms\": 3,\n      \"bathrooms\": 2,\n      \"squareFootage\": 1764,\n      \"lotSize\": 6098,\n      \"yearBuilt\": 1996,\n      \"status\": \"Inactive\",\n      \"price\": 1500,\n      \"listingType\": \"Standard\",\n      \"listedDate\": \"2024-07-11T00:00:00.000Z\",\n      \"removedDate\": \"2025-02-06T00:00:00.000Z\",\n      \"lastSeenDate\": \"2025-02-05T05:12:02.891Z\",\n      \"daysOnMarket\": 210,\n      \"distance\": 0.3741,\n      \"daysOld\": 211,\n      \"correlation\": 0.9792\n    },\n    {\n      \"id\": \"7037-Lynn-Lake-Dr,-San-Antonio,-TX-78244\",\n      \"formattedAddress\": \"7037 Lynn Lake Dr, San Antonio, TX 78244\",\n      \"addressLine1\": \"7037 Lynn Lake Dr\",\n      \"addressLine2\": null,\n      \"city\": \"San Antonio\",\n      \"state\": \"TX\",\n      \"stateFips\": \"48\",\n      \"zipCode\": \"78244\",\n      \"county\": \"Bexar\",\n      \"countyFips\": 29,\n      \"latitude\": 29.473394,\n      \"longitude\": -98.348222,\n      \"propertyType\": \"Single Family\",\n      \"bedrooms\": 3,\n      \"bathrooms\": 2.5,\n      \"squareFootage\": 1863,\n      \"lotSize\": 5358,\n      \"yearBuilt\": 1999,\n      \"status\": \"Active\",\n      \"price\": 1700,\n      \"listingType\": \"Standard\",\n      \"listedDate\": \"2025-08-12T00:00:00.000Z\",\n      \"removedDate\": null,\n      \"lastSeenDate\": \"2025-09-03T02:50:19.961Z\",\n      \"daysOnMarket\": 23,\n      \"distance\": 0.2658,\n      \"daysOld\": 1,\n      \"correlation\": 0.9702\n    },\n    {\n      \"id\": \"5106-Lakebend-East-Dr,-San-Antonio,-TX-78244\",\n      \"formattedAddress\": \"5106 Lakebend East Dr, San Antonio, TX 78244\",\n      \"addressLine1\": \"5106 Lakebend East Dr\",\n      \"addressLine2\": null,\n      \"city\": \"San Antonio\",\n      \"state\": \"TX\",\n      \"stateFips\": \"48\",\n      \"zipCode\": \"78244\",\n      \"county\": \"Bexar\",\n      \"countyFips\": 29,\n      \"latitude\": 29.473168,\n      \"longitude\": -98.349176,\n      \"propertyType\": \"Single Family\",\n      \"bedrooms\": 3,\n      \"bathrooms\": 2,\n      \"squareFootage\": 1667,\n      \"lotSize\": 6882,\n      \"yearBuilt\": 1987,\n      \"status\": \"Inactive\",\n      \"price\": 1695,\n      \"listingType\": \"Standard\",\n      \"listedDate\": \"2023-08-25T00:00:00.000Z\",\n      \"removedDate\": \"2025-05-14T00:00:00.000Z\",\n      \"lastSeenDate\": \"2025-05-13T04:51:16.590Z\",\n      \"daysOnMarket\": 628,\n      \"distance\": 0.2398,\n      \"daysOld\": 114,\n      \"correlation\": 0.9692\n    },\n    {\n      \"id\": \"7323-Kingsland,-San-Antonio,-TX-78244\",\n      \"formattedAddress\": \"7323 Kingsland, San Antonio, TX 78244\",\n      \"addressLine1\": \"7323 Kingsland\",\n      \"addressLine2\": null,\n      \"city\": \"San Antonio\",\n      \"state\": \"TX\",\n      \"stateFips\": \"48\",\n      \"zipCode\": \"78244\",\n      \"county\": \"Bexar\",\n      \"countyFips\": 29,\n      \"latitude\": 29.474238,\n      \"longitude\": -98.34394,\n      \"propertyType\": \"Single Family\",\n      \"bedrooms\": 3,\n      \"bathrooms\": 2,\n      \"squareFootage\": 1671,\n      \"lotSize\": 9017,\n      \"yearBuilt\": 2001,\n      \"status\": \"Inactive\",\n      \"price\": 1575,\n      \"listingType\": \"Standard\",\n      \"listedDate\": \"2024-12-30T00:00:00.000Z\",\n      \"removedDate\": \"2025-06-05T00:00:00.000Z\",\n      \"lastSeenDate\": \"2025-06-04T04:32:03.650Z\",\n      \"daysOnMarket\": 157,\n      \"distance\": 0.4688,\n      \"daysOld\": 92,\n      \"correlation\": 0.9663\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6922a2a-6e9f-4b32-b308-786c5c4d4b4c",
+              "name": "Auth Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "avm",
+                    "rent",
+                    "long-term"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "5500 Grand Lake Dr, San Antonio, TX, 78244"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "propertyType",
+                      "value": ""
+                    },
+                    {
+                      "key": "bedrooms",
+                      "value": ""
+                    },
+                    {
+                      "key": "bathrooms",
+                      "value": ""
+                    },
+                    {
+                      "key": "squareFootage",
+                      "value": ""
+                    },
+                    {
+                      "key": "maxRadius",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "daysOld",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "compCount",
+                      "value": "5"
+                    },
+                    {
+                      "key": "lookupSubjectAttributes",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 401,\n  \"error\": \"auth/api-key-invalid\",\n  \"message\": \"No API key provided in request. An API key must be provided in the 'X-Api-Key' header\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rentcast.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "66122e35-8747-4775-9fac-8cf4485094df",
+    "name": "RentCast Avm API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

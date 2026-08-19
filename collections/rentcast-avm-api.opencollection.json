@@ -1,0 +1,184 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RentCast Avm API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Avm",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Value Estimate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rentcast.io/v1/avm/value",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "The **full address** of the property, in the format `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters"
+              },
+              {
+                "name": "latitude",
+                "value": "",
+                "type": "query",
+                "description": "The latitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter"
+              },
+              {
+                "name": "longitude",
+                "value": "",
+                "type": "query",
+                "description": "The longitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter"
+              },
+              {
+                "name": "propertyType",
+                "value": "",
+                "type": "query",
+                "description": "The type of the property. See [explanation of property types](https://developers.rentcast.io/reference/property-types)"
+              },
+              {
+                "name": "bedrooms",
+                "value": "",
+                "type": "query",
+                "description": "The number of bedrooms in the property. Use `0` to indicate a studio layout"
+              },
+              {
+                "name": "bathrooms",
+                "value": "",
+                "type": "query",
+                "description": "The number of bathrooms in the property. Supports fractions to indicate partial bathrooms"
+              },
+              {
+                "name": "squareFootage",
+                "value": "",
+                "type": "query",
+                "description": "The total living area size of the property, in square feet"
+              },
+              {
+                "name": "maxRadius",
+                "value": "",
+                "type": "query",
+                "description": "The maximum distance between comparable listings and the subject property, in miles"
+              },
+              {
+                "name": "daysOld",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of days since comparable listings were last seen on the market, with a minimum of 1"
+              },
+              {
+                "name": "compCount",
+                "value": "",
+                "type": "query",
+                "description": "The number of comparable listings to use when calculating the value estimate, between 5 and 25. Defaults to `15` if not provided"
+              },
+              {
+                "name": "lookupSubjectAttributes",
+                "value": "",
+                "type": "query",
+                "description": "When enabled, will attempt to look up subject property attributes to find more relevant comps. Defaults to `true` if not provided. [Learn more](https://developers.rentcast.io/reference/property-valuation#subject-property-attribute-lookup) about this feature"
+              }
+            ]
+          },
+          "docs": "Returns a property value estimate and comparable properties."
+        },
+        {
+          "info": {
+            "name": "Rent Estimate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rentcast.io/v1/avm/rent/long-term",
+            "params": [
+              {
+                "name": "address",
+                "value": "",
+                "type": "query",
+                "description": "The **full address** of the property, in the format `Street, City, State, Zip`. You need to provide either the `address` or the `latitude`/`longitude` parameters"
+              },
+              {
+                "name": "latitude",
+                "value": "",
+                "type": "query",
+                "description": "The latitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter"
+              },
+              {
+                "name": "longitude",
+                "value": "",
+                "type": "query",
+                "description": "The longitude of the property. The `latitude`/`longitude` can be provided instead of the `address` parameter"
+              },
+              {
+                "name": "propertyType",
+                "value": "",
+                "type": "query",
+                "description": "The type of the property. See [explanation of property types](https://developers.rentcast.io/reference/property-types)"
+              },
+              {
+                "name": "bedrooms",
+                "value": "",
+                "type": "query",
+                "description": "The number of bedrooms in the property. Use `0` to indicate a studio layout"
+              },
+              {
+                "name": "bathrooms",
+                "value": "",
+                "type": "query",
+                "description": "The number of bathrooms in the property. Supports fractions to indicate partial bathrooms"
+              },
+              {
+                "name": "squareFootage",
+                "value": "",
+                "type": "query",
+                "description": "The total living area size of the property, in square feet"
+              },
+              {
+                "name": "maxRadius",
+                "value": "",
+                "type": "query",
+                "description": "The maximum distance between comparable listings and the subject property, in miles"
+              },
+              {
+                "name": "daysOld",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of days since comparable listings were last seen on the market, with a minimum of 1"
+              },
+              {
+                "name": "compCount",
+                "value": "",
+                "type": "query",
+                "description": "The number of comparable listings to use when calculating the rent estimate, between 5 and 25. Defaults to `15` if not provided"
+              },
+              {
+                "name": "lookupSubjectAttributes",
+                "value": "",
+                "type": "query",
+                "description": "When enabled, will attempt to look up subject property attributes to find more relevant comps. Defaults to `true` if not provided. [Learn more](https://developers.rentcast.io/reference/property-valuation#subject-property-attribute-lookup) about this feature"
+              }
+            ]
+          },
+          "docs": "Returns a property rent estimate and comparable properties."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

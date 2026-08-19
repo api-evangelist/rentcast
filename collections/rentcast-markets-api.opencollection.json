@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "RentCast Avm Markets API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Api-Key",
+      "value": "{{X-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Markets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Market Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rentcast.io/v1/markets",
+            "params": [
+              {
+                "name": "zipCode",
+                "value": "",
+                "type": "query",
+                "description": "A valid 5-digit US zip code"
+              },
+              {
+                "name": "dataType",
+                "value": "",
+                "type": "query",
+                "description": "The type of aggregate market data to retrieve. Defaults to `\"All\"` if not provided"
+              },
+              {
+                "name": "historyRange",
+                "value": "",
+                "type": "query",
+                "description": "The time range for historical record entries, in months. Defaults to `12` if not provided"
+              }
+            ]
+          },
+          "docs": "Returns aggregate market statistics and listing trends for a single US zip code."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

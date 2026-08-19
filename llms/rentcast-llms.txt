@@ -1,0 +1,43 @@
+# RentCast API Documentation
+
+> Explore RentCast property data API docs for 150M+ property records, value and rent estimates, comps, active listings and real estate market data across the US.
+
+## API Reference
+- [Introduction](https://developers.rentcast.io/reference/introduction.md): Welcome to the RentCast property data API documentation 👋
+- [Getting Started](https://developers.rentcast.io/reference/getting-started-guide.md): How to create your RentCast account, manage API keys and authenticate API requests.
+- [Billing and Pricing](https://developers.rentcast.io/reference/billing-and-pricing.md): Learn about our pricing and managing billing for your API subscription.
+- [Security](https://developers.rentcast.io/reference/security.md): Learn more about security best practices and protecting your API keys.
+- [Integrations](https://developers.rentcast.io/reference/integrations.md): Connect our API and property data to other apps and services.
+- [AI Tools](https://developers.rentcast.io/reference/ai-tools.md): Integrate the RentCast API with AI tools, assistants and agents.
+- [Search Queries](https://developers.rentcast.io/reference/search-queries.md): How to use search queries to retrieve property records and listings.
+- [Pagination](https://developers.rentcast.io/reference/pagination.md): How to paginate through large lists of results and retrieve bulk data.
+- [Property Types](https://developers.rentcast.io/reference/property-types.md): An overview of the property types used by the RentCast API.
+- [Response Codes](https://developers.rentcast.io/reference/response-codes.md): An overview of the response codes returned by the RentCast API.
+- [Rate Limits](https://developers.rentcast.io/reference/rate-limits.md): The RentCast API has a rate limit of 20 requests per second.
+- [Property Data](https://developers.rentcast.io/reference/property-data.md): Retrieve data for residential and commercial properties in the US.
+- [Property Data Schema](https://developers.rentcast.io/reference/property-data-schema.md): Data dictionary and schema for the property data responses.
+- [Property Records](https://developers.rentcast.io/reference/property-records.md): Search for property records in a geographical area, or by a specific address.
+- [Random Property Records](https://developers.rentcast.io/reference/property-records-random.md): Returns a list of property records selected at random.
+- [Property Record by Id](https://developers.rentcast.io/reference/property-record-by-id.md): Returns a single property record matching the specified id.
+- [Property Valuation](https://developers.rentcast.io/reference/property-valuation.md): Retrieve current property value and rent estimates for US properties.
+- [Property Valuation Schema](https://developers.rentcast.io/reference/property-valuation-schema.md): Data dictionary and schema for the property valuation responses.
+- [Value Estimate](https://developers.rentcast.io/reference/value-estimate.md): Returns a property value estimate and comparable properties.
+- [Rent Estimate](https://developers.rentcast.io/reference/rent-estimate-long-term.md): Returns a property rent estimate and comparable properties.
+- [Property Listings](https://developers.rentcast.io/reference/property-listings.md): Retrieve property sale and rental listings nationwide in the US.
+- [Property Listings Schema](https://developers.rentcast.io/reference/property-listings-schema.md): Data dictionary and schema for the property listings responses.
+- [Sale Listings](https://developers.rentcast.io/reference/sale-listings.md): Search for sale listings in a geographical area, or by a specific address.
+- [Sale Listing by Id](https://developers.rentcast.io/reference/sale-listing-by-id.md): Returns a single sale listing matching the specified id.
+- [Rental Listings](https://developers.rentcast.io/reference/rental-listings-long-term.md): Search for rental listings in a geographical area, or by a specific address.
+- [Rental Listing by Id](https://developers.rentcast.io/reference/rental-listing-long-term-by-id.md): Returns a single rental listing matching the specified id.
+- [Market Data](https://developers.rentcast.io/reference/market-data.md): Retrieve aggregate market data, statistics and historical trends by zip code.
+- [Market Data Schema](https://developers.rentcast.io/reference/market-data-schema.md): Data dictionary and schema for the market data responses.
+- [Market Statistics](https://developers.rentcast.io/reference/market-statistics.md): Returns aggregate market statistics and listing trends for a single US zip code.
+
+## Changelog
+- [New API Key Security Features](https://developers.rentcast.io/changelog/api-release-2026-06.md)
+- [Expanded Query Engine and AVM Improvements](https://developers.rentcast.io/changelog/api-release-2025-08.md)
+- [Sale Market Statistics, New Data Points and Queries](https://developers.rentcast.io/changelog/api-release-2024-09.md)
+- [RentCast Zapier Integration](https://developers.rentcast.io/changelog/api-release-2024-02.md)
+- [New Property Listing Endpoints](https://developers.rentcast.io/changelog/api-release-2023-03.md)
+- [New Query Parameters and Improvements](https://developers.rentcast.io/changelog/api-release-2023-01.md)
+- [RentCast API Initial Release](https://developers.rentcast.io/changelog/api-release-2022-11.md)

@@ -1,0 +1,1143 @@
+{
+  "item": [
+    {
+      "id": "7d24340b-79d1-4dcb-8081-4a2a3e21d83e",
+      "name": "Listings",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ad786adb-7b71-4479-a82d-ea40b036157c",
+          "name": "Sale Listings",
+          "request": {
+            "name": "Sale Listings",
+            "description": {
+              "content": "Search for sale listings in a geographical area, or by a specific address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings",
+                "sale"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a circular area"
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "Austin",
+                  "description": "The name of the city, used to search for listings in a specific city. This parameter is case-sensitive"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "TX",
+                  "description": "The 2-character state abbreviation, used to search for listings in a specific state. This parameter is case-sensitive"
+                },
+                {
+                  "disabled": false,
+                  "key": "zipCode",
+                  "value": "<string>",
+                  "description": "The 5-digit zip code, used to search for listings in a specific zip code"
+                },
+                {
+                  "disabled": false,
+                  "key": "latitude",
+                  "value": "<float>",
+                  "description": "The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area"
+                },
+                {
+                  "disabled": false,
+                  "key": "longitude",
+                  "value": "<float>",
+                  "description": "The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area"
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "<float>",
+                  "description": "The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a circular area"
+                },
+                {
+                  "disabled": false,
+                  "key": "propertyType",
+                  "value": "<string>",
+                  "description": "The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+                },
+                {
+                  "disabled": false,
+                  "key": "bedrooms",
+                  "value": "<string>",
+                  "description": "The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+                },
+                {
+                  "disabled": false,
+                  "key": "bathrooms",
+                  "value": "<string>",
+                  "description": "The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+                },
+                {
+                  "disabled": false,
+                  "key": "squareFootage",
+                  "value": "",
+                  "description": "The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+                },
+                {
+                  "disabled": false,
+                  "key": "lotSize",
+                  "value": "<string>",
+                  "description": "The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+                },
+                {
+                  "disabled": false,
+                  "key": "yearBuilt",
+                  "value": "",
+                  "description": "The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "Active",
+                  "description": "The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values)"
+                },
+                {
+                  "disabled": false,
+                  "key": "price",
+                  "value": "<string>",
+                  "description": "The listed price of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+                },
+                {
+                  "disabled": false,
+                  "key": "daysOld",
+                  "value": "<string>",
+                  "description": "The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "5",
+                  "description": "The maximum number of listing records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The index of the first listing record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeTotalCount",
+                  "value": "<boolean>",
+                  "description": "When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ebc411f7-f861-4d40-ad66-022f3a2f599b",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "sale"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "Austin"
+                    },
+                    {
+                      "key": "state",
+                      "value": "TX"
+                    },
+                    {
+                      "key": "zipCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "propertyType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bedrooms",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bathrooms",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "squareFootage",
+                      "value": ""
+                    },
+                    {
+                      "key": "lotSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "yearBuilt",
+                      "value": ""
+                    },
+                    {
+                      "key": "status",
+                      "value": "Active"
+                    },
+                    {
+                      "key": "price",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "daysOld",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "includeTotalCount",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"3821-Hargis-St,-Austin,-TX-78723\",\n    \"formattedAddress\": \"3821 Hargis St, Austin, TX 78723\",\n    \"addressLine1\": \"3821 Hargis St\",\n    \"addressLine2\": null,\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"stateFips\": \"48\",\n    \"zipCode\": \"78723\",\n    \"county\": \"Travis\",\n    \"countyFips\": \"453\",\n    \"latitude\": 30.290643,\n    \"longitude\": -97.701547,\n    \"propertyType\": \"Single Family\",\n    \"bedrooms\": 4,\n    \"bathrooms\": 2.5,\n    \"squareFootage\": 2345,\n    \"lotSize\": 3284,\n    \"yearBuilt\": 2008,\n    \"hoa\": {\n      \"fee\": 65\n    },\n    \"status\": \"Active\",\n    \"price\": 899000,\n    \"listingType\": \"Standard\",\n    \"listedDate\": \"2024-06-24T00:00:00.000Z\",\n    \"removedDate\": null,\n    \"createdDate\": \"2021-06-25T00:00:00.000Z\",\n    \"lastSeenDate\": \"2024-09-30T13:11:47.157Z\",\n    \"daysOnMarket\": 99,\n    \"mlsName\": \"UnlockMLS\",\n    \"mlsNumber\": \"5519228\",\n    \"listingAgent\": {\n      \"name\": \"Jennifer Welch\",\n      \"phone\": \"5124313110\",\n      \"email\": \"jennifer@gottesmanresidential.com\",\n      \"website\": \"https://www.gottesmanresidential.com\"\n    },\n    \"listingOffice\": {\n      \"name\": \"Gottesman Residential R.E.\",\n      \"phone\": \"5124512422\",\n      \"email\": \"nataliem@gottesmanresidential.com\",\n      \"website\": \"https://www.gottesmanresidential.com\"\n    },\n    \"history\": {\n      \"2024-06-24\": {\n        \"event\": \"Sale Listing\",\n        \"price\": 899000,\n        \"listingType\": \"Standard\",\n        \"listedDate\": \"2024-06-24T00:00:00.000Z\",\n        \"removedDate\": null,\n        \"daysOnMarket\": 99\n      }\n    }\n  },\n  {\n    \"id\": \"6808-Windrift-Way,-Austin,-TX-78745\",\n    \"formattedAddress\": \"6808 Windrift Way, Austin, TX 78745\",\n    \"addressLine1\": \"6808 Windrift Way\",\n    \"addressLine2\": null,\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"stateFips\": \"48\",\n    \"zipCode\": \"78745\",\n    \"county\": \"Travis\",\n    \"countyFips\": \"453\",\n    \"latitude\": 30.199388,\n    \"longitude\": -97.798729,\n    \"propertyType\": \"Single Family\",\n    \"bedrooms\": 3,\n    \"bathrooms\": 2,\n    \"squareFootage\": 1199,\n    \"lotSize\": 6390,\n    \"yearBuilt\": 1974,\n    \"status\": \"Active\",\n    \"price\": 424900,\n    \"listingType\": \"Standard\",\n    \"listedDate\": \"2024-01-03T00:00:00.000Z\",\n    \"removedDate\": null,\n    \"createdDate\": \"2023-08-15T00:00:00.000Z\",\n    \"lastSeenDate\": \"2024-09-28T13:48:38.179Z\",\n    \"daysOnMarket\": 270,\n    \"mlsName\": \"UnlockMLS\",\n    \"mlsNumber\": \"5589475\",\n    \"listingAgent\": {\n      \"name\": \"Christopher Watters\",\n      \"phone\": \"7373135275\",\n      \"email\": \"sold@wattersinternational.com\",\n      \"website\": \"https://www.christopherwatters.com\"\n    },\n    \"listingOffice\": {\n      \"name\": \"Watters International Realty\",\n      \"phone\": \"5126460038\",\n      \"email\": \"chriswatters@wattersinternational.com\",\n      \"website\": \"https://www.christopherwatters.com\"\n    },\n    \"history\": {\n      \"2024-01-03\": {\n        \"event\": \"Sale Listing\",\n        \"price\": 424900,\n        \"listingType\": \"Standard\",\n        \"listedDate\": \"2024-01-03T00:00:00.000Z\",\n        \"removedDate\": null,\n        \"daysOnMarket\": 270\n      }\n    }\n  },\n  {\n    \"id\": \"54-Rainey-St,-Apt-513,-Austin,-TX-78701\",\n    \"formattedAddress\": \"54 Rainey St, Apt 513, Austin, TX 78701\",\n    \"addressLine1\": \"54 Rainey St\",\n    \"addressLine2\": \"Apt 513\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"stateFips\": \"48\",\n    \"zipCode\": \"78701\",\n    \"county\": \"Travis\",\n    \"countyFips\": \"453\",\n    \"latitude\": 30.257382,\n    \"longitude\": -97.739444,\n    \"propertyType\": \"Condo\",\n    \"bedrooms\": 2,\n    \"bathrooms\": 2,\n    \"squareFootage\": 1164,\n    \"lotSize\": 292,\n    \"yearBuilt\": 2005,\n    \"hoa\": {\n      \"fee\": 803\n    },\n    \"status\": \"Active\",\n    \"price\": 560000,\n    \"listingType\": \"Standard\",\n    \"listedDate\": \"2024-01-04T00:00:00.000Z\",\n    \"removedDate\": null,\n    \"createdDate\": \"2024-01-05T00:00:00.000Z\",\n    \"lastSeenDate\": \"2024-09-28T13:48:39.150Z\",\n    \"daysOnMarket\": 269,\n    \"mlsName\": \"UnlockMLS\",\n    \"mlsNumber\": \"1594185\",\n    \"listingAgent\": {\n      \"name\": \"Adam Zell\",\n      \"phone\": \"5128204918\",\n      \"email\": \"adam.zell@compass.com\",\n      \"website\": \"https://www.compass.com\"\n    },\n    \"listingOffice\": {\n      \"name\": \"Compass RE Texas LLC - Austin\",\n      \"phone\": \"5125753644\",\n      \"email\": \"txbroker@compass.com\",\n      \"website\": \"https://www.compass.com\"\n    },\n    \"history\": {\n      \"2024-01-04\": {\n        \"event\": \"Sale Listing\",\n        \"price\": 560000,\n        \"listingType\": \"Standard\",\n        \"listedDate\": \"2024-01-04T00:00:00.000Z\",\n        \"removedDate\": null,\n        \"daysOnMarket\": 269\n      }\n    }\n  },\n  {\n    \"id\": \"15407-Patrica-St,-Austin,-TX-78728\",\n    \"formattedAddress\": \"15407 Patrica St, Austin, TX 78728\",\n    \"addressLine1\": \"15407 Patrica St\",\n    \"addressLine2\": null,\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"stateFips\": \"48\",\n    \"zipCode\": \"78728\",\n    \"county\": \"Travis\",\n    \"countyFips\": \"453\",\n    \"latitude\": 30.451009,\n    \"longitude\": -97.669682,\n    \"propertyType\": \"Single Family\",\n    \"bedrooms\": 3,\n    \"bathrooms\": 2,\n    \"squareFootage\": 1680,\n    \"lotSize\": 12632,\n    \"yearBuilt\": 1995,\n    \"status\": \"Active\",\n    \"price\": 720000,\n    \"listingType\": \"Standard\",\n    \"listedDate\": \"2024-01-18T00:00:00.000Z\",\n    \"removedDate\": null,\n    \"createdDate\": \"2021-02-13T00:00:00.000Z\",\n    \"lastSeenDate\": \"2024-09-28T13:49:05.753Z\",\n    \"daysOnMarket\": 255,\n    \"mlsName\": \"UnlockMLS\",\n    \"mlsNumber\": \"4738210\",\n    \"listingAgent\": {\n      \"name\": \"Minerva Juarez\",\n      \"phone\": \"5127333557\",\n      \"website\": \"https://minervajuarez-realtor.com\"\n    },\n    \"listingOffice\": {\n      \"name\": \"Keller Williams Realty\",\n      \"phone\": \"5123463550\",\n      \"email\": \"mecook@kw.com\"\n    },\n    \"history\": {\n      \"2024-01-18\": {\n        \"event\": \"Sale Listing\",\n        \"price\": 720000,\n        \"listingType\": \"Standard\",\n        \"listedDate\": \"2024-01-18T00:00:00.000Z\",\n        \"removedDate\": null,\n        \"daysOnMarket\": 255\n      }\n    }\n  },\n  {\n    \"id\": \"2681-Crazyhorse-Pass,-Austin,-TX-78734\",\n    \"formattedAddress\": \"2681 Crazyhorse Pass, Austin, TX 78734\",\n    \"addressLine1\": \"2681 Crazyhorse Pass\",\n    \"addressLine2\": null,\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"stateFips\": \"48\",\n    \"zipCode\": \"78734\",\n    \"county\": \"Travis\",\n    \"countyFips\": \"453\",\n    \"latitude\": 30.377405,\n    \"longitude\": -97.928841,\n    \"propertyType\": \"Manufactured\",\n    \"bedrooms\": 3,\n    \"bathrooms\": 2,\n    \"squareFootage\": 1792,\n    \"lotSize\": 9496,\n    \"yearBuilt\": 1995,\n    \"hoa\": {\n      \"fee\": 8\n    },\n    \"status\": \"Active\",\n    \"price\": 299999,\n    \"listingType\": \"Standard\",\n    \"listedDate\": \"2024-01-18T00:00:00.000Z\",\n    \"removedDate\": null,\n    \"createdDate\": \"2023-10-11T00:00:00.000Z\",\n    \"lastSeenDate\": \"2024-09-28T13:49:05.749Z\",\n    \"daysOnMarket\": 255,\n    \"mlsName\": \"SanAntonio\",\n    \"mlsNumber\": \"1745284\",\n    \"listingAgent\": {\n      \"name\": \"Yesenia Quevedo\",\n      \"phone\": \"2102545895\",\n      \"email\": \"yeseniaquevedosatx@gmail.com\"\n    },\n    \"listingOffice\": {\n      \"name\": \"LPT Realty LLC\",\n      \"phone\": \"8773662213\",\n      \"email\": \"rodney@rodneyhenson.com\"\n    },\n    \"history\": {\n      \"2024-01-18\": {\n        \"event\": \"Sale Listing\",\n        \"price\": 299999,\n        \"listingType\": \"Standard\",\n        \"listedDate\": \"2024-01-18T00:00:00.000Z\",\n        \"removedDate\": null,\n        \"daysOnMarket\": 255\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab7f57dc-c4be-4f5a-85f0-a54c61b649c8",
+              "name": "Auth Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "sale"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "Austin"
+                    },
+                    {
+                      "key": "state",
+                      "value": "TX"
+                    },
+                    {
+                      "key": "zipCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "propertyType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bedrooms",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bathrooms",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "squareFootage",
+                      "value": ""
+                    },
+                    {
+                      "key": "lotSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "yearBuilt",
+                      "value": ""
+                    },
+                    {
+                      "key": "status",
+                      "value": "Active"
+                    },
+                    {
+                      "key": "price",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "daysOld",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "includeTotalCount",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 401,\n  \"error\": \"auth/api-key-invalid\",\n  \"message\": \"No API key provided in request. An API key must be provided in the 'X-Api-Key' header\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e046318-8145-4e94-b073-e852b34fd990",
+          "name": "Sale Listing by Id",
+          "request": {
+            "name": "Sale Listing by Id",
+            "description": {
+              "content": "Returns a single sale listing matching the specified id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings",
+                "sale",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "3821-Hargis-St,-Austin,-TX-78723",
+                  "key": "id",
+                  "description": "(Required) The id of the property listing to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "05d82624-42ba-457f-892e-9d30092ac0ba",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "sale",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "3821-Hargis-St,-Austin,-TX-78723",
+                      "key": "id",
+                      "description": "(Required) The id of the property listing to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"3821-Hargis-St,-Austin,-TX-78723\",\n  \"formattedAddress\": \"3821 Hargis St, Austin, TX 78723\",\n  \"addressLine1\": \"3821 Hargis St\",\n  \"addressLine2\": null,\n  \"city\": \"Austin\",\n  \"state\": \"TX\",\n  \"stateFips\": \"48\",\n  \"zipCode\": \"78723\",\n  \"county\": \"Travis\",\n  \"countyFips\": \"453\",\n  \"latitude\": 30.290643,\n  \"longitude\": -97.701547,\n  \"propertyType\": \"Single Family\",\n  \"bedrooms\": 4,\n  \"bathrooms\": 2.5,\n  \"squareFootage\": 2345,\n  \"lotSize\": 3284,\n  \"yearBuilt\": 2008,\n  \"hoa\": {\n    \"fee\": 65\n  },\n  \"status\": \"Active\",\n  \"price\": 899000,\n  \"listingType\": \"Standard\",\n  \"listedDate\": \"2024-06-24T00:00:00.000Z\",\n  \"removedDate\": null,\n  \"createdDate\": \"2021-06-25T00:00:00.000Z\",\n  \"lastSeenDate\": \"2024-09-30T13:11:47.157Z\",\n  \"daysOnMarket\": 99,\n  \"mlsName\": \"UnlockMLS\",\n  \"mlsNumber\": \"5519228\",\n  \"listingAgent\": {\n    \"name\": \"Jennifer Welch\",\n    \"phone\": \"5124313110\",\n    \"email\": \"jennifer@gottesmanresidential.com\",\n    \"website\": \"https://www.gottesmanresidential.com\"\n  },\n  \"listingOffice\": {\n    \"name\": \"Gottesman Residential R.E.\",\n    \"phone\": \"5124512422\",\n    \"email\": \"nataliem@gottesmanresidential.com\",\n    \"website\": \"https://www.gottesmanresidential.com\"\n  },\n  \"history\": {\n    \"2024-06-24\": {\n      \"event\": \"Sale Listing\",\n      \"price\": 899000,\n      \"listingType\": \"Standard\",\n      \"listedDate\": \"2024-06-24T00:00:00.000Z\",\n      \"removedDate\": null,\n      \"daysOnMarket\": 99\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21aa1747-5913-450e-a55c-ed6e5bc0c274",
+              "name": "Auth Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "sale",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "3821-Hargis-St,-Austin,-TX-78723",
+                      "key": "id",
+                      "description": "(Required) The id of the property listing to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 401,\n  \"error\": \"auth/api-key-invalid\",\n  \"message\": \"No API key provided in request. An API key must be provided in the 'X-Api-Key' header\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75272650-7f46-4dde-864a-f31bd7fca31a",
+          "name": "Rental Listings",
+          "request": {
+            "name": "Rental Listings",
+            "description": {
+              "content": "Search for rental listings in a geographical area, or by a specific address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings",
+                "rental",
+                "long-term"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "address",
+                  "value": "<string>",
+                  "description": "The **full address** of the property, in the format `Street, City, State, Zip`. Used to retrieve data for a specific property, or together with the `radius` parameter to search for listings in a circular area"
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "Austin",
+                  "description": "The name of the city, used to search for listings in a specific city. This parameter is case-sensitive"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "TX",
+                  "description": "The 2-character state abbreviation, used to search for listings in a specific state. This parameter is case-sensitive"
+                },
+                {
+                  "disabled": false,
+                  "key": "zipCode",
+                  "value": "<string>",
+                  "description": "The 5-digit zip code, used to search for listings in a specific zip code"
+                },
+                {
+                  "disabled": false,
+                  "key": "latitude",
+                  "value": "<float>",
+                  "description": "The latitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area"
+                },
+                {
+                  "disabled": false,
+                  "key": "longitude",
+                  "value": "<float>",
+                  "description": "The longitude of the search area. Use the `latitude`/`longitude` and `radius` parameters to search for listings in a circular area"
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "<float>",
+                  "description": "The radius of the search area in miles, with a maximum of 100. Use in combination with the `latitude`/`longitude` or `address` parameters to search for listings in a circular area"
+                },
+                {
+                  "disabled": false,
+                  "key": "propertyType",
+                  "value": "<string>",
+                  "description": "The type of the property, used to search for listings matching this criteria. See [explanation of property types](https://developers.rentcast.io/reference/property-types). Supports [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+                },
+                {
+                  "disabled": false,
+                  "key": "bedrooms",
+                  "value": "<string>",
+                  "description": "The number of bedrooms, used to search for listings matching this criteria. Use `0` to indicate a studio layout. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+                },
+                {
+                  "disabled": false,
+                  "key": "bathrooms",
+                  "value": "<string>",
+                  "description": "The number of bathrooms, used to search for listings matching this criteria. Supports fractions to indicate partial bathrooms, [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+                },
+                {
+                  "disabled": false,
+                  "key": "squareFootage",
+                  "value": "",
+                  "description": "The total living area size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+                },
+                {
+                  "disabled": false,
+                  "key": "lotSize",
+                  "value": "<string>",
+                  "description": "The total lot size in square feet, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+                },
+                {
+                  "disabled": false,
+                  "key": "yearBuilt",
+                  "value": "",
+                  "description": "The year of construction, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "Active",
+                  "description": "The current listing status, used to search for listings matching this criteria. See [explanation of listing statuses](https://developers.rentcast.io/reference/property-listings-schema#listing-status-field-values)"
+                },
+                {
+                  "disabled": false,
+                  "key": "price",
+                  "value": "<string>",
+                  "description": "The listed rent of the property, used to search for listings matching this criteria. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters) and [multiple values](https://developers.rentcast.io/reference/search-queries#using-multiple-value-parameters)"
+                },
+                {
+                  "disabled": false,
+                  "key": "daysOld",
+                  "value": "<string>",
+                  "description": "The number of days since a property was listed on the market, with a minimum of 1. Supports [numeric ranges](https://developers.rentcast.io/reference/search-queries#using-numeric-range-parameters)"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "5",
+                  "description": "The maximum number of listing records to return, between 1 and 500. Defaults to `50` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The index of the first listing record to return, used to paginate through large lists of results. Defaults to `0` if not provided. [Learn more](https://developers.rentcast.io/reference/pagination) about pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeTotalCount",
+                  "value": "<boolean>",
+                  "description": "When enabled, will return the total number of results matching the current query in the `X-Total-Count` response header. Defaults to `false` if not provided"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c772de2-aee4-446b-a04d-62db446f87a5",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "rental",
+                    "long-term"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "Austin"
+                    },
+                    {
+                      "key": "state",
+                      "value": "TX"
+                    },
+                    {
+                      "key": "zipCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "propertyType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bedrooms",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bathrooms",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "squareFootage",
+                      "value": ""
+                    },
+                    {
+                      "key": "lotSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "yearBuilt",
+                      "value": ""
+                    },
+                    {
+                      "key": "status",
+                      "value": "Active"
+                    },
+                    {
+                      "key": "price",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "daysOld",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "includeTotalCount",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"2005-Arborside-Dr,-Austin,-TX-78754\",\n    \"formattedAddress\": \"2005 Arborside Dr, Austin, TX 78754\",\n    \"addressLine1\": \"2005 Arborside Dr\",\n    \"addressLine2\": null,\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"stateFips\": \"48\",\n    \"zipCode\": \"78754\",\n    \"county\": \"Travis\",\n    \"countyFips\": \"453\",\n    \"latitude\": 30.35837,\n    \"longitude\": -97.66508,\n    \"propertyType\": \"Single Family\",\n    \"bedrooms\": 3,\n    \"bathrooms\": 2.5,\n    \"squareFootage\": 1681,\n    \"lotSize\": 4360,\n    \"yearBuilt\": 2019,\n    \"hoa\": {\n      \"fee\": 45\n    },\n    \"status\": \"Active\",\n    \"price\": 2200,\n    \"listingType\": \"Standard\",\n    \"listedDate\": \"2024-09-18T00:00:00.000Z\",\n    \"removedDate\": null,\n    \"createdDate\": \"2024-09-19T00:00:00.000Z\",\n    \"lastSeenDate\": \"2024-09-30T03:49:20.620Z\",\n    \"daysOnMarket\": 13,\n    \"mlsName\": \"CentralTexas\",\n    \"mlsNumber\": \"556965\",\n    \"listingAgent\": {\n      \"name\": \"Zachary Barton\",\n      \"phone\": \"5129948203\",\n      \"email\": \"zak-barton@realtytexas.com\",\n      \"website\": \"https://zak-barton.realtytexas.homes\"\n    },\n    \"listingOffice\": {\n      \"name\": \"Realty Texas\",\n      \"phone\": \"5124765348\",\n      \"email\": \"sales@realtytexas.com\",\n      \"website\": \"https://www.realtytexas.com\"\n    },\n    \"history\": {\n      \"2024-09-18\": {\n        \"event\": \"Rental Listing\",\n        \"price\": 2200,\n        \"listingType\": \"Standard\",\n        \"listedDate\": \"2024-09-18T00:00:00.000Z\",\n        \"removedDate\": null,\n        \"daysOnMarket\": 13\n      }\n    }\n  },\n  {\n    \"id\": \"2811-Rio-Grande-St,-Apt-204,-Austin,-TX-78705\",\n    \"formattedAddress\": \"2811 Rio Grande St, Apt 204, Austin, TX 78705\",\n    \"addressLine1\": \"2811 Rio Grande St\",\n    \"addressLine2\": \"Apt 204\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"stateFips\": \"48\",\n    \"zipCode\": \"78705\",\n    \"county\": \"Travis\",\n    \"countyFips\": \"453\",\n    \"latitude\": 30.294241,\n    \"longitude\": -97.743666,\n    \"propertyType\": \"Condo\",\n    \"bedrooms\": 2,\n    \"bathrooms\": 2,\n    \"squareFootage\": 910,\n    \"lotSize\": 828,\n    \"yearBuilt\": 1983,\n    \"status\": \"Active\",\n    \"price\": 2150,\n    \"listingType\": \"Standard\",\n    \"listedDate\": \"2024-09-30T00:00:00.000Z\",\n    \"removedDate\": null,\n    \"createdDate\": \"2023-11-21T00:00:00.000Z\",\n    \"lastSeenDate\": \"2024-09-30T04:57:39.029Z\",\n    \"daysOnMarket\": 1,\n    \"history\": {\n      \"2024-09-30\": {\n        \"event\": \"Rental Listing\",\n        \"price\": 2150,\n        \"listingType\": \"Standard\",\n        \"listedDate\": \"2024-09-30T00:00:00.000Z\",\n        \"removedDate\": null,\n        \"daysOnMarket\": 1\n      }\n    }\n  },\n  {\n    \"id\": \"1701-Simond-Ave,-Unit-438,-Austin,-TX-78723\",\n    \"formattedAddress\": \"1701 Simond Ave, Unit 438, Austin, TX 78723\",\n    \"addressLine1\": \"1701 Simond Ave\",\n    \"addressLine2\": \"Unit 438\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"stateFips\": \"48\",\n    \"zipCode\": \"78723\",\n    \"county\": \"Travis\",\n    \"countyFips\": \"453\",\n    \"latitude\": 30.298584,\n    \"longitude\": -97.706497,\n    \"propertyType\": \"Condo\",\n    \"bedrooms\": 2,\n    \"bathrooms\": 2,\n    \"squareFootage\": 1101,\n    \"yearBuilt\": 2023,\n    \"status\": \"Active\",\n    \"price\": 3300,\n    \"listingType\": \"Standard\",\n    \"listedDate\": \"2024-08-26T00:00:00.000Z\",\n    \"removedDate\": null,\n    \"createdDate\": \"2024-08-27T00:00:00.000Z\",\n    \"lastSeenDate\": \"2024-09-30T04:58:33.029Z\",\n    \"daysOnMarket\": 36,\n    \"mlsName\": \"UnlockMLS\",\n    \"mlsNumber\": \"7940788\",\n    \"listingAgent\": {\n      \"name\": \"Kristen Williams\",\n      \"phone\": \"5126992984\",\n      \"email\": \"kristen@williamskw.com\",\n      \"website\": \"https://www.williamskw.com\"\n    },\n    \"listingOffice\": {\n      \"name\": \"Keller Williams Realty\",\n      \"phone\": \"5124484111\",\n      \"email\": \"jdgrubb@kw.com\",\n      \"website\": \"https://www.kellerwilliams.com\"\n    },\n    \"history\": {\n      \"2024-08-26\": {\n        \"event\": \"Rental Listing\",\n        \"price\": 3300,\n        \"listingType\": \"Standard\",\n        \"listedDate\": \"2024-08-26T00:00:00.000Z\",\n        \"removedDate\": null,\n        \"daysOnMarket\": 36\n      }\n    }\n  },\n  {\n    \"id\": \"1190-Ridge-Dr,-Austin,-TX-78721\",\n    \"formattedAddress\": \"1190 Ridge Dr, Austin, TX 78721\",\n    \"addressLine1\": \"1190 Ridge Dr\",\n    \"addressLine2\": null,\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"stateFips\": \"48\",\n    \"zipCode\": \"78721\",\n    \"county\": \"Travis\",\n    \"countyFips\": \"453\",\n    \"latitude\": 30.276113,\n    \"longitude\": -97.698406,\n    \"propertyType\": \"Manufactured\",\n    \"bedrooms\": 3,\n    \"bathrooms\": 2,\n    \"squareFootage\": 1200,\n    \"lotSize\": 5380,\n    \"yearBuilt\": 1999,\n    \"status\": \"Active\",\n    \"price\": 1850,\n    \"listingType\": \"Standard\",\n    \"listedDate\": \"2024-05-02T00:00:00.000Z\",\n    \"removedDate\": null,\n    \"createdDate\": \"2023-06-24T00:00:00.000Z\",\n    \"lastSeenDate\": \"2024-09-30T05:47:38.669Z\",\n    \"daysOnMarket\": 152,\n    \"mlsName\": \"UnlockMLS\",\n    \"mlsNumber\": \"8112202\",\n    \"listingAgent\": {\n      \"name\": \"Brandee Otto\",\n      \"phone\": \"5125572728\",\n      \"email\": \"brandeelotto@gmail.com\",\n      \"website\": \"https://www.pp-bms.com\"\n    },\n    \"listingOffice\": {\n      \"name\": \"Realty One Group Prosper\",\n      \"phone\": \"5125235663\",\n      \"email\": \"karlyn@rogprosper.com\",\n      \"website\": \"https://www.marcyourmove.com\"\n    },\n    \"history\": {\n      \"2024-05-02\": {\n        \"event\": \"Rental Listing\",\n        \"price\": 1850,\n        \"listingType\": \"Standard\",\n        \"listedDate\": \"2024-05-02T00:00:00.000Z\",\n        \"removedDate\": null,\n        \"daysOnMarket\": 152\n      }\n    }\n  },\n  {\n    \"id\": \"411-W-Odell-St,-Unit-A,-Austin,-TX-78752\",\n    \"formattedAddress\": \"411 W Odell St, Unit A, Austin, TX 78752\",\n    \"addressLine1\": \"411 W Odell St\",\n    \"addressLine2\": \"Unit A\",\n    \"city\": \"Austin\",\n    \"state\": \"TX\",\n    \"stateFips\": \"48\",\n    \"zipCode\": \"78752\",\n    \"county\": \"Travis\",\n    \"countyFips\": \"453\",\n    \"latitude\": 30.337767,\n    \"longitude\": -97.712625,\n    \"propertyType\": \"Single Family\",\n    \"bedrooms\": 3,\n    \"bathrooms\": 2.5,\n    \"squareFootage\": 1694,\n    \"lotSize\": 7013,\n    \"yearBuilt\": 2019,\n    \"status\": \"Active\",\n    \"price\": 2700,\n    \"listingType\": \"Standard\",\n    \"listedDate\": \"2024-09-16T00:00:00.000Z\",\n    \"removedDate\": null,\n    \"createdDate\": \"2022-10-27T00:00:00.000Z\",\n    \"lastSeenDate\": \"2024-09-30T05:49:20.678Z\",\n    \"daysOnMarket\": 15,\n    \"mlsName\": \"UnlockMLS\",\n    \"mlsNumber\": \"4230179\",\n    \"listingAgent\": {\n      \"name\": \"Alex Mccormick\",\n      \"phone\": \"5127624397\",\n      \"email\": \"alex.mccormick@followupboss.me\",\n      \"website\": \"https://www.alexatxrealtor.com\"\n    },\n    \"listingOffice\": {\n      \"name\": \"Keller Williams Realty\",\n      \"phone\": \"5124484111\",\n      \"email\": \"jdgrubb@kw.com\",\n      \"website\": \"https://www.kellerwilliams.com\"\n    },\n    \"history\": {\n      \"2024-09-16\": {\n        \"event\": \"Rental Listing\",\n        \"price\": 2700,\n        \"listingType\": \"Standard\",\n        \"listedDate\": \"2024-09-16T00:00:00.000Z\",\n        \"removedDate\": null,\n        \"daysOnMarket\": 15\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99acfd3a-91ac-48f8-9cd7-66b75065bd58",
+              "name": "Auth Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "rental",
+                    "long-term"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "address",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "Austin"
+                    },
+                    {
+                      "key": "state",
+                      "value": "TX"
+                    },
+                    {
+                      "key": "zipCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "latitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "longitude",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "propertyType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bedrooms",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bathrooms",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "squareFootage",
+                      "value": ""
+                    },
+                    {
+                      "key": "lotSize",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "yearBuilt",
+                      "value": ""
+                    },
+                    {
+                      "key": "status",
+                      "value": "Active"
+                    },
+                    {
+                      "key": "price",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "daysOld",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "includeTotalCount",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 401,\n  \"error\": \"auth/api-key-invalid\",\n  \"message\": \"No API key provided in request. An API key must be provided in the 'X-Api-Key' header\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "48e025da-b0b6-4917-b50f-8042eb1f4e39",
+          "name": "Rental Listing by Id",
+          "request": {
+            "name": "Rental Listing by Id",
+            "description": {
+              "content": "Returns a single rental listing matching the specified id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings",
+                "rental",
+                "long-term",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "2005-Arborside-Dr,-Austin,-TX-78754",
+                  "key": "id",
+                  "description": "(Required) The id of the property listing to return"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7b110486-5c62-428e-ad2a-bf2897b41e8b",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "rental",
+                    "long-term",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "2005-Arborside-Dr,-Austin,-TX-78754",
+                      "key": "id",
+                      "description": "(Required) The id of the property listing to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"2005-Arborside-Dr,-Austin,-TX-78754\",\n  \"formattedAddress\": \"2005 Arborside Dr, Austin, TX 78754\",\n  \"addressLine1\": \"2005 Arborside Dr\",\n  \"addressLine2\": null,\n  \"city\": \"Austin\",\n  \"state\": \"TX\",\n  \"stateFips\": \"48\",\n  \"zipCode\": \"78754\",\n  \"county\": \"Travis\",\n  \"countyFips\": \"453\",\n  \"latitude\": 30.35837,\n  \"longitude\": -97.66508,\n  \"propertyType\": \"Single Family\",\n  \"bedrooms\": 3,\n  \"bathrooms\": 2.5,\n  \"squareFootage\": 1681,\n  \"lotSize\": 4360,\n  \"yearBuilt\": 2019,\n  \"hoa\": {\n    \"fee\": 45\n  },\n  \"status\": \"Active\",\n  \"price\": 2200,\n  \"listingType\": \"Standard\",\n  \"listedDate\": \"2024-09-18T00:00:00.000Z\",\n  \"removedDate\": null,\n  \"createdDate\": \"2024-09-19T00:00:00.000Z\",\n  \"lastSeenDate\": \"2024-09-30T03:49:20.620Z\",\n  \"daysOnMarket\": 13,\n  \"mlsName\": \"CentralTexas\",\n  \"mlsNumber\": \"556965\",\n  \"listingAgent\": {\n    \"name\": \"Zachary Barton\",\n    \"phone\": \"5129948203\",\n    \"email\": \"zak-barton@realtytexas.com\",\n    \"website\": \"https://zak-barton.realtytexas.homes\"\n  },\n  \"listingOffice\": {\n    \"name\": \"Realty Texas\",\n    \"phone\": \"5124765348\",\n    \"email\": \"sales@realtytexas.com\",\n    \"website\": \"https://www.realtytexas.com\"\n  },\n  \"history\": {\n    \"2024-09-18\": {\n      \"event\": \"Rental Listing\",\n      \"price\": 2200,\n      \"listingType\": \"Standard\",\n      \"listedDate\": \"2024-09-18T00:00:00.000Z\",\n      \"removedDate\": null,\n      \"daysOnMarket\": 13\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a80c2fe-2243-4dd4-ba82-fb45079fbe4b",
+              "name": "Auth Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    "rental",
+                    "long-term",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "2005-Arborside-Dr,-Austin,-TX-78754",
+                      "key": "id",
+                      "description": "(Required) The id of the property listing to return"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 401,\n  \"error\": \"auth/api-key-invalid\",\n  \"message\": \"No API key provided in request. An API key must be provided in the 'X-Api-Key' header\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rentcast.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "54b223a9-ee8b-4fdf-97fb-de4f989640f8",
+    "name": "RentCast Avm Listings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -22,6 +22,12 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/rentcast.png
 tags:
+  - Real-Estate
+  - Property Data
+  - Valuation
+  - Rental Market
+  - AVM
+tags_raw:
   - Real Estate
   - Property Data
   - Valuation
@@ -38,6 +44,8 @@ apis:
   humanURL: https://www.rentcast.io/api
   baseURL: https://api.rentcast.io/v1
   tags:
+  - AVM
+  tags_raw:
   - Avm
   properties:
   - type: OpenAPI

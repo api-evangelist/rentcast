@@ -1,0 +1,37 @@
+slug: rentcast
+provider: RentCast
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Real Estate
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Avm
+  spec_file: rentcast-avm-api-openapi.yml
+  capability_id: BC-4970
+  capability_id_l1: BC-4970
+  capability_name: Real Estate Valuation & Appraisal Management
+  confidence: 0.85
+  evidence: 'GET /avm/value ''Value Estimate''; GET /avm/rent/long-term ''Rent Estimate''; vendor: ''automated
+    valuation models (AVM) for home value and rent estimates'''
+  reason: The endpoints produce automated property value and rent estimates, i.e. real-estate valuation
+    output. Which valuation sub-capability (approach application vs. market data curation) is not named
+    by the operations, so only the L1 is asserted.
+- tag: Listings
+  spec_file: rentcast-listings-api-openapi.yml
+  capability_id: BC-4960.30
+  capability_id_l1: BC-4960
+  capability_name: Listing Data & MLS Management
+  confidence: 0.7
+  evidence: GET /listings/sale  sale-listings  Sale Listings; GET /listings/rental/long-term  rental-listings-long-term  Rental
+    Listings
+  reason: Operations serve active sale and rental listing data for US properties — listing data management/syndication
+    in the brokerage domain. Alternative reading is market data curation for valuation, so confidence
+    moderate.

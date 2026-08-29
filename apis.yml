@@ -160,6 +160,9 @@ apis:
   - type: Vocabulary
     url: vocabulary/rentcast-vocabulary.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/rentcast-capability-edges.yml
+    name: RentCast Business Capability Map
   - type: AgenticAccess
     url: agentic-access/rentcast-agentic-access.yml
   - type: DomainSecurity

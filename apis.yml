@@ -55,7 +55,7 @@ apis:
   humanURL: https://www.rentcast.io/api
   baseURL: https://api.rentcast.io/v1
   tags:
-  - Avm
+  - AVM
   tags_raw:
   - Avm
   properties:

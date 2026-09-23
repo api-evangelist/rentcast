@@ -1,10 +1,7 @@
 {
   "provider": "rentcast",
   "sources": [
-    "rentcast-avm-api-openapi.yml",
-    "rentcast-listings-api-openapi.yml",
-    "rentcast-markets-api-openapi.yml",
-    "rentcast-properties-api-openapi.yml"
+    "_original/rentcast-openapi.json"
   ],
   "outputs": [
     "rentcast-avm-api-openapi.yml",
@@ -15,6 +12,29 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "rentcast-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "rentcast-openapi.json: tagged paths GET /properties -> Properties",
+    "rentcast-openapi.json: tagged paths GET /properties/random -> Properties",
+    "rentcast-openapi.json: tagged paths GET /properties/{id} -> Properties",
+    "rentcast-openapi.json: tagged paths GET /avm/value -> Avm",
+    "rentcast-openapi.json: tagged paths GET /avm/rent/long-term -> Avm",
+    "rentcast-openapi.json: tagged paths GET /listings/sale -> Listings",
+    "rentcast-openapi.json: tagged paths GET /listings/sale/{id} -> Listings",
+    "rentcast-openapi.json: tagged paths GET /listings/rental/long-term -> Listings",
+    "rentcast-openapi.json: tagged paths GET /listings/rental/long-term/{id} -> Listings",
+    "rentcast-openapi.json: tagged paths GET /markets -> Markets",
+    "rentcast-openapi.json: declared missing tag: Avm",
+    "rentcast-openapi.json: declared missing tag: Listings",
+    "rentcast-openapi.json: declared missing tag: Markets",
+    "rentcast-openapi.json: declared missing tag: Properties",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "rentcast-avm-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "rentcast-listings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "rentcast-markets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "rentcast-properties-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

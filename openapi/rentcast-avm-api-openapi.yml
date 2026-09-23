@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: RentCast Avm API
   version: '1.0'
@@ -7,7 +7,7 @@ servers:
 security:
 - sec0: []
 tags:
-- name: Avm
+- name: AVM
 paths:
   /avm/value:
     get:
@@ -402,7 +402,7 @@ paths:
                     message: No API key provided in request. An API key must be provided in the 'X-Api-Key' header
       deprecated: false
       tags:
-      - Avm
+      - AVM
   /avm/rent/long-term:
     get:
       summary: Rent Estimate
@@ -794,7 +794,7 @@ paths:
                     message: No API key provided in request. An API key must be provided in the 'X-Api-Key' header
       deprecated: false
       tags:
-      - Avm
+      - AVM
 components:
   securitySchemes:
     sec0:

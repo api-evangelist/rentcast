@@ -34,7 +34,7 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/rentcast.png
 tags:
-  - Real-Estate
+  - Real Estate
   - Property Data
   - Valuation
   - Rental Market
@@ -45,6 +45,7 @@ tags_raw:
   - Valuation
   - Rental Market
   - AVM
+  - Real-Estate
 url: https://raw.githubusercontent.com/api-evangelist/rentcast/refs/heads/main/apis.yml
 created: '2025-03-01'
 modified: '2026-05-19'
